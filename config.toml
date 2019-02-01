@@ -1,0 +1,7 @@
+baseURL = "https://braavos.me/"
+languageCode = "zh-CN"
+title = "braavos"
+theme = "sam"
+highlighter = "pygments"
+PygmentsCodeFences = true
+pygmentsUseClasses = true

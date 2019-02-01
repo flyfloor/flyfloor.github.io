@@ -1,0 +1,8 @@
+clickablePhotos: true
+mainMenu:
+  - link: /posts
+    text: 写的
+  - link: /gallery
+    text: 拍的
+  - link: /about
+    text: 关于我们

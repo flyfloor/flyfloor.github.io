@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<!-- Character max 160-->
+<meta name="description" content="{{.Site.Params.description | default "Call me Sam, a theme for Hugo."}}">
+<meta name="og:type" content="website">
+<meta name="og:url" content="{{.Site.BaseURL}}">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="{{.Site.Params.primaryImage | default "tn.png" | absURL}}">
+
+<link rel="shortcut icon" href="{{.Site.Params.favicon | default "sam.ico" | absURL }}" id="favicon">
+{{ $style := resources.Get "reset.scss" | toCSS | minify }} 
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+
+{{ $style := resources.Get "highlight.scss" | toCSS | minify }} 
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+
+{{ $style := resources.Get "app.scss" | toCSS | minify }} 
+<link rel="stylesheet" href="{{ $style.Permalink }}">
