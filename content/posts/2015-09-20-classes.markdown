@@ -1,0 +1,218 @@
+---
+date: "2015-09-20"
+layout: post
+tags: ['tech', 'JavaScript', 'ES6']
+title: "\u6DF1\u5165 ES6  - \u7C7B"
+---
+> 原文出自 [ES6 in depths](https://hacks.mozilla.org/2015/07/es6-in-depth-classes/), 作者 [Eric Faust](https://hacks.mozilla.org/author/efaustmozilla-com/), 翻译：落在深海
+
+*ES6 In Depth* 系列将详细解读 ES6 的新特性。   
+
+我们从上周文章介绍的错综复杂后得到一丝喘息的机会。今天不会有从未见过的 [generators 的写法](https://hacks.mozilla.org/2015/07/es6-in-depth-generators-continued/); 没有操纵 Javascript 内部算法的 [强大代理对象](https://hacks.mozilla.org/2015/07/es6-in-depth-proxies-and-reflect/)；没有避免自己刀工火种的新数据结构。取代的是，我们要讨论下句法和语义上一个遗留问题： Javascript 的对象构造。  
+
+### 问题所在  
+
+<!--more-->
+
+比方说，我们打算创建面向对象原则最经典的例子：Circle 类。幻想我们正使用 Canvas 库来画一个圆形。理想情况下，我们想要知道如何做到以下几点：  
+
++ 给指定的画布画一个给定的原型。  
+
++ 记录画圆的个数。  
+
++ 记录圆的半径，并保证它固定不变。  
+
++ 计算圆的周长。  
+
+依照现在的 Js 写法，我们应该创建一个构造函数，并为函数添加我们需要的属性，然后用对象来替换构造函数的 prototype 属性。这里 prototype 对象包含了构造函数创建的实例对象的所有属性。再举个简单的例子，当你敲出所有代码，会有一对引用：  
+
+```javascript
+function Circle(radius) {
+    this.radius = radius;
+    Circle.circlesMade++;
+}
+
+Circle.draw = function draw(circle, canvas) { /* Canvas drawing code */ }
+
+Object.defineProperty(Circle, "circlesMade", {
+    get: function() {
+        return !this._count ? 0 : this._count;
+    },
+    set: function(val) {
+        this._count = val;
+    }
+});
+
+Circle.prototype = {
+    area: function area() {
+        return Math.pow(this.radius, 2) * Math.PI;
+    }
+};
+
+Object.defineProperty(Circle.prototype, "radius", {
+    get: function() {
+        return this._radius;
+    },
+
+    set: function(radius) {
+        if (!Number.isInteger(radius))
+            throw new Error("Circle radius must be an integer.");
+        this._radius = radius;
+    }
+});  
+```
+    
+代码冗长且反直觉。需要一个更直接的理解它如何工作的方式，以及众多属性如何被创建到实例对象上。本文旨在为达成这些提供更简单的方式。  
+
+### 方法定义  
+
+为解决这个问题，ES6 起初尝试为对象添加特殊属性提供一种新语法。尽管为 Circle.prototype 添加 area 方法很容易，然而 radius 的 getter/setter 方法似乎就太笨重了。由于 Js 发展的更接近面向对象，人们对设计更清洁的对象访问器越发感兴趣。针对对象添加方法，我们需要一种类似 obj.prop = method 的方式，而不是笨重的 Object.defineProperty。这样的方式需要很容易做到：   
+
+1. 为对象添加普通函数属性。  
+
+2. 为对象添加 generator 函数。  
+
+3. 为对象添加访问器。  
+
+4. 为已构造的对象，通过 [ ] 的语法添加上面三点的任何属性。这个被称作*被计算出的属性名称*。  
+
+放在以前，其中的几点很难实现。例如，根本没办法通过 obj.prop 来定义 getter 或 setter 方法。于是出现了新语法，你现在可以这样写：  
+
+```javascript
+var obj = {
+    // Methods are now added without a function keyword, using the name of the
+    // property as the name of the function.
+    method(args) { ... },
+
+    // To make a method that's a generator instead, just add a '*', as normal.
+    *genMethod(args) { ... },
+
+    // Accessors can now go inline, with the help of |get| and |set|. You can
+    // just define the functions inline. No generators, though.
+
+    // Note that a getter installed this way must have no arguments
+    get propName() { ... },
+
+    // Note that a setter installed this way must have exactly one argument
+    set propName(arg) { ... },
+
+    // To handle case (4) above, [] syntax is now allowed anywhere a name would
+    // have gone! This can use symbols, call functions, concatenate strings, or
+    // any other expression that evaluates to a property id. Though I've shown
+    // it here as a method, this syntax also works for accessors or generators.
+    [functionThatReturnsPropertyName()] (args) { ... }
+};
+```  
+    
+使用新语法，我们可以重写之前的例子：  
+
+```javascript
+function Circle(radius) {
+    this.radius = radius;
+    Circle.circlesMade++;
+}
+
+Circle.draw = function draw(circle, canvas) { /* Canvas drawing code */ }
+
+Object.defineProperty(Circle, "circlesMade", {
+    get: function() {
+        return !this._count ? 0 : this._count;
+    },
+
+    set: function(val) {
+        this._count = val;
+    }
+});
+
+Circle.prototype = {
+    area() {
+        return Math.pow(this.radius, 2) * Math.PI;
+    },
+
+    get radius() {
+        return this._radius;
+    },
+    set radius(radius) {
+        if (!Number.isInteger(radius))
+            throw new Error("Circle radius must be an integer.");
+        this._radius = radius;
+    }
+};
+```
+
+刨根问底，这段代码跟第一个例子并不完全等价。对象字面量里定义的方法是可配置和可枚举的，而第一个例子里的访问器并不是。实践中这点很少被提及，我们也暂时跳过这部分。    
+
+变得更好了不是么？遗憾的是，虽然用到了最新的语法，我们仍旧对定义 Circle 力不从心，你正在定义的属性，就没法获得到它。  
+
+### 类定义  
+
+到目前为止，还算不错，然而很难让那些想拥有更清洁面向对象设计语法的人得到满足。关于面向对象设计，其他语言有一种结构，他们议论到，那种结构叫做*类*。  
+
+有道理，那我们也加上类吧。  
+
+我们希望能够为构造器函数及它的 .prototype 添加方法，这样他们就会在类的实例对象作用域使用。既然有了新的方法定义语法，就一定得用上它。我们要做的仅仅是区分类方法和实例方法。在 C++ 或者 Java，这个关键字是 static，看起来不错，我们也这样用吧。  
+
+现在如果有某种方式，能从一堆方法里指定某个函数作为构造函数，将显得非常有用。C++ 或 Java 里， 他被定义为跟类名同名，没有返回类型。由于 Js 没有返回值一说，而且我们还是希望有个 .constructor 属性，为了向后兼容，那就称它为 constructor 吧。  
+
+组合起来，Circle 可以重写为：  
+
+```javascript
+class Circle {
+    constructor(radius) {
+        this.radius = radius;
+        Circle.circlesMade++;
+    };
+
+    static draw(circle, canvas) {
+        // Canvas drawing code
+    };
+
+    static get circlesMade() {
+        return !this._count ? 0 : this._count;
+    };
+    static set circlesMade(val) {
+        this._count = val;
+    };
+
+    area() {
+        return Math.pow(this.radius, 2) * Math.PI;
+    };
+
+    get radius() {
+        return this._radius;
+    };
+    set radius(radius) {
+        if (!Number.isInteger(radius))
+            throw new Error("Circle radius must be an integer.");
+        this._radius = radius;
+    };
+}
+```
+
+哇哦，我们不仅把所有 Circle 相关的代码放一起了，而且所有的方法看起来如此干净。比第一个例子不知道好到哪里去了。  
+
+即使这样，你们可能还会举些极端例子。我早猜到了，这里先列出一部分：  
+
++ **为什么用分号分割？**- 尝试让所有东西看起来更像传统的类，我们决定用分隔符，不喜欢的话大可不必这样，它是可选的。  
+
++ **如果我不希望有构造函数，而还需要其他的方法呢？** - 无所谓，构造函数也是可选的。不需要的话，可以写成 constructor() { }。  
+
++ **构造器可以是 generator 么？** - 答案是不能！添加一个非普通方法的构造器，将得到一个 TypeError。这里非法的函数包含了 generators 和 访问器。  
+
++ **可以用 constructor 定义计算属性么？** - 不可以。这样很难探测，所以我们并没有尝试去做。如果计算属性被命名为 constructor，那么你将得到名为 constructor 的普通方法，而不是类的构造器。  
+
++ **如果改变 Circle 的值？new Circle 会不会也被改变？** - 不会！就像是函数表达式，类根据名称获得一个内部绑定，绑定不会被外界力量破坏，所以在类的外部作用域无论你如何对 Circle 变量赋值，Circle.circleMade++ 还是会得到正确的值。  
+
++ **好吧，那我直接将对象字面量赋值给类，这样新的类看起来就不能工作了吧** - 幸运的是，ES6 添加了类表达式！他们可以被命名或者匿名，这样就获得了上面描述的行为，不同的是不会在定义的作用域创建局部变量。  
+
++ **那通过枚举性做恶作剧呢？** - 人们这么做因为你会为类插入方法，然而枚举对象的属性，得到的只是添加的数据属性，这样很合理。正因为如此，插入的方法是可配置的，但并不是可枚举的。 
+
++ **等等，什么？类的实例变量在哪？那 static 常量呢？** - 被你问住了。目前 ES6 的类里他们并不存在。好消息是与其他参与此规范进展的人一道，我强力支持 static 跟 const 可安装的在类里使用。事实上，这已经在规范的会议中提到了。我们可以期待在未来更多的讨论它。
+
++ **好吧，还是非常给力的！我现在能用它了么？** - 并不完全。可以通过(类似 babel)今天就用上此特性。不幸的是，主流浏览器完全实现它还需要一段时间。我已经在[Firefox Nightly 版本里](https://nightly.mozilla.org/) 里实现了今天讨论的所有特性，chrome 跟 edge 浏览器已经实现但没启用。遗憾的是，safari 并没有实现它。  
+
++ **Java and C++ 有子类和 super 关键字，但你并没有提到任何。Js 究竟有么?** - 确实有！然而需要一整篇文章来讨论。关于子类后续我们会有更新，届时将讨论更多关于 Javascript 类的强大之处。  
+
+没有 [Jason Orendorff](https://hacks.mozilla.org/author/jorendorffmozillacom/) 和 [Jeff Walden](https://whereswalden.com/) 的指导及频繁又细致的代码审查，我可能根本无法实现 Javascript 的类。  
+
+下周，Jason Orendorff 度假回来，来给大家讲解 let 跟 const。

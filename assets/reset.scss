@@ -90,7 +90,6 @@ blockquote, q {
 }
 
 time {
-  margin-bottom: 1.5em;
   font-family: Monaco, sans-serif;
   color: #585858;
   font-size: .8em;
@@ -134,6 +133,10 @@ h6 {
 
 code, pre, tt {
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+}
+
+strong {
+  font-weight: 600;
 }
 
 p {

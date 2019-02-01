@@ -1,0 +1,265 @@
+---
+date: "2015-09-20"
+layout: post
+tags: ['tech', 'JavaScript', 'ES6']
+title: "\u6DF1\u5165 ES6  - \u6A21\u5757"
+---
+
+> 原文出自 [ES6 in depths](https://hacks.mozilla.org/2015/08/es6-in-depth-modules/), 作者 [Jason Orendorff](https://blog.mozilla.org/jorendorff/), 翻译：落在深海
+
+*ES6 In Depth* 系列将详细解读 ES6 的新特性。   
+
+当我在2007年组建 Mozilla Javascript 团队时，好笑的是当时典型的 Js 程序只有一行。  
+
+两年后谷歌地图被推出，在这之前不久，Javascript 主要被用来做表单的验证，并且可以确定的是`<input onchange=>` 仍旧只有一行。  
+
+<!--more-->
+
+一切都变了，Javascript 的发展速度令人咋舌，Js 社区开发出许多用于大规模应用的工具。而你需要的最基础功能之一便是模块系统。模块系统帮你穿梭在众多文件和目录中 - 让你按需获取 - 且极具效率。自然地，Javascript 拥有模块系统。实际上有多个。也有几个包管理器和工具，它们能根据层级依赖关系拷贝及安装应用。这样你可能觉得 ES6 才带来模块语法，似乎有点晚了。  
+
+那么，今天我们将看到 ES6 是否在原有系统加入了些东西，而且是否在这些东西基础上构造了未来标准及工具。首先，让我们深入研究下 ES6 的模块。  
+
+### Module 的基础  
+
+ES6 的模块是指一个包含 Js 代码的文件。并没有 `module` 关键字；模块像脚本一样被读取。不过有两点不同。  
+
++ ES6 模块会自动开启严格模式，即便你没写 "use strict"。  
+
++ 你可以在模块内使用 import 跟 export。  
+
+首先来看 export。默认所有在模块内的声明，对模块来说都是局部的。假如你想让模块的某些声明被其他模块使用，那就需要用到 export 。有几种方式来完成导出，最简单的就是在前面加上 export 关键字。  
+
+```javascript
+// kittydar.js - Find the locations of all the cats in an image.
+// (Heather Arthur wrote this library for real)
+// (but she didn't use modules, because it was 2013)
+
+export function detectCats(canvas, options) {
+  var kittydar = new Kittydar(options);
+  return kittydar.detectCats(canvas);
+}
+
+export class Kittydar {
+  ... several methods doing image processing ...
+}
+
+// This helper function isn't exported.
+function resizeCanvas() {
+  ...
+}
+...
+```  
+
+你可以 export 任何顶层的 function，class，var，let 或者 const。  
+
+你需要做的只是写一个 module! 压根不需要把所有东西放入一个 [IIFE](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression)(自动执行的函数体) 或者回调。只用声明你要的东西就行。由于是模块，所有声明都属于模块的范围，不被其他模块所见。Export 让声明变为模块的公共 API。  
+
+除 export 以外，其他代码跟从前一样，你可以使用类似 Object 跟 Array 等。如果模块在浏览器里执行，还可以使用 document 跟 XMLHTTPRequest。  
+
+在一个单独文件里，我们可以导入 detectCats() 函数：  
+
+```javascript
+// demo.js - Kittydar demo program
+
+import {detectCats} from "kittydar.js";
+
+function go() {
+    var canvas = document.getElementById("catpix");
+    var cats = detectCats(canvas);
+    drawRectangles(canvas, cats);
+}
+```  
+
+想要导入模块的多个对象，可以这样写：
+
+```javascript
+import {detectCats, Kittydar} from "kittydar.js";  
+```
+    
+当执行包含 import 声明的模块时，首先引用的模块会被导入，然后模块体根据依赖关系按照深度优先遍历来执行，跳过已被执行过的来避免导致循环。  
+
+以上便是模块最基础的概念，足够简单。  
+
+### Export 清单  
+
+与其一个个导出，不如列个导出清单，用花括号包裹起来：  
+
+```javascript
+export {detectCats, Kittydar};
+
+// no `export` keyword required here
+function detectCats(canvas, options) { ... }
+class Kittydar { ... }
+```
+export 语句并非要放在文件第一行；它可以在模块文件的任何最外层作用域里。可以有多个 export 清单，或者清单跟单个 export 混合的方式，只要别出现重复导出。  
+
+### 重命名导入导出  
+
+有时候导入的模块名称可能会跟别的冲突，这时，ES6 允许你在导入模块时对其重命名：  
+
+```javascript
+// suburbia.js
+
+// Both these modules export something named `flip`.
+// To import them both, we must rename at least one.
+import {flip as flipOmelet} from "eggs.js";
+import {flip as flipHouse} from "real-estate.js";
+...
+```
+
+导出模块同样支持重命名。有时模块拥有别名，这种情况来说就非常方便：  
+
+```javascript
+// unlicensed_nuclear_accelerator.js - media streaming without drm
+// (not a real library, but maybe it should be)
+
+function v1() { ... }
+function v2() { ... }
+
+export {
+  v1 as streamV1,
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};
+```
+
+### 默认导出  
+
+新标准被设计的很容易跟已有 CommonJs 及 AMD 模块交互。假设有一个 Node 项目，而你执行了 `npm install lodash`。你可以直接从 Lodash 导入模块：  
+
+```javascript
+import {each, map} from "lodash";
+
+each([3, 2, 1], x => console.log(x));
+```
+
+或许你早已习惯了 _.each 这种方式来写。或者你想看到 _ 作为一个函数出现，见这里 [that’s a useful thing to do in Lodash](https://lodash.com/docs#_)。  
+
+你可以使用略微不同的语法：import 模块而不带花括号：  
+
+```javascript
+import _ from "lodash";  
+```
+    
+这缩写类似于 `import { default as _ } from "lodash"`; 所有 CommonJs 及 AMD 模块在 ES6 里存在默认的 export，这根当你 require() 那个模块是同样的效果 - 这就是 exports 对象。  
+
+ES6 模块被设计成可以包含多个导出的，然而对于 CommonJs 模块，默认导出的是所有你能得到的。举个例子，写到这里时，据我所知最著名的 [color](https://github.com/Marak/colors.js) 仍不提供任何 ES6 的支持。但你可以把它正确的导入进来：  
+
+```javascript
+// ES6 equivalent of `var colors = require("colors/safe");`
+import colors from "colors/safe";
+```  
+
+如果需要给你的 ES6 模块设置默认导出值，非常容易。跟其他导出一样，并无神奇；区别仅在于它被命名为“默认的”。你可以按以下语法：  
+
+```javascript
+let myObject = {
+  field1: value1,
+  field2: value2
+};
+export {myObject as default};
+```  
+
+或者用缩写更好：  
+
+```javascript
+export default {
+  field1: value1,
+  field2: value2
+};
+```  
+
+关键字 export default 可以跟任何值：函数、类、对象字面量设置你自己命名的。  
+
+### 模块对象  
+
+抱歉太长了。Javascript 并不特别：出于某些原因，所有语言的模块系统都有一大堆独立琐碎又无趣的特性。幸运的是，只剩一个东西要讲。好吧，其实是两个。  
+
+```javascript
+import * as cows from "cows";  
+```
+    
+当使用 import *，实际上导入的是模块命名空间对象。它的属性都是模块的导出。所以当 “cows” 模块导出一个叫 moo() 的函数，导入 “cows”的后，你可以写：  cows.moo()。  
+
+### 聚集的模块  
+
+有时包的主模块功能仅仅是导入其他模块，且以统一的方式导出它们。为了简化此类代码，有种所有在一行导入导出的简写：  
+
+```javascript
+// world-foods.js - good stuff from all over
+
+// import "sri-lanka" and re-export some of its exports
+export {Tea, Cinnamon} from "sri-lanka";
+
+// import "equatorial-guinea" and re-export some of its exports
+export {Coffee, Cocoa} from "equatorial-guinea";
+
+// import "singapore" and export ALL of its exports
+export * from "singapore";
+```  
+
+每个 export-from 语句类似于 import-from 语句后面紧跟一条 export。但与真的导入不同，实际上并不会添加重复导出的绑定到作用域。所以如果你计划在 world-foods.js 里使用 Tea 模块，最好别用上面这种缩写方式，你会发现 Tea 根本不在 world-foods 里。  
+
+如果 “singapore” 的导出与别的导出冲突，将得到一个错误，所以请谨慎使用 `export *`。  
+
+终于讲完了语法！到了有意思的部分。  
+
+### import 究竟做了什么？  
+
+什么也没做，你相信么？  
+
+噢，你果然不好骗。好吧你相信么，关于 import，标准里什么也没提？这样好么？  
+
+ES6 把模块加载的细节都留在 [实现里了](//www.ecma-international.org/ecma-262/6.0/index.html#sec-hostresolveimportedmodule)，而剩下的模块执行的[细节在这里](//www.ecma-international.org/ecma-262/6.0/index.html#sec-toplevelmoduleevaluationjob)。  
+
+粗略地讲，当你告诉 JS 引擎运行一个模块时，它会表现出仿佛这四步一样的行为：  
+
+1. 解析：实现会读取模块的源代码，并且检查是否有语法错误。  
+
+2. 加载：实现加载所有导入的模块(递归的)。这部分并没有标准化。  
+
+3. 连接：对于每个新加载的模块，实现构造了一个模块作用域，并用该模块定义的所有绑定填充它，这里包括从别的模块导入的东西。    
+
+这部分就是当你尝试 `import {cake} from "paleo"`, 而 "paleo" 模块并没有任何名字为 cake 的导出时，你将得到错误。这样太糟了，差一点你就可以运行一些 JS 代码并切蛋糕庆祝了。
+
+4. 运行时：最终地，实现在每个新加载的模块里执行声明。这是，import 处理早已完成，所以当执行到 import 定义时，就真的什么也没发生！  
+
+看到没，我早告诉你答案是“什么也没发生”。关于编程语言我不会骗你的。  
+
+但现在，我们到了最有趣的部分了。这有个非常酷的花招。由于系统并没详细说明是如何加载模块的，你可能通过看 import 声明的源码提前弄明白所有依赖关系，ES6 里的实现是在编译时自由地做完所有事情，并打包所有模块到单个文件来通过网络运送！工具 [webpack](//www.2ality.com/2015/04/webpack-es6.html) 也是这样做的。  
+
+这是个大问题，因为通过网络加载脚本需要花费一定时间，而且每次获取，你可能会发现它包含的 import 声明需要加载更多的模块。一个简陋的加载器可能会这样进行多次网络请求往返。但通过 webpack，不仅可以今天就用上 ES6 的模块，你获得了所有软件工程优势，且无需承受运行时性能问题之伤。  
+
+ES6 里模块加载的细节规范原来被计划，准备实现的。最终没能出现在标准里的原因之一是在达成绑定这个特性时遇到了意见不一。我希望其他人意识到，模块加载是非常有必要被标准化的。绑定实在太好用了。  
+
+### 静态 vs 动态，或者：规矩和打破规矩    
+
+对动态语言来说，Javascript 却很吃惊的拥有一个静态模块系统。  
+
++ 所有 import 跟 export 只允许存在于模块的最顶层，不存在受限制的导入跟导出，而且你根本不能在函数作用域使用 import。  
+
++ 所有导出的标识符必须被源码显式的导出。你不能通过对数组做程序化的循环，以数据驱动的方式导出一堆模块。  
+
++ 模块对象处于被冻结状态。根本没办法填鸭式地 hack 模块来给其添加新特性。  
+
++ 模块的所有依赖在该模块代码执行前，必须立即被加载，解析和连接。根本没有按需进行懒加载之类的语法。  
+
++ 关于 import 错误根本没有错误恢复的办法。一个应用可能拥有上百个模块，任何模块加载或连接失败，应用将不会运行。你不能在 try/catch 里进行导入。(鉴于模块系统是如此静态，webpack 能在编译时期帮你检测这些错误。)  
+
++ 根本没有钩子来允许你在模块的依赖被加载前执行代码。这意味着模块对其依赖资源的加载毫无控制能力。  
+
+模块系统对于静态依赖还是非常好用的。但有时你可能想 hack 点什么对吧？  
+
+这就是无论你使用的是什么模块加载系统，都拥有除 ES6 静态 import/export 之外的另一个程序化的 API，好让你更炸裂地写代码，按需懒加载一大批模块。同样这个 API 支持你打破以上的所有规矩。  
+
+ES6 的模块语法非常的静态，这样很好 --  它以强力编译时工具的形式来工作。然而这静态语法曾经被设计的也拥有富动态化、程序化的加载器 API。  
+
+### 什么时候能用上 ES6 模块？  
+
+要想在今天使用模块，你需要类似 [Traceur](https://github.com/google/traceur-compiler#what-is-traceur) 或 [Babel](//babeljs.io/) 这样的编译器。这系列文章一开始，[Gastón I. Silva 讲了如何使用 Babel 跟 Broccoli](https://hacks.mozilla.org/2015/06/es6-in-depth-babel-and-broccoli/) 来编译 ES6 代码；在那篇文章的基础上，Gastón 有 [a working example with support for ES6 modules](https://github.com/givanse/broccoli-babel-examples/tree/master/es6-modules)。[Axel Rauschmayer 的这篇文章](//www.2ality.com/2015/04/webpack-es6.html) 包含了使用 Babel 跟 webpack 的例子。  
+
+ES6 模块主要是由 Dave Herman 和 Sam Tobin-Hochstadt 所设计，经过与包括我在内的所有参与者多年的辩论，他俩最终捍卫了系统的静态部分。Jon Coppeard 正在 Firefox 上实现模块特性。关于 Javascript 模块加载器的额外工作正在进行中。期待后续会出现在 HTML 里增加类似 <scrpit type=module> 的写法。  
+
+这就是 ES6。  
+
+太多好玩的东西，以至于不想停下来。我们或许应该再多开一期，来讲讲难得使用到的特性以及为 ES6 做结尾，这些可能并不足以分立成章。或许会再讲点关于未来的东西。欢迎加入下周的 ES6 总结。

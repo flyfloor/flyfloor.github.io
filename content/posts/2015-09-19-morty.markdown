@@ -1,0 +1,14 @@
+---
+date: "2015-09-19"
+layout: post
+tags: ['avatar', 'design', 'sketch']
+title: morty
+---
+
+![morty](/images/posts/morty.png)  
+
+来自美剧 *Rick and Morty*, 使用 Sketch 临摹，作者：落在深海
+
+<!--more-->  
+
+#### *Sketch source file: [morty.sketch](https://github.com/jerryshew/design/blob/master/sketch/morty.sketch), png file: [morty.png](https://github.com/jerryshew/design/blob/master/png/morty.png), design stuff hosted in [here](https://github.com/jerryshew/design/).*

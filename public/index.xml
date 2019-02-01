@@ -6,9 +6,905 @@
     <description>Recent content on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <lastBuildDate>Mon, 04 Dec 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://braavos.me/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Reason? Reason!</title>
+      <link>https://braavos.me/posts/2017-12-04-reason/</link>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2017-12-04-reason/</guid>
+      <description>今天学习一门新语言：Reason，其实去年的时候就有了解过这门语言，当时看文档一头雾水，就放弃了。几周前看了看官网，发现变化很大，新版语法感觉还不错，就简单过了下。
+首先，Reason 严格来说称不上一个语言，它是基于 OCaml 新语法的 DSL。OCaml 是一门函数式编程语言，它本身有些很好的特性，例如拥有严格静态类型，灵活强大的对象和模块系统，适合写高性能、结构复杂、数据正确性高要求的应用等。多被用来写编译器、程序分析、金融交易、虚拟机等应用。我们熟知的 facebook 的 flow 也是基于 OCaml 编写的。
+那么问题是『写前端 JavaScript 不够吗？老夫一把梭，就是干！』JavaScript 编写的代码已经运行在各种平台，侵入更多的领域，然而应用的规模变大以后，稳定性、可维护性变差很多，更多运行时异常，让测试、维护都变得非常难。
+为了解决这些问题，Reason 的作者基于 OCaml 设计了 Reason 这门语言，他拥有以下主要特点：
+  坚若磐石的类型系统
+得益于 OCaml 100% 的类型覆盖率，同时享受一旦编译，数据的类型则精准无误。
+ 极致的简洁、实用主义
+允许可变、副作用以及对象让从 JS 程序员更自然，同时保持语言本身的纯净、不可变及函数式。
+ 聚焦高性能和语言的大小
+Reason 的构建系统：bsb，能够保证增量构建在 100 ms 内完成，同时构建出的文件非常小。
+ 基于现有语言的优秀特点，强大兼容扩展性
+完全的类型检查，同时支持 JS 片段完美的混合执行。
+ 强大的生态及工具链
+基于不同的编辑器，提供了插件及语法支持，同时支持引用外部 JS 模块，这样就可以使用成千上万的 NPM 包了。   听起来非常美好，关于为什么使用 OCaml 语法作为 Reason 背后的支撑，而不是其他语言？ 很多语言能够实现上面提到的特性，然而主要还是看中：
+  OCaml 能够非常高效率转换成底层机器代码的能力
+ OCaml 默认拥有不可变、函数式的特性，同时可以通过一些方式支持副作用的、可变以及其他特性，方便应用中的一些特殊场景</description>
+    </item>
+    
+    <item>
+      <title>记一次奇怪的做梦经历</title>
+      <link>https://braavos.me/posts/2017-06-17-dream/</link>
+      <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2017-06-17-dream/</guid>
+      <description>昨晚做了个噩梦。
+梦的故事情节是，大家一群人出国玩，走马观花，看了很多景点。某餐期间，同行有人忽然开始咬别人，其他人四散逃开，但并不走远，都躲在角落观察他。咬人的忽然变成一只河马，而被咬的身上似乎只有很深的一道牙印，并未像丧尸一样被感染，只是惊慌逃跑。为了防止河马再次进攻，大家合力把河马赶跑了，然后惊魂未定的继续吃饭。 行程并未受到太大影响，大家还是吃喝玩，又一次午餐，同样的事情发生了，又有人变身秃鹫袭击人，这个人是之前被河马咬过的，同样所有人赶走了秃鹫。人们纷纷开始恐慌，有人提议打死被咬者，有人说太残忍，最终迫于压力，被咬者默默离开队伍。
+两天过去，相安无事，但大家都提高了警惕，互相提防，父母给孩子剪指甲，带牙套，以防万一。旅行已经完全被打乱，旅行团本身也是自发组织在一起的，大家都只想着结束旅程，离开这里不再有任何瓜葛。
+断断续续的，越来越多都变成了动物，吃饭变成了噩梦，也有人提议要单独去吃，但团长觉得这样容易人心涣散，单兵更容易被攻击，这之后安宁了两天。
+又一次晚餐，惨案又发生了，这次是两个人，狗和兔，咬了另外两个人。仅剩下6个人，团长(户外达人、开了家私人动物园，被咬)、一对中年夫妻(科学家)、旅游达人(饲养员、上次被咬)、足球教练还有我(被咬)。男科学家提议总结回顾，分析规律，好提前防备。他认为被咬的人下次一定会变。伤者之一的旅游达人站出来反驳咬人的两人之前都未被咬，而且他上次被咬也没变，所以怀疑站不住脚。大家还是争吵，互相猜疑。这时候团长让大家冷静，同时提出每次都在吃饭时发生，怀疑是吃的出了问题。大家开始研究桌上的食物，在咬人者的饭里似乎都有几颗微六边形黑色颗粒，不仔细看很容易忽略。于是开始怀疑是有人故意这么做。中年夫妇很热情，几乎每顿饭都是他们给大家盛饭，被当做怀疑目标，我、足球教练说报警吧，把那对夫妇抓起来审问。团长不忍心，觉得那对夫妇是热心肠，不至于做出这种事。这样僵持着又过去一天。
+到了旅行最后一天，午饭大家都格外的小心，这次饭里在没有黑色颗粒。但最终夫妇俩跟足球教练还是变成了鹅，剩下三人齐力把鹅赶到角落里用柜子挡住路。这个时候旅游达人终于透露了实情：原来他、团长、科学家夫妇原来就认识，他在团长的动物园工作，但苦于动物园经营不善，好多动物都死了，园长没钱买动物，参观的人少他也被降薪；科学家夫妇常年研究各种奇怪的东西，没人识货，团长怂恿他们研究能把人变成动物的药，事成给很高报酬和动物园股份。三人搭伙开干，选择拿出国游旅客下手，因为客死他乡不容易被追查，旅游达人负责到处发帖召集旅行者，科学家负责在饭里放药，他们还研制了逆转的药，造成让自己变成动物的假象，打消怀疑，最后团长喂给他们解药，这样作案多次。但是刚变成动物后一段时间不听使唤，而且容易暴怒。没等旅游达人说完，我把柜子推倒，撒腿就跑，鹅围着他们开始追逐撕咬起来。我赶紧坐上回去的小型飞机，让飞行员赶紧起飞。终于飞机起飞，看着脚下的异国土地，心情终于放松下来。再深睡了一觉醒来，发现已经在北京的某个医院里躺着。站起来走出门，看到外面平行晾衣架上挂的不是衣服，而是挂着许多人。我开始拼命逃出医院，街道的电线、楼梯两侧稀稀疏疏全是人，脖子被挂着，悬在空中。
+吓死了赶快跑，跑着跑着就醒来了，谢天谢地。</description>
+    </item>
+    
+    <item>
+      <title>冲突感即真实</title>
+      <link>https://braavos.me/posts/2017-04-01-gr/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2017-04-01-gr/</guid>
+      <description>13年种草，终于入手了理光GR，虽然因为停产买了二手的，好在99成新，快门次数300次，除小光圈下凸显的cmos那颗小灰尘外，一切还好。
+相比其他，一直喜欢拍冲突感，混沌麻木的秩序下隐藏的突兀，带来更真实生活气息，就像是罂粟一样，黑暗却诱人。 两天成功把快门数翻了一番:
+instagram 持续更新: lacunafario
+ Collect moment not things, that&amp;rsquo;s why we take pictures.
+ </description>
+    </item>
+    
+    <item>
+      <title>推荐一个公众号排版工具</title>
+      <link>https://braavos.me/posts/2017-01-07-markdown-css/</link>
+      <pubDate>Sat, 07 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2017-01-07-markdown-css/</guid>
+      <description>这是由 wecatch 程序员 三月沙 写的，自定义微信公众号排版工具。
+可能吧的阿禅的之前写了一篇文章介绍了他是如何排版公众号文章的：思路就是用 markdown 写作，然后使用专门的工具导出为 html 文件，最后把自定义的样式应用到导出的文件，复制粘贴最终的内容到微信公众号。
+工具地址
+Github 地址
+有幸提供了一个自定义主题: ocean, 欢迎使用。也同时期待反馈及贡献更多主题</description>
+    </item>
+    
+    <item>
+      <title>龙猫</title>
+      <link>https://braavos.me/posts/2017-01-01-totoro/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2017-01-01-totoro/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/totoro.png&#34; alt=&#34;totoro&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来自电影 &lt;em&gt;龙猫&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>破碎人生</title>
+      <link>https://braavos.me/posts/2016-12-22-demolition/</link>
+      <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-12-22-demolition/</guid>
+      <description>今年最喜欢的电影史杰克哈伦吉尔演的『破碎人生』，jake 是我非常喜欢的演员之一，虽然至今没得奥斯卡，几乎涉猎各种题材电影，且多数角色演绎的很精湛。 电影主角戴维斯是一个成功人士，是岳父的公司的一把手，娶了贤惠漂亮的妻子，过着让普通人羡慕的生活，每天高效率、按部就班的工作生活。影片开头来了个急刹车，妻子遭遇车祸去世，他麻木生活瞬间被截断，长期无意识、虚伪、敷衍、自私等，在医院看着妻子离去，他竟悲伤不起来，甚至有种旁观者的冷漠，挤不出一滴眼泪。
+他开始回顾，妻子生前多次说他对身边人事漠不关心，于是开始关注细节，乘客的旅行箱里装的什么东西，家里漏水的冰箱，被暴风连根拔起的老树，厕所吱呀的门，出问题的电脑等等, 想起岳父说过的话：『如果你想修好一件东西，就先把它仔细拆开来，弄清楚最重要的是什么，什么能让你变得更坚强&amp;hellip; 修复人的内心，就像维修汽车，先拆分和检查一切部件，然后再次组装起来』，&amp;rdquo;everything become metaphor&amp;rdquo;，他开始拆解厕所门、冰箱，电脑，拆解人生&amp;hellip;
+通过写信反馈 bug，认识了售货机的客服凯伦，是好奇心、对事物共同的兴趣点让他愿意倾诉自己的故事，而后认识了凯伦叛逆的儿子，俩人身上分别于同龄人的那些品性，让戴维斯感受到真实的自由，拆解后的婚姻、生活是粗粝残破的，而他找到了最重要的部分：真实、自由，再拼凑起来，他开心的奔跑在沙滩上，像风一样自由。这里电影就可以结束了，最终导演给了主角婚姻一个鸡汤收尾，戴维斯向岳父坦白，他跟妻子之间存在过爱，只是不懂的关心她，希望设立奖学金来祭奠亡妻，最终也回忆起曾经甜蜜的日子。
+电影里也提到了，『所有事物都变成了隐喻』。戴维斯的冷漠，迷失的自由，在桀骜的小子那里得到启发和释放；搓澡的猴子从极度厌恶，到欣然接受等等。ps:那段富有节奏的舞蹈，真像是给裤子做广告，电影的音效也很赞。嗯，算是一部比较特别的电影。
+忙碌生活的样子，是真的么？</description>
+    </item>
+    
+    <item>
+      <title>无状态</title>
+      <link>https://braavos.me/posts/2016-12-12-stateless/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-12-12-stateless/</guid>
+      <description>今天只想感谢半年前送本子给我的友人。</description>
+    </item>
+    
+    <item>
+      <title>几个歌单</title>
+      <link>https://braavos.me/posts/2016-08-21-playlist-16-08-21/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-08-21-playlist-16-08-21/</guid>
+      <description>在北京的夏天跑步还是需要点补给的
+ 十公里跑步(post rock)：  布鲁斯摇滚(blues)：  海盗电台原声(rock, OST)： 电影不知看了多少次，自由放荡，浓妆艳抹，特立独行，一切荒诞疯癫在伟大的摇滚梦面前显得自然。ps: may great hoffman rest in peace. 海盗电台原声
+300首流行、300首无伴奏合唱(a cappella)： 300首流行、300首无伴奏合唱
+治疗焦虑症的良药(classical)： 治疗焦虑症的良药</description>
+    </item>
+    
+    <item>
+      <title>How about a nice cup of React</title>
+      <link>https://braavos.me/posts/2016-07-05-how-about-a-nice-cup-of-react/</link>
+      <pubDate>Tue, 05 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-07-05-how-about-a-nice-cup-of-react/</guid>
+      <description>接触 React 一年左右，期间在单页面、单页应用都有使用， 它极大地改变了我个人的前端开发方式。为方便快速出产品，闲暇之余也尝试写了点基础组件: react-component, react-image-cropper，react-touch-gallery, react-file-upload。也一直计划着写点心得总结什么的，迫于忙、浮躁，难静下心写东西，屡次作罢。这两天刚离职，决定把这篇总结补上。
+在 React 之前，玩过一点点 Angular 跟 Backbone，Backbone 是比较轻量级 MVC，Angular 较重，它的指令、注入式写法, 较死板的规则，不够简洁的 API，诸多概念等等，最终只是被我当玩具折腾了下。由于接触到项目多数时间花在 view 的交互、事件、变化更新上，所以大多数情况还是选择熟悉的 jQuery，原因无非是：熟练，可控，最轻依赖，快速灵活。过程基本上是: 命名 DOM，给 DOM 加特效，取数据更新 DOM， 绑定事件到 DOM 等等。时间一久，问题就很明显了：即使多次尝试做不同层次的抽象分层，还是很乱，太频繁与 DOM 打交道，遇到问题不好排查，维护也很痛苦。如果能尽量少碰 DOM，以数据、逻辑导向来写 view 呢？
+Github 上有 xx 步从 jQuery 到 Backbone, 就是通过一步步迭代，解释 Backbone 如何抽象分层，将数据、逻辑、事件、view 操作做分离，使得层级清晰，逻辑分明。可如果只为解决 view 层问题的话，是没必要引入过多概念和规则的，且 view 本身的问题，例如高复用性等也没有被解决。
+React 带着变革前端开发的使命而来，声称专注 view 层，特点是组件式开发，有着简洁合理的 API，不错性能等优势。
+说到组件式，大概包括了外部属性跟内部状态。比如电视盒子，对屏幕来说，只需要提供几种插口；内部构造对外是透明的，根据插口接入的不同，呈现截然不同的输出，屏幕也无需知道盒子内部的运作方式。实际上用 jQuery 时，大家也多多少少封装过一些『组件』，供外部使用，比如购物车 Counter，自定义播放器等，但并不会像 React 那样通通都是组件。在 React 里，组件包含 props(外部属性)跟 state(内部状态), 具体细节可以去看 React 官网。
+初次对组件式思维赞叹的是评论的加载更多功能。一般用 jQuery 的话，思路是请求数据，组装 list DOM ，append 上去; 换做组件式思路呢？答案是数据驱动。评论的数据应该属于评论内部状态，那么加载更多调整内部状态就好了(不断练习这种数据导向的思维，合理设计 props 跟 state，对于通常项目需求，写起来就非常快了，同时也基本避开了对 DOM 的操作)，React 帮你把状态的更新高效的反映到 DOM 更新。</description>
+    </item>
+    
+    <item>
+      <title>回声探路</title>
+      <link>https://braavos.me/posts/2016-06-04-dark-echo/</link>
+      <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-06-04-dark-echo/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/dark-echo.jpg&#34; alt=&#34;dark echo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dark echo，四周黑暗，一双脚印。根据脚步回声的波纹反射确定周边及路的方向，最终逃出黑暗。一方面要不停通过跺脚探路，避开红色陷阱，同时要提防脚步声过大招引来红色猎食者。&lt;/p&gt;
+
+&lt;p&gt;游戏气氛很压抑，据说共有80关卡，玩不到第十关，被虐的有点想放弃。不同于人生的是，遇到困难豁出去，最坏结局无非是挂了，吸取经验重来罢了。然而过分投入游戏，真正面临抉择时，往往还是勇气不足，犹豫错失逃走机会。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The new iterm2 is coming</title>
+      <link>https://braavos.me/posts/2016-02-20-iterm2-version-3/</link>
+      <pubDate>Sat, 20 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-02-20-iterm2-version-3/</guid>
+      <description>&lt;p&gt;Iterm2，Mac 下最好用的终端 App，今天提醒有新 beta 版本，于是下载体验了把。下面是体验感受：&lt;/p&gt;
+
+&lt;h3 id=&#34;一些变化&#34;&gt;一些变化&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>固定尺寸的响应式图片占位符</title>
+      <link>https://braavos.me/posts/2016-01-31-responsive-image-placeholder/</link>
+      <pubDate>Sun, 31 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-01-31-responsive-image-placeholder/</guid>
+      <description>&lt;p&gt;对于图片列表，通常会使用懒加载的方式，好处就不多说了。通常实现是图片的 src 放一张占位符, data- 属性是原图地址，监听 滚动及触摸事件，如果在 viewport 内，加载原图。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6 - Symbols</title>
+      <link>https://braavos.me/posts/2016-01-31-symbols/</link>
+      <pubDate>Sun, 31 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-01-31-symbols/</guid>
+      <description>原文出自 ES6 in depths, 作者 Jason Orendorff, 翻译：落在深海
+ ES6 In Depth 系列将详细解读 ES6 的新特性。
+ES6 的 Symbol 是什么？
+Symbol 并不是 logo 之类的。
+你在代码里也不能用小图片(emoji 表情之类的)。
+let 😻 = 😺 × 😍; // 语法错误  它们也并不是文学里的象征意义。
+它们更不会是钹(乐器)。
+(在代码里使用钹也并不是个好主意。他们很容易崩溃???)
+所以究竟什么是 Symbol?
+七种类型 1997年，JavaScript 第一次被标准化，它便拥有六种类型。ES6 出来前，JS 程序里任何数值都属于这几种分类：
+ undefined null Boolean Number String Object  每种类型都是值的集合。前五种集合的值是有限的。布尔值只有 true 跟 false，不可能拥有第三个值。更多的 Number 及 String 值。标准提到有18,437,736,874,454,810,627多个不同的数字(包括 NaN, 它代表『Not a Number』)。相比起字符串，还是小巫见大巫。我认为后者有(2144,115,188,075,855,872 − 1) ÷ 65,535 多个值, 不过可能我数的是错的。</description>
+    </item>
+    
+    <item>
+      <title>提升效率利器之 PopClip 改良</title>
+      <link>https://braavos.me/posts/2016-01-12-popclip/</link>
+      <pubDate>Tue, 12 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-01-12-popclip/</guid>
+      <description>&lt;p&gt;用 Mac 的人大多数应该都用过 PopClip 这个 app，基本功能是对鼠标选中内容进行操作，包括复制粘贴、搜索、字典打开，同时也拥有上百种通用扩展，让鼠标选中变得强大无比。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>烛光</title>
+      <link>https://braavos.me/posts/2016-01-03-a/</link>
+      <pubDate>Sun, 03 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-01-03-a/</guid>
+      <description>&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=&#34;280&#34; height=&#34;86&#34; src=&#34;//music.163.com/outchain/player?type=2&amp;id=33166518&amp;auto=0&amp;height=66&#34; &gt;&lt;/iframe&gt;</description>
+    </item>
+    
+    <item>
+      <title>morty 表情系列</title>
+      <link>https://braavos.me/posts/2015-10-31-morty-series/</link>
+      <pubDate>Sat, 31 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-10-31-morty-series/</guid>
+      <description>&lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;
+
+&lt;p&gt;两周前，用 sketch 临摹了 morty 系列的表情。按要求瞄了白边，提交了微信表情，然而微信迟迟未予审核，现在把它们放出来。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/morty/banner-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>傲娇的 morty</title>
+      <link>https://braavos.me/posts/2015-10-18-pride-morty/</link>
+      <pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-10-18-pride-morty/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/pride-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>荒蛮故事</title>
+      <link>https://braavos.me/posts/2015-10-17-relatos-salvajes/</link>
+      <pubDate>Sat, 17 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-10-17-relatos-salvajes/</guid>
+      <description>&lt;p&gt;&lt;em&gt;F&amp;hellip; weird story：&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/s11181066.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rick</title>
+      <link>https://braavos.me/posts/2015-10-11-rick/</link>
+      <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-10-11-rick/</guid>
+      <description>&lt;p&gt;这次是 morty 他外公 rick。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/rick.png&#34; alt=&#34;rick&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 子类</title>
+      <link>https://braavos.me/posts/2015-10-08-subclassing/</link>
+      <pubDate>Thu, 08 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-10-08-subclassing/</guid>
+      <description>原文出自 ES6 in depths, 作者 Eric Faust, 翻译：落在深海
+ ES6 In Depth 系列将详细解读 ES6 的新特性。
+两周前，我们描述了 ES6 用来操作繁琐的对象构造的新的类系统，也介绍了如何使用它写出如下的代码：
+class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++; }; static draw(circle, canvas) { // Canvas drawing code  }; static get circlesMade() { return !this._count ? 0 : this._count; }; static set circlesMade(val) { this._count = val; }; area() { return Math.pow(this.radius, 2) * Math.PI; }; get radius() { return this.</description>
+    </item>
+    
+    <item>
+      <title>一个好玩的 terminal 插件</title>
+      <link>https://braavos.me/posts/2015-10-04-the-fuck/</link>
+      <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-10-04-the-fuck/</guid>
+      <description>&lt;p&gt;推荐一个好玩的终端插件，名字叫：thefuck。回想下每次把 &lt;code&gt;git status&lt;/code&gt; 写成 &lt;code&gt;git stats&lt;/code&gt;, &lt;code&gt;git branch&lt;/code&gt; 写成 &lt;code&gt;git brunch&lt;/code&gt; 的懊恼，虽然每次重新输入并不会花费太多时间，然而输错的瞬间你可能最容易脱口而出的就是 “fuck” 了。那么当输入有误时，假如你能任性的敲入 &lt;code&gt;fuck&lt;/code&gt;，终端乖乖替你完成正确的输入，是不是很解气？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 其他参数及默认参数</title>
+      <link>https://braavos.me/posts/2015-09-20-rest-parameters-and-defaults/</link>
+      <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-20-rest-parameters-and-defaults/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-rest-parameters-and-defaults/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;ES6 In Depth&lt;/em&gt; 系列将详细解读 ES6 的新特性。&lt;/p&gt;
+
+&lt;p&gt;本文主讲的两个特性：其他参数和默认参数，将使得 Javascript 更富有表达性。&lt;/p&gt;
+
+&lt;h3 id=&#34;其他参数&#34;&gt;其他参数&lt;/h3&gt;
+
+&lt;p&gt;在创建 API 时常会需要可变函数，该函数接受任意长度的参数。例如：String.prototype.concat 接受多个字符串参数。ES6 提供一种新的方式来传递可变参数。&lt;/p&gt;
+
+&lt;p&gt;我们写个简单的函数 &lt;code&gt;containsAll&lt;/code&gt;，用来检查字符串是否包含一系列的子字符串。例如： containsAll(&amp;ldquo;banana&amp;rdquo;, &amp;ldquo;b&amp;rdquo;, &amp;ldquo;nan&amp;rdquo;) 会返回 true， 而 containsAll(&amp;ldquo;banana&amp;rdquo;, &amp;ldquo;c&amp;rdquo;, &amp;ldquo;nan&amp;rdquo;) 返回  false。&lt;/p&gt;
+
+&lt;p&gt;一般我们是这样写的：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 模块</title>
+      <link>https://braavos.me/posts/2015-09-20-modules/</link>
+      <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-20-modules/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/08/es6-in-depth-modules/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;ES6 In Depth&lt;/em&gt; 系列将详细解读 ES6 的新特性。&lt;/p&gt;
+
+&lt;p&gt;当我在2007年组建 Mozilla Javascript 团队时，好笑的是当时典型的 Js 程序只有一行。&lt;/p&gt;
+
+&lt;p&gt;两年后谷歌地图被推出，在这之前不久，Javascript 主要被用来做表单的验证，并且可以确定的是&lt;code&gt;&amp;lt;input onchange=&amp;gt;&lt;/code&gt; 仍旧只有一行。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 模板字符串</title>
+      <link>https://braavos.me/posts/2015-09-20-template-strings/</link>
+      <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-20-template-strings/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;ES6 In Depth&lt;/em&gt; 系列将详细解读 ES6 的新特性。&lt;/p&gt;
+
+&lt;p&gt;上周我承诺换个节奏。继迭代器跟 generators 后，我说要换点儿简单的，不会烧糊你大脑的东西。读完这篇文章，看看我是否信守承诺。&lt;/p&gt;
+
+&lt;p&gt;现在，先从简单的开始。&lt;/p&gt;
+
+&lt;h3 id=&#34;的基础知识&#34;&gt;` 的基础知识&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 箭头函数</title>
+      <link>https://braavos.me/posts/2015-09-20-arrow-functions/</link>
+      <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-20-arrow-functions/</guid>
+      <description>原文出自 ES6 in depths, 作者 Jason Orendorff, 翻译：落在深海
+ ES6 In Depth 系列将详细解读 ES6 的新特性。
+箭头在 Javascript 早期便已存在。第一个 Javascript 指南建议将 Javascript 代码用内联 scripts 标签包裹，写在 HTML 注释里。这样对于不支持 Js 的浏览器，Javascript 代码就不会被认作是 text 了：
+&amp;lt;script language=&amp;#34;javascript&amp;#34;&amp;gt; &amp;lt;!-- document.bgColor = &amp;#34;brown&amp;#34;; // red // --&amp;gt; &amp;lt;/script&amp;gt; 老浏览器将看到的是两个不被支持的 tag 和注释；只有支持的浏览器才能执行 Js 代码。
+为了支持这项老的把戏，浏览器的 Javascript 引擎会将 &amp;lt;!-- 开头当做单行注释。这项技术一直存在于 Javascript 语言中，直到今天，不仅仅在内联的 &amp;lt;script&amp;gt; 标签里。甚至在 NodeJs 里也是如此。
+因此，这样带箭头的注释方式在 ES6 里第一次被标准化。然而今天要讲的，此箭头非彼箭头。
+箭头 &amp;ndash;&amp;gt; 同时表示 单行注释。诡异的是，HTML 标签里 &amp;ndash;&amp;gt; 之前的部分是注释，而在 Js 里，箭头后面的单行部分是注释。</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 类</title>
+      <link>https://braavos.me/posts/2015-09-20-classes/</link>
+      <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-20-classes/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/07/es6-in-depth-classes/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://hacks.mozilla.org/author/efaustmozilla-com/&#34;&gt;Eric Faust&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;ES6 In Depth&lt;/em&gt; 系列将详细解读 ES6 的新特性。&lt;/p&gt;
+
+&lt;p&gt;我们从上周文章介绍的错综复杂后得到一丝喘息的机会。今天不会有从未见过的 &lt;a href=&#34;https://hacks.mozilla.org/2015/07/es6-in-depth-generators-continued/&#34;&gt;generators 的写法&lt;/a&gt;; 没有操纵 Javascript 内部算法的 &lt;a href=&#34;https://hacks.mozilla.org/2015/07/es6-in-depth-proxies-and-reflect/&#34;&gt;强大代理对象&lt;/a&gt;；没有避免自己刀工火种的新数据结构。取代的是，我们要讨论下句法和语义上一个遗留问题： Javascript 的对象构造。&lt;/p&gt;
+
+&lt;h3 id=&#34;问题所在&#34;&gt;问题所在&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 解构</title>
+      <link>https://braavos.me/posts/2015-09-20-destructuring/</link>
+      <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-20-destructuring/</guid>
+      <description>原文出自 ES6 in depths, 作者 Nick Fitzgerald, 翻译：落在深海
+ ES6 In Depth 系列将详细解读 ES6 的新特性。
+编者的话：本文的早期版本，作者为 firefox 开发者工具的工程师 Nick Fitzgerald，出现在 Nick 的博客 Destructuring Assignment in ES6。
+什么是 Destructuring？ destructuring 赋值允许用类似数组对象迭代的语法给数组或对象的属性赋值。语法极致简洁，而且较原有属性赋值语法更清晰。
+在没有 destructuring 赋值之前，这样获取数组的属性：
+var first = someArray[0]; var second = someArray[1]; var third = someArray[2];  有了 destructuring 赋值，上面代码变得清晰可读：
+var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引擎)早已支持大多数的 destructuring 操作，然而并不是全部支持。Track SpiderMonkey’s destructuring (and general ES6) support in bug 694100。</description>
+    </item>
+    
+    <item>
+      <title>morty</title>
+      <link>https://braavos.me/posts/2015-09-19-morty/</link>
+      <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-19-morty/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>小黄人</title>
+      <link>https://braavos.me/posts/2015-09-19-banana/</link>
+      <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-19-banana/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/banana.png&#34; alt=&#34;banana&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;小黄人, 来自电影 &lt;em&gt;卑鄙的我&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 生成器</title>
+      <link>https://braavos.me/posts/2015-09-19-generators/</link>
+      <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-19-generators/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-generators/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;ES6 In Depth&lt;/em&gt; 系列将详细解读 ES6 的新特性。&lt;/p&gt;
+
+&lt;p&gt;我很激动，因为今天我们要聊一聊 ES6 里最神奇的特性。&lt;/p&gt;
+
+&lt;p&gt;怎么个神奇法?  对于初学者来说，这个概念跟以往 Js 里其他概念截然不同，以至于初次接触有些晦涩难懂。在某种意义上，它完改变了语言的行为。 如果这都不算神奇，那么？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 简介</title>
+      <link>https://braavos.me/posts/2015-09-19-es6-in-depth/</link>
+      <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-19-es6-in-depth/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/04/es6-in-depth-an-introduction/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;欢迎来到 &lt;em&gt;ES6 In Depth&lt;/em&gt;! 这个周系列，我们一起将探索 JavaScript 即将推出的新版本：ECMAScript 6。 ES6 富含许多新特性，将让 JS 变得更加强大，富有表现力，我们将在接下来几周内一一研究。在深入细节之前，有必要谈谈什么是ES6，使用它你会得到什么。&lt;/p&gt;
+
+&lt;h3 id=&#34;ecmascript-的局限&#34;&gt;ECMAScript 的局限&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入 ES6  - 迭代器和 for-of 循环  </title>
+      <link>https://braavos.me/posts/2015-09-19-iterators-and-the-for-of-loop/</link>
+      <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-19-iterators-and-the-for-of-loop/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/04/es6-in-depth-iterators-and-the-for-of-loop/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;ES6 In Depth&lt;/em&gt; 系列将详细解读 ES6 的新特性。&lt;/p&gt;
+
+&lt;p&gt;怎么循环一个数组的元素呢？20年前，Js 代码是这么写的:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;myArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;myArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;从 ES5 起，你可以这样写：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;nx&#34;&gt;myArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;forEach&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>炎炎夏日的清凉女声</title>
+      <link>https://braavos.me/posts/2015-09-13-cheng-bi/</link>
+      <pubDate>Sun, 13 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-13-cheng-bi/</guid>
+      <description>&lt;p&gt;“炎炎夏日的清凉女声” 这样的描述，拿来形容她简单舒服，正如她给人的感觉，程璧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>藤田惠美</title>
+      <link>https://braavos.me/posts/2015-09-13-fujita-emi/</link>
+      <pubDate>Sun, 13 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-13-fujita-emi/</guid>
+      <description>&lt;p&gt;非常喜欢的女声之一，虽然很多歌是翻唱的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>道高一尺，墙高一丈：互联网封锁是如何升级的</title>
+      <link>https://braavos.me/posts/2015-09-08-fuck-gfw/</link>
+      <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-08-fuck-gfw/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文来自&lt;a href=&#34;https://theinitium.com/article/20150904-mainland-greatfirewall/&#34;&gt;端傳媒&lt;/a&gt;, 作者：特约撰稿人 VV，经端傳媒編輯部许可，转载以便收藏&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;新时代的防火墙像手术刀，精准迅速，直击命门。而“翻墙”未来可能变成一门手艺，如何传承，任重道远。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;1987年，中国第一封电子邮件由中国兵器工业计算机应用研究所发往德国，标志中国成功接入互联网。邮件内容是：“Across the Great Wall we can reach every corner in the world”——穿越“巨墙”（长城），我们无处不及。与这封邮件几乎同龄的我，没想到生活中竟总离不开“墙”。在物理世界和虚拟世界中多次穿墙，也去过世界各处，看“墙”越筑越高，有时义愤填膺，有时啼笑皆非。仅以此文，记录“墙”边的一些见闻。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rick and morty</title>
+      <link>https://braavos.me/posts/2015-09-04-rick-and-morty/</link>
+      <pubDate>Fri, 04 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-09-04-rick-and-morty/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;rick and morty&lt;/em&gt;, 美剧动画片，讲疯子科学家，带着外孙子经历各种疯狂刺激的宇宙冒险的故事。脑洞大，重口味，但不恶俗。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sketch 插件大集合 —— Using Sketch Like A BOSS</title>
+      <link>https://braavos.me/posts/2015-08-28-using-sketch-like-a-boss/</link>
+      <pubDate>Fri, 28 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-08-28-using-sketch-like-a-boss/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;本文来自 &lt;a href=&#34;//www.sketchcn.com/sketch-tips-tricks-1.html&#34; target=&#34;_blank&#34;&gt; sketch 中文网&lt;/a&gt;， 作者:  &lt;a href=&#34;//www.aegeank.com&#34; target=&#34;_blank&#34;&gt;匡雪婷&lt;/a&gt;。经作者许可，转载以便收藏。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这几天发现了一个叫做 Sketch Toolbox 的 Mac 应用，简直是下载和安装 Sketch 插件的利器，保证像 Zen Coding 一样带给你高效创作的超级快感！&lt;/p&gt;
+
+&lt;p&gt;&lt;a target=&#34;_blank&#34; href=&#34; https://dl.dropboxusercontent.com/u/6907276/SketchToolbox.zip&#34;&gt;Sketch Toolbox 下载&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个 App 的原链接在&lt;a target=&#34;_blank&#34; href=&#34;https://github.com/shahruz/Sketch-Toolbox&#34;&gt;这里&lt;/a&gt;，由于原作者 shahruz 目前并没有提供发行版，只在 Github上提交了源代码，所以我让朋友给编译了一下，现在大家可以直接用上面那个大按钮从我的 Dropbox 下载使用。&lt;/p&gt;
+
+&lt;p&gt;另外，如果打开 App 遇到困难，请参照压缩包里的文档，调整系统设置 ：）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>最近画的一些图标</title>
+      <link>https://braavos.me/posts/2015-08-26-recent-icons/</link>
+      <pubDate>Wed, 26 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-08-26-recent-icons/</guid>
+      <description>&lt;p&gt;最近工作中需要画一些简单的 icon，于是发现把爱好当工作还真是挺享受的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/icons.png&#34; alt=&#34;icons&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Getting Dicey With Flexbox</title>
+      <link>https://braavos.me/posts/2015-07-22-flex-layout/</link>
+      <pubDate>Wed, 22 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-07-22-flex-layout/</guid>
+      <description>此文来自Getting Dicey With Flexbox, 原文作者: Landon Schropp
+ What if you could build complex CSS layouts in minutes? Flexbox is a new CSS layout spec that makes it easy to construct dynamic layouts. With flexbox, vertical centering, same-height columns, reordering, and direction agnosticism are a piece of cake.
+There&amp;rsquo;s a popular myth floating around that flexbox isn&amp;rsquo;t ready for prime time. Wrong! **93% of people are now running a browser that supports flexbox.</description>
+    </item>
+    
+    <item>
+      <title>情迷墨西哥</title>
+      <link>https://braavos.me/posts/2015-07-08-mexico/</link>
+      <pubDate>Wed, 08 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-07-08-mexico/</guid>
+      <description> </description>
+    </item>
+    
+    <item>
+      <title>迷幻剂</title>
+      <link>https://braavos.me/posts/2015-07-08-hallucinogens/</link>
+      <pubDate>Wed, 08 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-07-08-hallucinogens/</guid>
+      <description>You are the sheepherder.
+ </description>
+    </item>
+    
+    <item>
+      <title>用Grunt构建ReactJs开发环境</title>
+      <link>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</link>
+      <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</guid>
+      <description>本文主要是讲如何使用grunt来构建react开发环境
+ 最近计划将性感的React投入真正应用，在开发环境上小折腾了一番，主要纠结在于前端构建工具和模块化编程方式的选择。
+关于模块化编程，在此之前用过requireJs的方式来写模块，纠结的是移动端react压缩后也有100k以上大小，投入过多的库，可能导致移动端体验变差，于是决定放弃requireJs，采用CommonJs的方式来写，正好Sublime 的react插件自动补全也是这种方式。
+关于构建工具，由于一直使用grunt 构建工程的，而网上使用react的，大多是用webpack来做前端工程化，对于习惯使用grunt来构建项目的开发者来说，有一定学习成本。思考再三，决定继续使用grunt。以下便是使用grunt构建react开发环境的简要介绍。
+####首先，安装grunt
+关于grunt的安装、使用在 adesk-webapp-template 有介绍。此处省略。
+####react 开发环境
+ 安装grunt-react
+grunt react 用来将 React&amp;rsquo;s JSX templates 编译成Javascript。
+  详细使用方法: grunt react
+安装：
+npm install grunt-react --save-dev  在Gruntfile里添加:
+grunt.loadNpmTasks(&#39;grunt-react&#39;);  src目录：
+└── src ├── component // 所有JSX文件 ├── build // 通过grunt react编译后的.js文件 ...  配置:
+files: { expand: true, cwd: &#39;js/component&#39;, src: [&#39;**/*.jsx&#39;], dest: &#39;js/build&#39;, ext: &#39;.js&#39; } ...   安装grunt-browserify
+grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个插件将grunt react编译后的js文件打包，最终在浏览器中使用。</description>
+    </item>
+    
+    <item>
+      <title>The Queen is dead</title>
+      <link>https://braavos.me/posts/2015-03-15-college-rock-inside/</link>
+      <pubDate>Sun, 15 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-03-15-college-rock-inside/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/college-rock/the-smiths.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一些学院摇滚歌曲。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>锐化的冬天</title>
+      <link>https://braavos.me/posts/2015-01-11-cold-town/</link>
+      <pubDate>Sun, 11 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-01-11-cold-town/</guid>
+      <description>&lt;p&gt;又开始跑步了，顺便拍了些照片。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/cold-town/0.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The All-American Rejects</title>
+      <link>https://braavos.me/posts/2014-12-27-the-all-american-rejects/</link>
+      <pubDate>Sat, 27 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-12-27-the-all-american-rejects/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;The all american rejects，99年成立，主唱：Tyson Ritter&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lost in OST</title>
+      <link>https://braavos.me/posts/2014-11-28-rock-up/</link>
+      <pubDate>Fri, 28 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-11-28-rock-up/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/wild.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git Rebase</title>
+      <link>https://braavos.me/posts/2014-11-17-git-rebase/</link>
+      <pubDate>Mon, 17 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-11-17-git-rebase/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;关于git rebase的简述，转自&lt;a href=&#34;//gitbook.liuhui998.com/index.html&#34; target=&#34;_blank&#34;&gt;Git Community Book 中文版&lt;/a&gt;的&lt;a href=&#34;//gitbook.liuhui998.com/4_2.html&#34; target=&#34;_blank&#34;&gt;rebase&lt;/a&gt;， 作者&lt;a href=&#34;//www.liuhui998.com&#34; target=&#34;_blank&#34;&gt;liuhui998&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;rebase&#34;&gt;rebase&lt;/h3&gt;
+
+&lt;p&gt;假设你现在基于远程分支&amp;rdquo;origin&amp;rdquo;，创建一个叫&amp;rdquo;mywork&amp;rdquo;的分支。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git checkout -b mywork origin
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>几张NBA老照片</title>
+      <link>https://braavos.me/posts/2014-11-16-old-pictures/</link>
+      <pubDate>Sun, 16 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-11-16-old-pictures/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/old-pictures/kobe.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;1999年湖人对灰熊比赛前，科比因为在上一场右手手腕骨折，于是改用左手练习投篮，几年后成为一个左右通吃的得分狂魔。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>转眼二十年</title>
+      <link>https://braavos.me/posts/2014-10-27-20-years/</link>
+      <pubDate>Mon, 27 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-10-27-20-years/</guid>
+      <description>&lt;p&gt;一篇微信文章，来自&lt;strong&gt;和菜头&lt;/strong&gt;的&lt;strong&gt;&lt;em&gt;槽边往事&lt;/em&gt;&lt;/strong&gt;，原文链接： &lt;a href=&#34;//mp.weixin.qq.com/s?__biz=MjM5MjAzODU2MA==&amp;mid=202149040&amp;idx=1&amp;sn=b6eece2d7a9f16156bcdf867be33dd37#rd&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;转眼二十年&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一个节点上下文的流水账</title>
+      <link>https://braavos.me/posts/2014-10-19-flush/</link>
+      <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-10-19-flush/</guid>
+      <description>Instagram最近也不能上了，对我的生活也没多大影响，我是一个轻度社交恐惧症患者。长期以来，我想生活的像黑洞一样，没人知道我究竟在做什么，也没人关心我做什么，这样我就能安心、无负担的做事。
+不过最近我换城市了，换掉了工作，也开始适应新的生活。在这还是把一些时刻流水账记录下来，有些见证了我的一些变化，也渐渐的变成我的一部分。
+北京 北京地铁5号线换乘2号线通道
+天渐黑的天通苑北
+那是我第一次一个人来北京，没准备，无状态，生活给我破了一大盆冷水，从头上到赤裸的身体，而外面是冰天雪地，于是仓皇四处取暖，最后丢盔卸甲，狼狈逃离。
+我家窗外 天上下着小雨，整个学校因为学生放假了格外的宁静，窗外的郁郁葱葱的树，从来没像这样望着窗外很久。那天睡了很长时间，很浅。
+关于骑车，老友，学生时代 记不得骑车去过抚仙湖多少次了，最记得那次百无聊赖的，傻逼呵呵的在沙滩上躺着，扯着无边的话。大学也就是这样过来的，牛人们未露锋芒，傻逼大家一起傻逼。无忧无虑的。经常会说着没话可说，无聊只得说起各种黄段子。
+那时候会经常几个人坐在某个地方，看行人路过，看妹子，每天吃完饭又会去穿拖鞋打篮球，看别人踢球。
+大理 去过几次大理，也有几次路过，那次是骑车去的。MP3里反复的放“步履不停”，穿过寂静的山群，环绕着洱海，从来没有这么个地方会在心里留恋许久，像是家的感觉。
+洱海堤岸，夕阳沉入海面
+那个校区 离开后只去过几次，那些回忆，随700多页qq聊天记录一样，屌丝气裹挟着暧昧，在那座叫春的城市。生活升级，物是人非，掉下去再也没回来。
+路上的风景，别人脚下的路 时间自然流逝，让结果充满未知，却没办法回去过去做任何改变。于是每一次的选择后，同行的越来越少，经历了无数次小孩子般无助的时刻，才会明白，过去已被刻在相框里，而眼前的每段时光都值得认真度过，或许只是认真的浪费光阴。像歌里唱的那样：别把浮躁的生活当做成长，到最后才看到珍贵的人，流着眼泪，带着微笑。
+晚安，尘埃。
+卡比巴拉德海 - 宋冬野
+{% audio /audios/ka.mp3 &amp;gt;}}</description>
+    </item>
+    
+    <item>
+      <title>陈升的歌</title>
+      <link>https://braavos.me/posts/2014-09-03-chen-shengs-songs/</link>
+      <pubDate>Wed, 03 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-09-03-chen-shengs-songs/</guid>
+      <description>&lt;p&gt;对生活有态度的人，不用太在意这个世界的纷扰。&lt;/p&gt;
+
+&lt;p&gt;一些老歌，主要来自陈升，最后一首&lt;strong&gt;南方二重唱&lt;/strong&gt;的《有一首歌》。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>简明 Vim 练级攻略</title>
+      <link>https://braavos.me/posts/2014-08-29-basic-skills-of-vim/</link>
+      <pubDate>Fri, 29 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-29-basic-skills-of-vim/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;转自：&lt;a target=&#34;_blank&#34; href=&#34;//coolshell.cn/&#34;&gt;酷 壳 – CoolShell.cn&lt;/a&gt;  原文地址：&lt;a href=&#34;//coolshell.cn/articles/5426.html&#34; target=&#34;_blank&#34;&gt;简明Vim练级攻略&lt;/a&gt; 原文作者：&lt;a target=&#34;_blank&#34; href=&#34;//coolshell.cn/articles/author/haoel&#34;&gt;陈浩&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这篇转自&lt;strong&gt;左耳朵耗子&lt;/strong&gt;的酷壳，介绍vim的基础命令，作为Vim的备忘摘录至此。&lt;/p&gt;
+
+&lt;h2 id=&#34;正文&#34;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;vim的学习曲线相当的大（参看&lt;a title=&#34;主流文本编辑器学习曲线&#34; href=&#34;//coolshell.cn/articles/3125.html&#34; target=&#34;_blank&#34;&gt;各种文本编辑器的学习曲线&lt;/a&gt;），所以，如果你一开始看到的是一大堆VIM的命令分类，你一定会对这个编辑器失去兴趣的。下面的文章翻译自《&lt;a href=&#34;//yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/&#34; target=&#34;_blank&#34;&gt;Learn Vim Progressively&lt;/a&gt;》，我觉得这是给新手最好的VIM的升级教程了，没有列举所有的命令，只是列举了那些最有用的命令。非常不错。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>小岛</title>
+      <link>https://braavos.me/posts/2014-08-27-island/</link>
+      <pubDate>Wed, 27 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-27-island/</guid>
+      <description>&lt;p&gt;《小岛》是我在豆瓣阅读买的第一本书，翻开第一篇，淡淡的海风，远离霓虹笙箫的小岛，与我急躁的生活并不搭调，于是迟迟未读。最近借着闲暇，读起了这本书。&lt;/p&gt;
+
+&lt;p&gt;书里的故事都发生在鼓浪屿，也并非发生过。行文轻俏、跳跃，读后只是淡淡的，若隐若现。于是，夜里的鼓浪屿，仿佛总有轻雾笼罩，褪去了白天的喧闹，成了幻想家的乐园。也许你也有似曾经历，独自徜徉在清幽小径，思绪早已褪去疲惫，就连自己都赞叹灵气十足、诗兴大发，那时候你不急于分享，因为小岛是你的专属。&lt;/p&gt;
+
+&lt;h3 id=&#34;三个愿望-摘自-小岛&#34;&gt;《三个愿望》摘自《小岛》：&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>命名函数表达式探秘</title>
+      <link>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</link>
+      <pubDate>Tue, 12 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;作者：Juriy &amp;ldquo;kangax&amp;rdquo; Zaytsev  译者：为之漫笔 译文原文：&lt;a target=&#34;_blank&#34; href=&#34;//www.cn-cuckoo.com/main/wp-content/uploads/2009/12/named-function-expressions-demystified.html&#34;&gt;命名函数表达式探秘&lt;/a&gt; 。&lt;br /&gt;
+关于Javascript的经典译文，由李松峰老师翻译。曾帮助我更好地理解Javascript基础。值得收藏。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;目录&#34;&gt;目录：&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>人人都该学习的技术：从 Idea 到成品，撰写 User Story 的能力</title>
+      <link>https://braavos.me/posts/2014-08-09-from-idea-to-product-user-story/</link>
+      <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-09-from-idea-to-product-user-story/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;作者：xdite 原文地址：&lt;a href=&#34;//blog.xdite.net/posts/2014/05/29/from-idea-to-product-user-story&#34; target=&#34;_blank&#34;&gt;人人都该学习的技术：从Idea 到成品，撰写User Story 的能力&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;眼尖的朋友看到，最近我开的两堂课：*Deliver Project on Time敏捷专案管理实务-六月班*与&lt;em&gt;Intermediate Rails - Rails实战就业班（六月)&lt;/em&gt;, 都加入了User Story撰写的教学部分。纷纷偷问我为什么要加这个东西进去？&lt;/p&gt;
+
+&lt;p&gt;Rails Meetup 三年多来，在辅导培训过非常多Rails Developer 之后，我开始发现当今的网站开发教育中漏掉了很重要的一环，就是「规划Application 开发的技术」。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails的环境变量</title>
+      <link>https://braavos.me/posts/2014-08-05-rails-env/</link>
+      <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-05-rails-env/</guid>
+      <description>&lt;p&gt;翻看我的Pocket list，发现一篇很老的讲Rails基础的文章，作者写得很口水，原文在这里：&lt;a target=&#34;_blank&#34; href=&#34;//railsapps.github.io/rails-environment-variables.html&#34;&gt;Rails Environment Variables&lt;/a&gt;, 直译如下，希望对Rails新手有所帮助：&lt;/p&gt;
+
+&lt;h2 id=&#34;正文&#34;&gt;正文：&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;设置Rails环境变量。在Rails app中使用环境变量。Rails配置、安全与环境变量。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量&lt;/h3&gt;
+
+&lt;p&gt;许多应用程序需要配置如电子邮件、账户凭证或外部服务的API密钥。你可以通过本地配置来让应用程序使用这些环境变量，而操作系统(Linux、Mac OS X、Windows)提供一些机制来设置本地环境变量, Heroku和其他部署平台一样也有。这里我会展示如何设置本地Unix shell环境变量。其次也会介绍两种另类的方式而不通过Unix shell在应用程序中设置环境变量。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用sketch绘制第一个图标</title>
+      <link>https://braavos.me/posts/2014-08-03-draw-a-icon-with-sketch/</link>
+      <pubDate>Sun, 03 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-03-draw-a-icon-with-sketch/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Sketch是OS X下一款小而美的矢量绘图工具，在设计圈内非常有名气。周末闲(mu)来(you)无(mei)事(zi)，决定用sketch画图标玩。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;首先下了个盗版sketch-未来一定支持正版-主要是太穷o-o&#34;&gt;首先下了个盗版Sketch(未来一定支持正版，主要是太穷o(╯□╰)o)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/sketch.png&#34; alt=&#34;fill_set&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AngularJs指令(Directive)初探</title>
+      <link>https://braavos.me/posts/2014-07-30-start-from-directive/</link>
+      <pubDate>Wed, 30 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-30-start-from-directive/</guid>
+      <description>完成一个简单的directive，初探angular
+ 关于angular，大多的概念都很好理解，很快就能上手。当疑惑如何嵌入模板片段时，发现需要用directive(指令)，这部分相对难啃，下面只是个非常简单的例子，大致介绍如何使用指令。
+main.html &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;script src=&amp;#34;angular.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 然后创建输入框，作为email的receiver输入 &amp;lt;input id=&amp;#34;email_to&amp;#34; type=&amp;#34;email&amp;#34; ng-model=&amp;#34;to&amp;#34;/&amp;gt; 这里有个modelto， 用来获取input输入，会被双向绑定到指令内部的scope上，后面再讲如何做。
+创建模块和第一个指令 module:
+var app = angular.module(&amp;#39;app&amp;#39;, []);  directive:
+app.directive(&amp;#39;myDir&amp;#39;, function() { return { restrict: &amp;#39;A&amp;#39;, require: &amp;#39;^mailTo&amp;#39;, scope:{ mailTo: &amp;#39;=&amp;#39;, onSend: &amp;#39;&amp;amp;&amp;#39;, mailObj: &amp;#39;=&amp;#39;, fromName: &amp;#39;@&amp;#39; }, templateUrl: &amp;#39;template.html&amp;#39; } });   restrict 该指令如何被使用：  &amp;#39;A&amp;#39; - &amp;lt;span ng-sparkline&amp;gt;&amp;lt;/span&amp;gt; &amp;#39;E&amp;#39; - &amp;lt;ng-sparkline&amp;gt;&amp;lt;/ng-sparkline&amp;gt; &amp;#39;C&amp;#39; - &amp;lt;span class=&amp;#34;ng-sparkline&amp;#34;&amp;gt;&amp;lt;/span&amp;gt; &amp;#39;M&amp;#39; - &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>autumn</title>
+      <link>https://braavos.me/posts/2014-07-27-autumn/</link>
+      <pubDate>Sun, 27 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-27-autumn/</guid>
+      <description>北京 · 金秋
+ 两年前拍的一张照片，那时候在听：
+{% audio /audios/morning.mp3 &amp;gt;}}</description>
+    </item>
+    
+    <item>
+      <title>little talks </title>
+      <link>https://braavos.me/posts/2014-07-26-a-mv/</link>
+      <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-26-a-mv/</guid>
+      <description>&lt;p&gt;Of Monsters and Men - Little Talks&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//music.douban.com/subject/10572659/&#34; target=&#34;_blank&#34;&gt;
+&lt;img src=&#34;//img3.douban.com/lpic/s9009585.jpg&#34; alt=&#34;Of Monsters and Men&#34; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;背景&#34;&gt;背景&lt;/h3&gt;
+
+&lt;p&gt;Of Monsters and Men，来自冰岛，&lt;code&gt;独立&lt;/code&gt;、&lt;code&gt;民谣&lt;/code&gt;乐团。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一个有意思的播客</title>
+      <link>https://braavos.me/posts/2014-07-22-recomended-a-podcast/</link>
+      <pubDate>Tue, 22 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-22-recomended-a-podcast/</guid>
+      <description>&lt;h3 id=&#34;关于it公论&#34;&gt;关于IT公论：&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;「IT 公论」是由李如一、李楠和 Rio 创办的科技类播客 (podcast) 节目,我们有乾货，更有湿货。我们也不只讲科技。（如今什么跟科技无关呢？「软件蚕食世界」，嗯。）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//www.itgonglun.com&#34;  target=&#34;_blank&#34;&gt;
+    &lt;img class=&#34;cover&#34; src=&#34;https://braavos.me/images/posts/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
+&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Recent Songs</title>
+      <link>https://braavos.me/posts/2014-07-07-recent-songs/</link>
+      <pubDate>Mon, 07 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-07-recent-songs/</guid>
+      <description>&lt;h4 id=&#34;a-target-blank-class-no-dec-href-www-xiami-com-song-1027252-title-downtown-train-downtown-train-a&#34;&gt;&lt;a target=&#34;_blank&#34; class=&#34;no-dec&#34;  href=&#34;//www.xiami.com/song/1027252&#34; title=&#34;downtown train&#34;&gt;downtown train&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;a target=&#34;_blank&#34; class=&#34;no-dec&#34;  href=&#34;//www.xiami.com/song/1027252&#34; title=&#34;downtown train&#34;&gt;&lt;img  class=&#34;cover&#34; src=&#34;//img.xiami.net/images/album/img85/10185/525231395378300.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;How I met your mother&lt;/i&gt; 第九季第九集插曲。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>oceans deep</title>
+      <link>https://braavos.me/posts/2014-07-03-oceans-deep/</link>
+      <pubDate>Thu, 03 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-03-oceans-deep/</guid>
+      <description>&lt;h3 id=&#34;oceans-deep-sons-of-day&#34;&gt;Oceans Deep - Sons of day&lt;/h3&gt;
+
+&lt;p&gt;Even though the world I&amp;rsquo;m in&lt;br /&gt;
+The perfect pitch this way appears&lt;br /&gt;
+The greatest pressures of my sin don&amp;rsquo;t disappear&lt;/p&gt;
+
+&lt;p&gt;Although alive and with how much&lt;br /&gt;
+The wishing, well I wished for you&lt;br /&gt;
+Then I look to see myself within it all&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>若世界是我想象的样子 </title>
+      <link>https://braavos.me/posts/2014-02-11-imagine/</link>
+      <pubDate>Tue, 11 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-02-11-imagine/</guid>
+      <description>文/落
+若世界是我想象的样子，真爱是存在的。
+它光滑得像肌肤，鲜红得珊瑚。
+它温文尔雅，无声无息。
+它夹杂着我们微小如尘的冲动和秘密。
+它需要耗竭掉我们漫长的时间，甚至一生去感受。
+它不是模仿，不是炫耀，它是自然。
+虚空与孤独在每一个黄昏、清晨，精准地击中我们的心。
+它轻快地从灵魂面前经过，舞步轻盈。
+于是我也不得不心生欣喜，爱它都来不及。
+温暖与幸福令我们心如明镜的顺应着上帝给你我的定义。
+谦恭地、勇敢地、真诚地、有纪律地爱着人群，爱着草地和落叶。
+生命周而复始，
+连同我们普通的愿望，虚拟的幻灭，美好，仇恨，禁止，排斥，接纳与感悟。
+在茂密的森林中，婉转的河流中，周而复始。
+它美好得，美好得像一种永不受惩罚的奢侈。</description>
+    </item>
     
   </channel>
 </rss>

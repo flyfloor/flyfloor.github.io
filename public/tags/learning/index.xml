@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Learning on braavos</title>
+    <link>https://braavos.me/tags/learning/</link>
+    <description>Recent content in Learning on braavos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 26 Aug 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://braavos.me/tags/learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>最近画的一些图标</title>
+      <link>https://braavos.me/posts/2015-08-26-recent-icons/</link>
+      <pubDate>Wed, 26 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-08-26-recent-icons/</guid>
+      <description>&lt;p&gt;最近工作中需要画一些简单的 icon，于是发现把爱好当工作还真是挺享受的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/icons.png&#34; alt=&#34;icons&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

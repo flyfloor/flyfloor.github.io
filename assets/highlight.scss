@@ -1,29 +1,43 @@
-.highlight, .pre-code {
+%pre_code_style {
   background: #f8f8f8;
   overflow-y: hidden;
   overflow-x: auto;
+  margin-bottom: 1em;
+  font-family: Monaco, 'Courier New', Courier, monospace;
+  overflow: scroll;
+  overflow-y: hidden;
+  display: block;
+  padding: 0.8em !important;
+  overflow-x: auto;
+  line-height: 1.45em;
+  color: #449a5c;
+  font-size: .8em;
+  vertical-align: baseline;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 
-  pre {
-    font-family: Monaco, 'Courier New', Courier, monospace;
-    overflow: scroll;
-    overflow-y: hidden;
-    display: block;
-    padding: 0.8em !important;
-    overflow-x: auto;
-    line-height: 1.45em;
-    background: 0 0 !important;
+  span {
     color: #449a5c !important;
-    font-size: .8em;
-    vertical-align: baseline;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    font-style: normal !important;
+    font-weight: 400 !important;
+  }
+}
 
-    span {
-      color: #449a5c !important;
-      font-style: normal !important;
-      font-weight: 400 !important;
-    }
+p>code {
+  background: #f8f8f8;
+  font-size: .8em;
+  color: #449a5c;
+  padding: .2em;
+}
+
+pre>code:not([class]) {
+  @extend %pre_code_style;
+}
+
+.highlight, .pre-code {
+  pre {
+    @extend %pre_code_style;
   }
 
   pre, code {

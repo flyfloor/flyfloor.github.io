@@ -1,0 +1,226 @@
+---
+date: "2016-01-31"
+layout: post
+tags: ['ES6', 'JavaScript', 'Tech']
+title: "\u6DF1\u5165 ES6 - Symbols"
+---
+
+> 原文出自 [ES6 in depths](https://hacks.mozilla.org/2015/06/es6-in-depth-symbols/), 作者 [Jason Orendorff](https://blog.mozilla.org/jorendorff/), 翻译：落在深海
+
+*ES6 In Depth* 系列将详细解读 ES6 的新特性。 
+
+ES6 的 Symbol 是什么？
+
+<!-- more -->
+
+Symbol 并不是 logo 之类的。
+
+你在代码里也不能用小图片(emoji 表情之类的)。
+
+```javascript
+let 😻 = 😺 × 😍;  // 语法错误
+```
+
+它们也并不是文学里的象征意义。
+
+它们更不会是钹(乐器)。
+
+![搞笑图片](https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2015/06/302555333_c3f827fd75_z.jpg)
+
+(在代码里使用钹也并不是个好主意。他们很容易崩溃???)
+
+所以究竟什么是 Symbol?
+
+### 七种类型
+
+1997年，JavaScript 第一次被标准化，它便拥有六种类型。ES6 出来前，JS 程序里任何数值都属于这几种分类：
+
++ undefined
++ null
++ Boolean
++ Number
++ String
++ Object
+
+每种类型都是值的集合。前五种集合的值是有限的。布尔值只有 `true` 跟 `false`，不可能拥有第三个值。更多的 `Number` 及 `String` 值。标准提到有**18,437,736,874,454,810,627**多个不同的数字(包括 NaN, 它代表『Not a Number』)。相比起字符串，还是小巫见大巫。我认为后者有**(2144,115,188,075,855,872 − 1) ÷ 65,535** 多个值, 不过可能我数的是错的。
+
+而 Object 值的集合更没尽头了。每个对象像片独一无二的雪花，每当打开一个网页，一堆对象被创建。
+
+ES6 symbol 是数值，但并不是字符串，也不属于对象。它们是一种新东西: 第七种数值类型。
+
+来看看什么场景下会用到。
+
+### 一个简单的布尔值
+
+有时候它可以非常方便的隐藏 JS 对象上并不属于本身的一些数据。
+
+比如，假设你在写一个利用 CSS transition 来控制 DOM 环绕在屏幕上的 JS 库。你发现让多个 CSS transition 作用在同一个 `div` 并不能生效。它会导致丑陋的、间断的跳跃。你自认为可以解决它，但前提是你要证明元素已经处于移动状态。
+
+怎样解决这个问题呢？
+
+一种办法是使用 CSS 的 API，请求浏览器以检查元素是否移动。但这听起来过于笨重了。你的库早已知道元素正在移动；因为正式这些代码让元素开始移动的！
+
+真正需要的是记录哪些元素正在移动。你可以通过一个数组记录这些元素。每次当元素因为你的库代码被调用而移动时，你可以遍历数组，看这个元素是否在其中。
+
+恩哼，如果数组很大，线性的搜索会很慢。
+
+其实你需要的仅仅是在元素上设个 flag。
+
+```javascript
+if (element.isMoving) {
+  smoothAnimations(element);
+}
+element.isMoving = true;
+```
+
+这样会有一些潜在问题。而所有问题都牵扯到一个事实，那就是并不仅仅只有你的代码在操作 DOM。
+
+1. 其他代码使用 `for-in` 或者 `Object.keys()` 可能会因为你创建的属性导致错误。
+2. 一些其他的库作者可能捷足先登，而你的代码将很难与它们更好地交互。
+3. 一些库作者可能会在后面添加该特性，而你的代码又很难与它们交互。
+4. 标准委员会或许决定添加 .isMoving() 方法到所有元素上。这样你代码就没有存在意义了。
+
+当然你可以通过定义一个非常长或者很傻以至于没人这样命名的字符串名来避开后面三个问题:
+
+```javascript
+if (element.__$jorendorff_animation_library$PLEASE_DO_NOT_USE_THIS_PROPERTY$isMoving__) {
+  smoothAnimations(element);
+}
+element.__$jorendorff_animation_library$PLEASE_DO_NOT_USE_THIS_PROPERTY$isMoving__ = true;
+```
+
+似乎并不值得这样做。
+
+你可以通过密码学知识生成独一无二的名字:
+
+```javascript
+// get 1024 Unicode characters of gibberish
+var isMoving = SecureRandom.generateName();
+
+...
+
+if (element[isMoving]) {
+  smoothAnimations(element);
+}
+element[isMoving] = true;
+```
+
+Object[name] 足够让你使用任何字符串当做属性名。所以这样是可行的：几乎不会发生冲突，代码看起来也不错。
+
+问题来了，这样并不适合调试。每次你 `console.log()` 输出元素属性时，你看到的是一串串无意义的字符串。假如你需要很多个这样的属性？如何保证它们是正确的？每次刷新它们都会拥有不同的名字。
+
+为什么这么难？我想要的仅仅是个布尔值而已!
+
+### Symbol 才是答案
+
+Symbol 是程序可以创建并用作 key 来获取对象属性的值，且不必担心命名冲突的东西。
+
+```javascript
+var mySymbol = Symbol();
+```
+
+调用 Symbol() 创建一个新的 symbol，它的值不等于任何其他值。
+
+就像字符串或数字，它可以用做属性的 key。正因为唯一性，用作 key 的 symbol 属性可以保证不会与任何其他属性冲突。
+
+```javascript
+obj[mySymbol] = "ok!";  // guaranteed not to collide
+console.log(obj[mySymbol]);  // ok!
+```
+
+下面列出了如何使用 symbol 解决我们讨论过的问题:
+
+```javascript
+// create a unique symbol
+var isMoving = Symbol("isMoving");
+
+...
+
+if (element[isMoving]) {
+  smoothAnimations(element);
+}
+element[isMoving] = true;
+```
+
+关于这段代码需要注意的:
+
++ `Symbol("isMoving")` 里的字符串**isMoving** 被称作描述。对于调试非常方便。`console.log()` 打印 symbol 时使用，但当你试图用 `.toString()` 对它进行转换，很可能得到一个错误信息，仅此而已。
+
++ `element[isMoving]` 被称作 symbol-keyed 属性。区别在于属性名为 symbol 而不是字符串。其他方面并无特殊之处。
+
++ 像数组元素一样，symbol-keyed 属性不能通过`.`语法获取，不支持 `obj.name`。必须通过方括号形式获取。
+
++ 很容易获取 symbol-keyed 属性。上面例子展示如何获取及设置 `element[isMoving]`，也可以 `if (isMoving in element)` 甚至是 `delete element[isMoving]`。
+
++ 另一方面，上述正确使用的前提是 `isMoving` 在作用域内。symbol 很好的作用于封闭环境: 模块可以创建 symbol 并作用于任何对象，**无须担心与其他代码创建的属性发生冲突**。
+
+正是由于 symbol key 被设计来避免冲突，JavaScript 最通常的对象检查会忽略掉 symbol key。比如 `for-in` 循环只对对象的字符串 key 循环。symbol key 则被跳过了。`Object.keys(obj)` 及 `Object.getOwnPropertyNames(obj)` 同样如此。但是 symbol 并不完全私有: 通过新的 API `Object.getOwnPropertySymbols(obj)` 能列出对象的所有 symbol keys。另外的 API, `Reflect.ownKeys(obj)`，会返回字符串及 symbol key。(我们将在新的一篇文章里详细讨论 `Reflect` API)
+
+库及框架可能会用更多的 symbol, 后面也会看到，语言本身也会大范围的使用它。
+
+### 但是到底 symbol 是什么?
+
+```javascript
+> typeof Symbol()
+"symbol"
+```
+
+Symbol 跟其他东西并不一样。
+
+它们一旦被创建是不可变的。不能为其设置属性(严格模式下会报错)。它们可以是属性名。这些是所有类字符串的特征。
+
+另一方面，每个 symbol 都是独一无二的(即使有着同样的描述)，可以很容易创建新的 symbol。这些是对象的特征。
+
+ES6 的 symbol 跟 Lisp 或 Ruby [更多传统 symbol](https://en.wikipedia.org/wiki/Symbol_%28programming%29) 相似。却没有跟语言更紧密的集成在一起。在 Lisp 里，所有标识符都是 symbol。Js 里，标识符及重要属性的 key 多为字符串。symbol 只是另外一种选择。
+
+重要警告:有别于其他语言，symbol 并不能自动转成字符串。试着连接字符串跟 symbol，会得到类型错误。
+
+```javascript
+> var sym = Symbol("<3");
+> "your symbol is " + sym
+// TypeError: can't convert symbol to string
+> `your symbol is ${sym}`
+// TypeError: can't convert symbol to string
+```
+
+可以通过 `String(sym)` 或者 `sym.toString()` 显式转换 symbol 为字符串。
+
+### symbol 的三个集合
+
+有三种方式来获得 symbol。
+
++ **调用 Symbol()**。如我们讨论过的，每次调用返回新的 symbol。
+
++ **调用 Symbol.for(string)**。此方法称为 symbol 注册，被用在获取已存在的 symbol。区别于 Symbol()，`调用 Symbol.for('cat')` 三次，每次都将获得同样的 symbol。这在多页应用或多模块的单页应用中用来共享 symbol 非常有用。
+
++ **使用一些标准定义的 Symbol，例如 `Symbol.iterator`**。部分 symbol 被标准定义，都有特殊的作用。
+
+如果你仍旧不确定该不该用 symbol，下面部分就非常有意思了，因为它会向你展示 symbol 如何被实战证明是非常有用的。
+
+### ES6 规范是如何使用 symbol 的
+
+我们已经看到 ES6 如何使用 symbol 避免与已有代码发生冲突。几周前，[关于迭代器的文章](https://hacks.mozilla.org/2015/04/es6-in-depth-iterators-and-the-for-of-loop/) 里提到 `for(var item of myArray)` 调用 `myArray[Symbol.iterator]`()。那时我说本可以被命名为 `myArray.iterator()`,然而为了向下兼容，这里用 symbol 更合适。
+
+现在既然知道 symbol 是什么，也就容易理解为什么这样做、这样做的意义。
+
+下面是 ES6 里一些用到 symbol 的地方(这些特性还没在 Firefox 里实现。)
+
++ **让 `instanceof` 变得可扩展**。ES6 里，`object instanceof constructor` 被指定为构造器的方法: `constructor[Symbol.hasInstance]()`。说明它是可扩展的。
+
++ **消除新老代码的冲突**。这是非常复杂的，我们发现 ES6 数组方法的出现肯定会破坏已经存在的网站。其他 Web 标准也是如此：简单的添加新方法到浏览器肯定会破坏现有网站。然而，破碎主要由动态作用域引起。所以 ES6 引入了一个特别的 symbol：`Symbol.unscopables`，防止已有方法被动态作用域干扰。
+
++ **提供了新的字符串匹配**。ES5 里，`str.match(myObject)` 试着转化 `myObject` 为 `RegExp`。而在 ES6 里，它首先会检查 `myObject` 是否拥有 `myObject[Symbol.match](str)` 方法。现在公共库可以提供自定义的字符串解析类来实现 RegExp 对象能提供的特性。
+
+上面每点适用面似乎都很窄。很难看到任何特性最终对日常代码造成巨大影响。然而愿景很有趣。JavaScript 的 symbol 像是 PHP 或 Python 的 `__ 双下划线`。它将为语言添加更多的钩子，且不影响已有代码。
+
+### 什么时候用 ES6 的 symbol?
+
+Symbol 在 Firefox 36 跟 Chrome 38 被实现。我在 Firefox 里实现的，如果你发现 symbol 并不像想象中的那样好用，你知道该找谁了对吧。
+
+当然对于没有提供 ES6 symbol 支持的浏览器，你需要 [core.js](https://github.com/zloirock/core-js#ecmascript-6-symbols) 这样的工具。鉴于 symbol 并不像其他语言里的表现，这些工具可能并不完美。[这里是警告](https://github.com/zloirock/core-js#caveats-when-using-symbol-polyfill)。
+
+下周会有两篇文章。第一篇，我们会覆盖到很多期待已久 的特性，也会更多的吐槽它们。我们将以两个几乎追溯到编程早期的特性说起。接下来是两个非常相似的特性，由 *ephemerons* 讲解。敬请关注。
+
+最后，届时还会提供 Gastón Silva 的一篇与 ES6 特性无关，但可以帮你在自己项目使用 ES6 语法的文章。再会。
+
+

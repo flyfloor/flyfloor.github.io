@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Podcast on braavos</title>
+    <link>https://braavos.me/tags/podcast/</link>
+    <description>Recent content in Podcast on braavos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 22 Jul 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://braavos.me/tags/podcast/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一个有意思的播客</title>
+      <link>https://braavos.me/posts/2014-07-22-recomended-a-podcast/</link>
+      <pubDate>Tue, 22 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-22-recomended-a-podcast/</guid>
+      <description>&lt;h3 id=&#34;关于it公论&#34;&gt;关于IT公论：&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;「IT 公论」是由李如一、李楠和 Rio 创办的科技类播客 (podcast) 节目,我们有乾货，更有湿货。我们也不只讲科技。（如今什么跟科技无关呢？「软件蚕食世界」，嗯。）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//www.itgonglun.com&#34;  target=&#34;_blank&#34;&gt;
+    &lt;img class=&#34;cover&#34; src=&#34;https://braavos.me/images/posts/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
+&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

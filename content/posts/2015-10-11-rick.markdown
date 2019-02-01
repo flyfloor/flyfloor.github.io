@@ -1,0 +1,20 @@
+---
+date: "2015-10-11"
+layout: post
+tags: ['avatar', 'design', 'sketch']
+title: rick
+---
+
+这次是 morty 他外公 rick。
+
+![rick](/images/posts/rick.png)  
+
+来自美剧 *Rick and Morty*, 使用 Sketch 临摹，作者：落在深海
+
+<!--more-->  
+
+#### *Sketch source file: [rick.sketch](https://github.com/jerryshew/design/blob/master/sketch/rick.sketch), png file: [rick.png](https://github.com/jerryshew/design/blob/master/png/rick.png), design stuff hosted in [here](https://github.com/jerryshew/design/).*  
+
+OST of *rick and morty*:  
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width='280' height='450' src="//music.163.com/outchain/player?type=0&id=104630208&auto=0&height=430"></iframe>

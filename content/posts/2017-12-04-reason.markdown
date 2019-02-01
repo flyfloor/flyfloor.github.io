@@ -1,0 +1,384 @@
+---
+date: "2017-12-04"
+layout: post
+tags: ['tech']
+title: Reason? Reason!
+---
+
+今天学习一门新语言：Reason，其实去年的时候就有了解过这门语言，当时看文档一头雾水，就放弃了。几周前看了看官网，发现变化很大，新版语法感觉还不错，就简单过了下。  
+
+首先，Reason 严格来说称不上一个语言，它是基于 OCaml 新语法的 DSL。OCaml 是一门函数式编程语言，它本身有些很好的特性，例如拥有严格静态类型，灵活强大的对象和模块系统，适合写高性能、结构复杂、数据正确性高要求的应用等。多被用来写编译器、程序分析、金融交易、虚拟机等应用。我们熟知的 facebook 的 flow 也是基于 OCaml 编写的。  
+
+<!-- more -->
+那么问题是『写前端 JavaScript 不够吗？老夫一把梭，就是干！』JavaScript 编写的代码已经运行在各种平台，侵入更多的领域，然而应用的规模变大以后，稳定性、可维护性变差很多，更多运行时异常，让测试、维护都变得非常难。  
+为了解决这些问题，Reason 的作者基于 OCaml 设计了 Reason 这门语言，他拥有以下主要特点：
+
+>1. 坚若磐石的类型系统  
+得益于 OCaml 100% 的类型覆盖率，同时享受一旦编译，数据的类型则精准无误。  
+2. 极致的简洁、实用主义  
+允许可变、副作用以及对象让从 JS 程序员更自然，同时保持语言本身的纯净、不可变及函数式。  
+3. 聚焦高性能和语言的大小  
+Reason 的构建系统：bsb，能够保证增量构建在 100 ms 内完成，同时构建出的文件非常小。  
+4. 基于现有语言的优秀特点，强大兼容扩展性  
+完全的类型检查，同时支持 JS 片段完美的混合执行。  
+5. 强大的生态及工具链   
+基于不同的编辑器，提供了插件及语法支持，同时支持引用外部 JS 模块，这样就可以使用成千上万的 NPM 包了。
+
+听起来非常美好，关于为什么使用 OCaml 语法作为 Reason 背后的支撑，而不是其他语言？
+很多语言能够实现上面提到的特性，然而主要还是看中：
+
+>1. OCaml 能够非常高效率转换成底层机器代码的能力  
+2. OCaml 默认拥有不可变、函数式的特性，同时可以通过一些方式支持副作用的、可变以及其他特性，方便应用中的一些特殊场景  
+3. OCaml 经历了许多年的更迭，稳定坚若磐石，且少有一些坑货的语法  
+4. Reason 的作者也正是 ReactJs 的作者，ReactJs 的初版原型是基于 SML 语言编写的，SML 跟 OCaml 属于同门语言。  
+5. 快速发展的语言社区  
+
+这些特性最终让 OCaml 成为 Reason 背后的根基。OCaml 提供复杂的数据类型、强大的模块化在编译器运行前进行类型检查，大大降低出错几率。官方称 OCaml 的字节码及本地代码编译器都非常快，我下载 Demo 体验过，编译速度真的很快。编译生成机器代码，执行效率更高。OCaml 本身可移植性也很好，通过 js_of_ocaml 可以将代码编译成 JavaScript。
+
+说这么多，首先看下官方的例子：
+
+```reason
+type schoolPerson = Teacher | Director | Student(string);
+let greeting = (stranger) =>
+  switch stranger {
+  | Teacher => "Hey professor!"
+  | Director => "Hello director."
+  | Student("Richard") => "Still here Ricky?"
+  | Student(anyOtherName) => "Hey, " ++ anyOtherName ++ "."
+  };
+```
+
+这个例子里的 schoolPerson 是 Reason 的一个重要特性：Variant。 Teacher、Director、Student(string) 并不是任何数据类型，而是类似于 Tag，在 Reason 里被称为构造器。switch 在 Reason 里也是一个重要的功能。枚举之前定义的 schoolPerson 类型的每个构造器，对应输出表达式。  
+
+### 核心概念
+
+Reason 有别于其他语言的部分
+
+#### Type
+
+很容易理解，定义一个数据类型，然后定义变量时可以根据类型进行赋值。
+
+```reason
+type scoreType = int;
+let x: scoreType = 10;
+```
+
+##### Type 的设计理念是：
+
++ 所有类型是可以被推理的  
+即使不手动指定类型，类型系统也会正确的识别数据类型
+
++ Reason 所有代码都对应一个类型  
+Reason 根本不需要 coverage 工具检测类型覆盖，因为所有代码都对应一个数据类型。
+
++ 是什么类型最终数据即是什么类型  
+只要代码正常编译通过，那么定义时是什么类型，最终即是什么类型。根本不会出现类似定义时是 Integer，最终得到的是 null 这样的情况。纯粹的 Reason 程序是不存在 null 类型 bug 的。这里得益于 OCaml 安全强大的类型系统。
+
+#### Variant
+
+```reason
+type myResponseVariant =
+  | Yes
+  | No
+  | PrettyMuch;
+
+let areYouCrushingIt = Yes;
+```
+
+`myResponseVariant` 即是 `variant`，`Yes`, `No`, `PrettyMuch` 被称作 `constructor` 或 `tag`。配合 `switch` 使用：
+
+```reason
+let message =
+  switch areYouCrushingIt {
+  | No => "No worries. Keep going!"
+  | Yes => "Great!"
+  | PrettyMuch => "Nice!"
+  };
+/* message is "Great!" */
+```
+
+最终 `areYouCrushingIt` 匹配 `myResponseVariant` 类型的 `Yes`，`message` 的返回值为 "Great!"
+
++ `Variant` 的 `constructor` 支持传参
+
+```reason
+type account =
+  | None
+  | Instagram(string)
+  | Facebook(string, int);
+
+let myAccount = Facebook("Josh", 26);
+let greeting =
+  switch myAccount {
+  | None => "Hi!"
+  | Facebook(name, age) => "Hi " ++ name ++ ", you're " ++ string_of_int(age) ++ "-year-old."
+  | Instagram(name) => "Hello " ++ name ++ "!"
+  };
+```
+
+上面类型一节提到 `Reason` 的所有类型都是固定的，然而现实中数据也有可能出现 `nullable` 类型数据，例如后端返回的数据可能是 `int`，也可能是 `null`
+
++ 通过 `option` 也可以定义为 `nullable` 的类型
+
+```reason
+type option('a) = None | Some('a);
+let name = Some(3);
+
+let message = 
+  switch (name) {
+    | None => "empty int"
+    | Some(a) => "return int value is " ++ string_of_int(a)
+  };
+```
+
++ 实际上 `Reason` 中的 `list` 类型也是通过这种方式实现
+
+```reason
+type list('a) = Empty | Head('a, list('a));
+```
+
+这样当定义值为 [1, 2, 3] 的 `list`，实际上科一转换为 `Head(1, Head(2, Head(3, Empty)))`。
+
+#### Pattern Matching
+
+`Reason` 里重要的特性，通过类似解构的方式，对类型进行匹配。语法可以是这样：  
+
+```reason
+switch myList {
+| [] => print_endline("Empty list")
+| [a, ...theRest] => print_endline("list with the head value " ++ a)
+};
+
+switch myArray {
+| [|1, 2|] => print_endline("This is an array with item 1 and 2")
+| [||] => print_endline("This array has no element")
+| _ => print_endline("This is an array")
+};
+```
+
+大家可能在系统里看到过类似的代码，一大坨 `if else`，如果再增加类型，维护性越来越差，很有可能因为一个判断疏忽出现问题。
+
+```reason
+if (data.errorCode === 500) {
+  // server error
+} else if (data.errorCode !== undefined) {
+  // normal error
+} else if (data.status === 200) {
+  // success
+} else {
+  // no result
+}
+```
+
+使用 `pattern matching` 后，根据后端返回 `data`，定义不同输出消息：
+
+```reason
+type returnData = 
+  | GoodResult(string)
+  | BadResult(int)
+  | NoResult;
+
+let message =
+  switch data {
+  | GoodResult(theMessage) => ...
+  | BadResult(errorCode) when isServerError(errorCode) => ...
+  | BadResult(errorCode) => ... /* otherwise */
+  | NoResult => ...
+  };
+```
+
+比那段 `if else` 语义性更强，维护性也大大增强。
+
+#### Module
+
+模块引用
+
+```reason
+module A = {
+  // define something
+}
+```
+
+模块内的定义，包括 type 都可以通过 `A.something` 格式访问，module 可以多层嵌套，`A.B.something`。
+每一个 .re 文件即为一个模块，模块也支持局部作用域。模块还有些更高级的使用方式，可以去看官方文档。[reason module](https://reasonml.github.io/guide/language/module)
+
+### 数据类型
+
+Reason 支持类型有 **Char**, **Char**, **Integer**, **Float**, **Boolean**, **Tuple**, **Record**, **List**, **Array**, **Object**,  
+前五个类型跟其他语言差不多。
+
+#### String  
+
+字符串由双引号括起来，特殊字符需要用`\`转义。如果是多行的话，语法是
+
+```reason
+let message = {|hello, first line
+second line
+third line
+...
+|}
+```
+
+对于 `unicode` 字符
+
+```reason
+let world = {js|世界|js}; /* Supports Unicode characters */
+```
+
+支持变量占位
+
+```reason
+let helloWorld = {j|你好，$world|j}; /* Supports Unicode and interpolation variables */
+```
+
+#### Char
+
+单字符，不支持 `Unicode` 或者 `Utf-8` 编码
+
+#### Boolean
+
+跟 JS 一致，`==` 物理等于，是深度对比的， (1, 2) == (1, 2)。
+`===` 必须引用相同才相等
+
+#### Integer, Float
+
+注意的是 float 计算是 `+. -. *. /.`, 如 `0.2 +. 0.5`, Integer 跟 Float 是不能直接操作的，可以通过 int_of_float、float_of_int 之类的进行数据转换。
+
+#### Tuple
+
+元组，类似于 Python 元组的语法
+
+```reason
+let ageAndName = (24, "Lil' Reason", 21.0);
+```
+
+#### Record
+
+Record 类似于 JS 的 Object，但特点是更轻量，默认不可改变、字段名跟类型固定，并且效率非常高。  
+使用时，首先需要定义类型，然后在赋值
+
+```reason
+type person = {
+  age: int,
+  name: string
+};
+
+let me = {
+  age: 5,
+  name: "Big Reason"
+};
+
+/* access */
+let name = me.name;
+```
+
+me 是不可变数据，可以通过`...` 操作符定义新的 record，同时不会改变旧的数据。
+
+```reason
+let meNextYear = {...me, age: me.age + 1};
+```
+
+通过 bucklescript 将 Reason 代码转为 JS，可以看到代码生成如下：
+
+```reason
+// Generated by BUCKLESCRIPT VERSION 1.9.2, PLEASE EDIT WITH CARE
+'use strict';
+
+
+var meNextYear = /* record */[
+  /* age */6,
+  /* name */"Big Reason"
+];
+
+var me = /* record */[
+  /* age */5,
+  /* name */"Big Reason"
+];
+
+var name = "Big Reason";
+
+exports.me         = me;
+exports.name       = name;
+exports.meNextYear = meNextYear;
+/* No side effect */
+```
+
+可以看到实际上 Record 语法上类似 JS 的 Object，实际转化为 JS 的 Array 类型。如果定义新的 record，编译成 JS 后实际上是通过字面量重新生成新数组，两个数组无引用关系，无副作用。
+
+#### List & Array
+
++ List 是不可变的同类数据的集合，通常用在 switch case 里做条件匹配。
+
+```reason
+let myList = [1, 2, 3];
+```
+
+可以通过 `...` 构造新的 List
+
+```reason
+let myList = [1, 2, 3];
+let anotherList = [0, ...myList];
+```
+
+生成的 anotherList 后三个元素实际上跟 myList 是引用关系，这样构造新 list 速度非常快。
+
++ Array 跟 List 区别是数据是可变的
+
+```reason
+let myArray = [|"hello", "world", "how are you"|];
+let firstItem = myArray[0]; /* "hello" */
+myArray[0] = "hey";
+/* now [|"hey", "world", "how are you"|] */
+```
+
+
+#### Object
+
+语法有点诡异，由于之前定义 Record 语法类似于 Js 对象，Reason 的 Object 则在定义类型时前面加上`.`，Object 的定义是可以省略定义的。大多数时候使用 Record 即可，有些特殊情况你可能需要 Object 类型。
+
+官方声明如果是 JS 使用者，推荐使用 BuckleScript 提供的对象数据类型
+
+```reason
+type tesla = {
+  .
+  color: string
+};
+```
+
+```reason
+type tesla = {
+  ..
+  color: string
+};
+```
+
+开头一个`.`跟`..`的区别是一个点代表对象为闭合对象，key 必须按照类型定义实现，两个点则表示开放对象，可以有别的 key。
+
+#### 其他
+
+常用的其他语法，循环，Function，Exception，Destructuring 等等，都可以在官方文档看到，可以看出 Reason 已经是语法完备的语言了。
+
+另外一点是，Reason 提供了引用外部 JS 模块的能力，虽然语法看起来比较繁琐：
+
+```reason
+[@bs.val] external encodeURI : string => string = "encodeURI";
+```
+
+这样就可以使用 JS 模块提供的方法，利用现有成千上万的 npm 包，扩大了语言的生态范围。
+Reason 同时支持 JSX 语法的支持，通过 ReasonReact 实现与 React 的集成。
+
+### 最后
+
+利用 OCaml 静态语言的一些很好的特性，Reason 将成为一门出色的 `DSL`，让 JS 程序员能够抛弃现有语言的一些历史包袱，同时享受可能 `ES2030` 才能使用上的优秀特性。然而这些优秀特性是否真的能很好地解决现有问题，是否又会引入更多新的问题，还有待在具体项目中验证。
+
+相关链接：
+
+[http://ocaml.org/learn/history.html](http://ocaml.org/learn/history.html)
+
+[https://bucklescript.github.io/](https://bucklescript.github.io/)
+
+[https://bucklescript.github.io/docs/en/object.html#object-as-record](https://bucklescript.github.io/docs/en/object.html#object-as-record)
+
+[https://medium.com/@chenglou/cool-things-reason-formatter-does-9e1f79e25a82](https://medium.com/@chenglou/cool-things-reason-formatter-does-9e1f79e25a82)
+
+[https://reasonml.github.io/reason-react](https://reasonml.github.io/reason-react/)

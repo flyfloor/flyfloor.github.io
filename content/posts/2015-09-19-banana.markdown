@@ -1,0 +1,15 @@
+---
+date: "2015-09-19"
+layout: post
+tags: ['sketch', 'avatar', 'design']
+title: "\u5C0F\u9EC4\u4EBA"
+---
+
+
+![banana](/images/posts/banana.png)
+
+小黄人, 来自电影 *卑鄙的我*, 使用 Sketch 临摹，作者：落在深海
+ 
+<!--more-->
+
+#### *Sketch source file:  [banana.sketch](https://github.com/jerryshew/design/blob/master/sketch/banana.sketch), png file: [banana.png](https://github.com/jerryshew/design/blob/master/png/banana.png), design stuff hosted in [here](https://github.com/jerryshew/design/).*

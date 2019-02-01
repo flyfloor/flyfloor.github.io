@@ -1,0 +1,14 @@
+---
+date: "2017-01-01"
+layout: post
+tags: ['sketch', 'design']
+title: "\u9F99\u732B"
+---
+
+![totoro](/images/posts/totoro.png)
+
+来自电影 *龙猫*, 使用 Sketch 临摹，作者：落在深海
+ 
+<!--more-->
+
+#### *Sketch source file:  [totoro.sketch](https://github.com/jerryshew/design/blob/master/sketch/totoro.sketch), png file: [totoro.png](https://github.com/jerryshew/design/blob/master/png/totoro.png), design stuff hosted in [here](https://github.com/jerryshew/design/).*

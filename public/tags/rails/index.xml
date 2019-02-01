@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rails on braavos</title>
+    <link>https://braavos.me/tags/rails/</link>
+    <description>Recent content in Rails on braavos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 05 Aug 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://braavos.me/tags/rails/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rails的环境变量</title>
+      <link>https://braavos.me/posts/2014-08-05-rails-env/</link>
+      <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-05-rails-env/</guid>
+      <description>&lt;p&gt;翻看我的Pocket list，发现一篇很老的讲Rails基础的文章，作者写得很口水，原文在这里：&lt;a target=&#34;_blank&#34; href=&#34;//railsapps.github.io/rails-environment-variables.html&#34;&gt;Rails Environment Variables&lt;/a&gt;, 直译如下，希望对Rails新手有所帮助：&lt;/p&gt;
+
+&lt;h2 id=&#34;正文&#34;&gt;正文：&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;设置Rails环境变量。在Rails app中使用环境变量。Rails配置、安全与环境变量。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量&lt;/h3&gt;
+
+&lt;p&gt;许多应用程序需要配置如电子邮件、账户凭证或外部服务的API密钥。你可以通过本地配置来让应用程序使用这些环境变量，而操作系统(Linux、Mac OS X、Windows)提供一些机制来设置本地环境变量, Heroku和其他部署平台一样也有。这里我会展示如何设置本地Unix shell环境变量。其次也会介绍两种另类的方式而不通过Unix shell在应用程序中设置环境变量。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

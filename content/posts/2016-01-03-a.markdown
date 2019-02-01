@@ -1,0 +1,15 @@
+---
+date: "2016-01-03"
+layout: post
+tags: ['music']
+title: "\u70DB\u5149"
+---
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=33166518&auto=0&height=66" ></iframe>
+
+<!--more-->
+
+『这个世界每天有太多遗憾』
+
+2016/01/03

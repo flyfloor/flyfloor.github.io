@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Timestamp on braavos</title>
+    <link>https://braavos.me/tags/timestamp/</link>
+    <description>Recent content in Timestamp on braavos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 16 Nov 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://braavos.me/tags/timestamp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>几张NBA老照片</title>
+      <link>https://braavos.me/posts/2014-11-16-old-pictures/</link>
+      <pubDate>Sun, 16 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-11-16-old-pictures/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/old-pictures/kobe.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;1999年湖人对灰熊比赛前，科比因为在上一场右手手腕骨折，于是改用左手练习投篮，几年后成为一个左右通吃的得分狂魔。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

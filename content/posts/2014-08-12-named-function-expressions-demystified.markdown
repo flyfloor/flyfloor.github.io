@@ -1,9 +1,8 @@
 ---
-title: "命名函数表达式探秘"
-date: 2014-08-12 00:05:08 +0800
-showDate: true
-tags: ["Javascript", "tech", "collection"]
-draft: true
+date: "2014-08-12"
+layout: post
+tags: ['Javascript', 'tech', 'note', 'collection']
+title: "\u547D\u540D\u51FD\u6570\u8868\u8FBE\u5F0F\u63A2\u79D8"
 ---
 
 >作者：Juriy "kangax" Zaytsev  译者：为之漫笔 译文原文：<a target="_blank" href="//www.cn-cuckoo.com/main/wp-content/uploads/2009/12/named-function-expressions-demystified.html">命名函数表达式探秘</a> 。  
@@ -138,7 +137,7 @@ foo();
 
 想知道使用函数声明的实际规则到底是什么？继续往下看吧。嗯，有人不想知道？那请跳过下面这段摘录的文字。
 
-FunctionDeclaration（函数声明）只能出现在Program（程序）或FunctionBody（函数体）内。从句法上讲，它们 不能出现在Block（块）（{ ... }）中，例如不能出现在 if、while 或 for 语句中。因为 Block（块） 中只能包含Statement（语句）， 而不能包含FunctionDeclaration（函数声明）这样的SourceElement（源元素）。另一方面，仔细看一看产生规则也会发现，唯一可能让Expression（表达式）出现在Block（块）中情形，就是让它作为ExpressionStatement（表达式语句）的一部分。但是，规范明确规定了ExpressionStatement（表达式语句）不能以关键字function开头。而这实际上就是说，FunctionExpression（函数表达式）同样也不能出现在Statement（语句）或Block（块）中（别忘了Block（块）就是由Statement（语句）构成的）。
+`FunctionDeclaration`（函数声明）只能出现在`Program`（程序）或`FunctionBody`（函数体）内。从句法上讲，它们 不能出现在`Block`（块）（{ ... }）中，例如不能出现在 if、while 或 for 语句中。因为 `Block`（块） 中只能包含`Statement`（语句）， 而不能包含`FunctionDeclaration`（函数声明）这样的`SourceElement`（源元素）。另一方面，仔细看一看产生规则也会发现，唯一可能让`Expression`（表达式）出现在`Block`（块）中情形，就是让它作为`ExpressionStatement`（表达式语句）的一部分。但是，规范明确规定了`ExpressionStatement`（表达式语句）不能以关键字`function`开头。而这实际上就是说，`FunctionExpression`（函数表达式）同样也不能出现在`Statement`（语句）或`Block`（块）中（别忘了`Block`（块）就是由`Statement`（语句）构成的）。
 
 由于存在上述限制，只要函数出现在块中（像上面例子中那样），实际上就应该将其看作一个语法错误，而不是什么函数声明或表达式。但问题是，我还没见过哪个实现是按照上述规则来解析这些函数的；好像每个实现都有自己的一套。
 
@@ -415,7 +414,7 @@ expr_test.html()
 
 下面我们就来看看IE在它的这个“破”实现中到底都搞出了哪些花样。唉，只有知已知彼，才能百战不殆嘛。请注意，为了清晰起见，我会通过一个个相对独立的小例子来说明这些问题，虽然这些问题很可能是一个主bug引起的一连串的后果。
 
-###例1：函数表达式的标识符渗透到外部（enclosing）作用域中
+### 例1：函数表达式的标识符渗透到外部（enclosing）作用域中
 
 ```javascript
 var f = function g(){};
@@ -435,7 +434,7 @@ var f = function g(){};
 
 这个例子进而引出了下一个例子：
 
-###例3：命名函数表达式会创建两个截然不同的函数对象！
+### 例3：命名函数表达式会创建两个截然不同的函数对象！
 
 ```javascript
 var f = function g(){};
@@ -449,7 +448,7 @@ g.expando; // undefined
 
 再来看一个稍微复杂点的情况。
 
-###例4：只管顺序地解析函数声明而忽略条件语句块
+### 例4：只管顺序地解析函数声明而忽略条件语句块
 
 ```javascript
 var f = function g() {
@@ -953,6 +952,4 @@ factorial(10);
 **托比·兰吉**的点子被我用在了“替代方案”中。
 
 **盖瑞特·史密斯（Garrett Smith）**和**德米特里·苏斯尼科（Dmitry Soshnikov）**对本文的多方面作出了补充和修正。
-
-
 

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        Rails的环境变量
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">Rails的环境变量</div>
+
+        
+<div class="section" id="content">
+    <div class="field">
+    <time>
+        Tue Aug 05, 2014 &#183; 286 words
+    </time>
+    </div>
+    <p>翻看我的Pocket list，发现一篇很老的讲Rails基础的文章，作者写得很口水，原文在这里：<a target="_blank" href="//railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a>, 直译如下，希望对Rails新手有所帮助：</p>
+
+<h2 id="正文">正文：</h2>
+
+<blockquote>
+<p>设置Rails环境变量。在Rails app中使用环境变量。Rails配置、安全与环境变量。</p>
+</blockquote>
+
+<h3 id="环境变量">环境变量</h3>
+
+<p>许多应用程序需要配置如电子邮件、账户凭证或外部服务的API密钥。你可以通过本地配置来让应用程序使用这些环境变量，而操作系统(Linux、Mac OS X、Windows)提供一些机制来设置本地环境变量, Heroku和其他部署平台一样也有。这里我会展示如何设置本地Unix shell环境变量。其次也会介绍两种另类的方式而不通过Unix shell在应用程序中设置环境变量。</p>
+
+<h3 id="保证环境变量是私有的">保证环境变量是私有的</h3>
+
+<p>远程的代码仓库如github，是专门用来存储跟分享代码的地方，如果你的项目是开源的，任何开发者都可能获取到你的代码，你肯定也不想与他人分享你的email账户或者私有API keys。倘若你参与团队协作于一个私有的git仓库，你本地设置也许对其他队员并不合适。况且一般来说，你也不应该在共享的git仓库保存自己的email账户或者私有API keys。</p>
+
+<h3 id="gmail的例子">Gmail的例子</h3>
+
+<p>这样的一个应用程序, 使用Gmail来发送电子邮件。需要用户名和密码访问你的Gmail账户。在Rails应用程序中,你需要在<code>config/environments/production.rb</code>文件中配置这些凭证，看起来如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">address</span><span class="p">:</span> <span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span>
+  <span class="ss">port</span><span class="p">:</span> <span class="mi">587</span><span class="p">,</span>
+  <span class="ss">domain</span><span class="p">:</span> <span class="s2">&#34;example.com&#34;</span><span class="p">,</span>
+  <span class="ss">authentication</span><span class="p">:</span> <span class="s2">&#34;plain&#34;</span><span class="p">,</span>
+  <span class="ss">enable_starttls_auto</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+  <span class="ss">user_name</span><span class="p">:</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;GMAIL_USERNAME&#34;</span><span class="o">]</span><span class="p">,</span>
+  <span class="ss">password</span><span class="p">:</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;GMAIL_PASSWORD&#34;</span><span class="o">]</span>
+<span class="p">}</span></code></pre></div>
+<p>你可以“硬编码”Gmail用户名和密码, 但这会暴露于所有能看到仓库的人。所以这里你可以用<code>ENV[&quot;GMAIL_USERNAME&quot;]</code>。这个变量可以在任何一个Rails应用中使用，而Ruby会用环境变量替换掉<code>ENV[&quot;GMAIL_USERNAME&quot;]</code>。</p>
+
+<p>考虑如何设置环境变量：</p>
+
+<h3 id="选择一-设置unix环境变量">选择一：设置Unix环境变量</h3>
+
+<p>如果熟悉Unix,你或许在设置环境变量方面很有经验。Unix环境变量通常设置在一个只读文件里,打开shell（bash下是~/.bashrc）。<br />
+使用<code>echo $SHELL</code>来查看你是否在使用bash。如果是bash，编辑<strong>~/.bashrc</strong>并且添加：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">GMAIL_USERNAME</span><span class="o">=</span><span class="s2">&#34;myname@gmail.com&#34;</span></code></pre></div>
+<p>重启shell继续。<br />
+作为一个开发人员，学习Unix shell是很重要的。但有时shell的相关问题还是比较麻烦的，特别是使用rvm或环境变量时。</p>
+
+<h3 id="选择二-使用figaro的gem包">选择二：使用Figaro的gem包</h3>
+
+<p>Figaro这个gem包提供了很实用但较另类的方式来设置Unix shell的环境变量。<br />
+这个gem包利用了Ruby的特性来设置或读取环境变量。它会在Rails应用的其他参数配置之前，读取<strong>config/application.yml</strong>文件并且设置环境变量。<br />
+如果你想在开发、测试、生产环境下使用不同的凭证， 你可以在<strong>config/application.yml</strong>中指定它们。如果你将应用部署到Heroku，gem包会创建一个rake的task，来为Heroku设置所有环境变量。同时它提供语法帮助你获取环境变量作为Figaro的方法调用，这点对测试很有用处。<br />
+在<strong>Gemfile</strong>里，添加：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">&#39;figaro&#39;</span></code></pre></div>
+<p>运行<code>$ bundle install</code>。</p>
+
+<p>gem包提供了一个生成器：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">rails</span> <span class="n">generate</span> <span class="ss">figaro</span><span class="p">:</span><span class="n">install</span></code></pre></div>
+<p>执行会创建<strong>config/application.yml</strong>的文件，修改<strong>.gitignore</strong>来忽略该文件。<br />
+于是你就可以在<strong>config/application.yml</strong>里添加环境变量了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="ss">GMAIL_USERNAME</span><span class="p">:</span> <span class="no">Your_Username</span></code></pre></div>
+<p>然后你可以在应用里这样使用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;GMAIL_USERNAME&#34;</span><span class="o">]</span></code></pre></div>
+<p><strong>config/application.yml</strong>里的变量会覆盖掉Unix shell的环境变量。<br />
+当然在测试时使用ENV变量可能并不合适，你可以通过使用Figaro的方法来获取：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">Figaro</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">gmail_username</span></code></pre></div>
+<p>像下面这样为开发、测试、生产环境设置环境变量</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="ss">HELLO</span><span class="p">:</span> <span class="n">world</span>
+<span class="ss">development</span><span class="p">:</span>
+  <span class="ss">HELLO</span><span class="p">:</span> <span class="n">developers</span>
+<span class="ss">production</span><span class="p">:</span>
+  <span class="ss">HELLO</span><span class="p">:</span> <span class="n">users</span></code></pre></div>
+<p>Figaro提供rake task设置环境变量作为Heroku的环境变量：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">rake</span> <span class="ss">figaro</span><span class="p">:</span><span class="n">heroku</span></code></pre></div>
+<p>&hellip; &hellip;</p>
+
+<h3 id="选择三-使用-local-env-yml-文件">选择三：使用*local_env.yml*文件</h3>
+
+<p>创建<strong>config/local_env.yml</strong>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># Rename this file to local_env.yml</span>
+<span class="c1"># Add account settings and API keys here.</span>
+<span class="c1"># This file should be listed in .gitignore to keep your settings secret!</span>
+<span class="c1"># Each entry gets set as a local environment variable.</span>
+<span class="c1"># This file overrides ENV variables in the Unix shell.</span>
+<span class="c1"># For example, setting:</span>
+<span class="c1"># GMAIL_USERNAME: &#39;Your_Gmail_Username&#39;</span>
+<span class="c1"># makes &#39;Your_Gmail_Username&#39; available as ENV[&#34;GMAIL_USERNAME&#34;]</span>
+<span class="ss">GMAIL_USERNAME</span><span class="p">:</span> <span class="s1">&#39;Your_Gmail_Username&#39;</span></code></pre></div>
+<h3 id="设置-gitignore-忽略文件">设置<strong>.gitignore</strong>，忽略文件</h3>
+
+<p>确保<strong>gitignore</strong>包含：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="sr">/config/</span><span class="n">local_env</span><span class="o">.</span><span class="n">yml</span></code></pre></div>
+<h3 id="rails配置文件">Rails配置文件</h3>
+
+<p><strong>config/application.rb</strong>用来配置Rails组件，我们想让环境变量在其他设置之前被设置，Rails有个方法<code>config.before_configuration</code>来做这件事。 详细资料：<a target="_blank" href="//guides.rubyonrails.org/configuring.html ">Configuring Rails Applications</a></p>
+
+<p>在<strong>config/application.rb</strong>的最下面找到：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># Version of your assets, change this if you want to expire all your assets</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;1.0&#39;</span></code></pre></div>
+<p>添加以下内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">config</span><span class="o">.</span><span class="n">before_configuration</span> <span class="k">do</span>
+  <span class="n">env_file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;local_env.yml&#39;</span><span class="p">)</span>
+  <span class="no">YAML</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">env_file</span><span class="p">))</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+    <span class="no">ENV</span><span class="o">[</span><span class="n">key</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span>
+  <span class="k">end</span> <span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="p">(</span><span class="n">env_file</span><span class="p">)</span>
+<span class="k">end</span></code></pre></div>
+<p>这段代码意思是打开<strong>config/local_env.yml</strong>文件， 读取key/value对，设置环境变量。<br />
+仅仅当文件存在时才会执行，而且这会覆盖Unix shell已存在的环境变量。</p>
+
+<h3 id="使用环境变量">使用环境变量</h3>
+
+<p>使用<code>ENV[&quot;GMAIL_USERNAME&quot;]</code>在Rails应用中，这时你的应用不会知道环境变量究竟是<code>config/local_env.yml</code>文件中创建还是Unix shell下的。</p>
+
+<h3 id="开发与测试环境下的区分">开发与测试环境下的区分</h3>
+
+<p>偶尔你会想使用不同的帐户凭据或API密钥用于测试和开发环境。<br />
+就像这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="ss">GMAIL_USERNAME_DEV</span><span class="p">:</span> <span class="s1">&#39;Your_Gmail_Username_For_Development&#39;</span>
+<span class="ss">GMAIL_USERNAME_TEST</span><span class="p">:</span> <span class="s1">&#39;Your_Gmail_Username_For_Tests&#39;</span></code></pre></div>
+<p>并且想有选择性的使用变量：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">user_name</span><span class="p">:</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;GMAIL_USERNAME_DEV&#34;</span><span class="o">]</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">user_name</span><span class="p">:</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;GMAIL_USERNAME_TEST&#34;</span><span class="o">]</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">user_name</span><span class="p">:</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;GMAIL_USERNAME&#34;</span><span class="o">]</span>
+  <span class="p">}</span>
+<span class="k">end</span></code></pre></div>
+<p>这种方法在<strong>config/local_env.yml</strong>文件中或者Unix shell下都可以。</p>
+
+<h3 id="在heroku下设置环境变量">在Heroku下设置环境变量</h3>
+
+<p>当你创建一个Heroku应用后，为应用创建环境变量。<br />
+比如Gmail：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">heroku</span> <span class="ss">config</span><span class="p">:</span><span class="n">add</span> <span class="no">GMAIL_USERNAME</span><span class="o">=</span><span class="n">myname</span><span class="vi">@gmail</span><span class="o">.</span><span class="n">com</span></code></pre></div>
+<p>如果有多套环境：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">heroku</span> <span class="ss">config</span><span class="p">:</span><span class="n">add</span> <span class="no">GMAIL_USERNAME</span><span class="o">=</span><span class="n">myname</span><span class="vi">@gmail</span><span class="o">.</span><span class="n">com</span> <span class="o">--</span><span class="n">remote</span> <span class="n">staging</span></code></pre></div>
+<p>运行时正确性检查：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">heroku</span> <span class="n">info</span> <span class="o">--</span><span class="n">app</span> <span class="n">myapp</span></code></pre></div>
+<p>“myapp”是你的Heroku应用名称。<br />
+切记<strong>.gitignore</strong>中加上<strong>config/application.yml</strong>。</p>
+
+<h3 id="其他选择">其他选择</h3>
+
+<p>Tammer Saleh建议以一种相似的方式，使用<strong>environment.rb</strong>，这里是他的<a target="_blank"  href="//tammersaleh.com/posts/managing-heroku-environment-variables-for-local-development">Tammer&rsquo;s  blog</a></p>
+
+<p>Brandon Keepers提供<a target="_blank"  href="https://github.com/bkeepers/dotenv">dotenv</a>的gem包通过从<strong>.env</strong>文件中加载环境变量。</p>
+
+<p><a target="_blank"  href="https://github.com/ddollar/foreman ">foreman</a>这个工具用来在复杂应用中启动和配置多进程，它也是通过<strong>.env</strong>文件来加载环境变量。</p>
+
+<p>有众多的gem包就像<a target="_blank"  href="https://github.com/charlotte-ruby/yettings">yettings</a>，可以让你在YAML中设置应用的配置变量或者其他的常量，然后像<code>AppConfig.gmail_username</code>这样使用，此方法最适合用在那些公开于仓库中的常量。而本地环境变量更适合放针对性的配置。</p>
+
+<h3 id="喜欢文章么">喜欢文章么？</h3>
+
+<p>欢迎关注<a target="_blank"  href="https://twitter.com/rails_apps">rails_apps</a></p>
+
+<h2 id="最后">最后</h2>
+
+<p>很基础、很口水，为什么还翻译呢？因为许多东西觉得很简单，统统只是收藏，Read it later，到最后变成了Read it never。</p>
+    
+    <div class="tag-container">
+        
+        <span class="tag">
+            <a href="https://braavos.me/tags/tech">
+                tech
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="https://braavos.me/tags/configuration">
+                configuration
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="https://braavos.me/tags/rails">
+                Rails
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="https://braavos.me/tags/note">
+                note
+            </a>
+        </span>
+        
+    </div>
+    
+</div>
+
+
+        
+<div class="section bottom-menu">
+    
+<hr />
+<p>
+
+
+    
+        <a href="/posts">返回</a>
+        
+            &#183;
+        
+    
+
+    
+        
+            <a href="/posts">
+                写的
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/gallery">
+                拍的
+            </a>
+        
+            &#183; 
+            <a href="/about">
+                关于我们
+            </a>
+        
+    
+    &#183; 
+    <a href="https://braavos.me/">
+        
+    </a>
+
+</p>
+</div>
+
+
+        <div class="section footer"></div>
+    </div>
+</body>
+
+</html>

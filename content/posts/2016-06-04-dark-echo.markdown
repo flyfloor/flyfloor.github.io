@@ -1,0 +1,23 @@
+---
+date: "2016-06-04"
+layout: post
+tags: ['collection', 'game']
+title: "\u56DE\u58F0\u63A2\u8DEF"
+---
+
+![dark echo](/images/posts/dark-echo.jpg)
+
+Dark echo，四周黑暗，一双脚印。根据脚步回声的波纹反射确定周边及路的方向，最终逃出黑暗。一方面要不停通过跺脚探路，避开红色陷阱，同时要提防脚步声过大招引来红色猎食者。
+
+游戏气氛很压抑，据说共有80关卡，玩不到第十关，被虐的有点想放弃。不同于人生的是，遇到困难豁出去，最坏结局无非是挂了，吸取经验重来罢了。然而过分投入游戏，真正面临抉择时，往往还是勇气不足，犹豫错失逃走机会。
+
+<!--more-->
+
+iOS 版最近1块钱冰点。
+
+视频: [Dark echo trailer](//v.youku.com/v_show/id_XOTE3MzcxMDgw.html)
+
+相关资源:  
+
++ [官网](//www.darkechogame.com)
++ [iOS](https://itunes.apple.com/us/app/dark-echo/id951177560?ls=1&mt=8)

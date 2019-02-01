@@ -1,0 +1,236 @@
+---
+date: "2014-08-05"
+layout: post
+tags: ['tech', 'configuration', 'Rails', 'note']
+title: "Rails\u7684\u73AF\u5883\u53D8\u91CF"
+---
+
+翻看我的Pocket list，发现一篇很老的讲Rails基础的文章，作者写得很口水，原文在这里：<a target="_blank" href="//railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a>, 直译如下，希望对Rails新手有所帮助：
+
+## 正文：
+
+>设置Rails环境变量。在Rails app中使用环境变量。Rails配置、安全与环境变量。
+
+### 环境变量  
+
+许多应用程序需要配置如电子邮件、账户凭证或外部服务的API密钥。你可以通过本地配置来让应用程序使用这些环境变量，而操作系统(Linux、Mac OS X、Windows)提供一些机制来设置本地环境变量, Heroku和其他部署平台一样也有。这里我会展示如何设置本地Unix shell环境变量。其次也会介绍两种另类的方式而不通过Unix shell在应用程序中设置环境变量。
+
+<!--more-->
+
+### 保证环境变量是私有的
+
+远程的代码仓库如github，是专门用来存储跟分享代码的地方，如果你的项目是开源的，任何开发者都可能获取到你的代码，你肯定也不想与他人分享你的email账户或者私有API keys。倘若你参与团队协作于一个私有的git仓库，你本地设置也许对其他队员并不合适。况且一般来说，你也不应该在共享的git仓库保存自己的email账户或者私有API keys。
+
+### Gmail的例子
+
+这样的一个应用程序, 使用Gmail来发送电子邮件。需要用户名和密码访问你的Gmail账户。在Rails应用程序中,你需要在``` config/environments/production.rb```文件中配置这些凭证，看起来如下：
+
+```ruby
+config.action_mailer.smtp_settings = {
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "example.com",
+  authentication: "plain",
+  enable_starttls_auto: true,
+  user_name: ENV["GMAIL_USERNAME"],
+  password: ENV["GMAIL_PASSWORD"]
+}
+```
+
+你可以“硬编码”Gmail用户名和密码, 但这会暴露于所有能看到仓库的人。所以这里你可以用```ENV["GMAIL_USERNAME"]```。这个变量可以在任何一个Rails应用中使用，而Ruby会用环境变量替换掉```ENV["GMAIL_USERNAME"]```。  
+
+考虑如何设置环境变量：
+
+### 选择一：设置Unix环境变量
+
+如果熟悉Unix,你或许在设置环境变量方面很有经验。Unix环境变量通常设置在一个只读文件里,打开shell（bash下是~/.bashrc）。  
+使用```echo $SHELL```来查看你是否在使用bash。如果是bash，编辑**~/.bashrc**并且添加：
+
+```bash
+export GMAIL_USERNAME="myname@gmail.com"
+```
+重启shell继续。  
+作为一个开发人员，学习Unix shell是很重要的。但有时shell的相关问题还是比较麻烦的，特别是使用rvm或环境变量时。  
+
+### 选择二：使用Figaro的gem包
+
+Figaro这个gem包提供了很实用但较另类的方式来设置Unix shell的环境变量。  
+这个gem包利用了Ruby的特性来设置或读取环境变量。它会在Rails应用的其他参数配置之前，读取**config/application.yml**文件并且设置环境变量。  
+如果你想在开发、测试、生产环境下使用不同的凭证， 你可以在**config/application.yml**中指定它们。如果你将应用部署到Heroku，gem包会创建一个rake的task，来为Heroku设置所有环境变量。同时它提供语法帮助你获取环境变量作为Figaro的方法调用，这点对测试很有用处。  
+在**Gemfile**里，添加：  
+
+```ruby
+gem 'figaro'
+```
+
+运行```$ bundle install```。  
+
+gem包提供了一个生成器：  
+
+```ruby
+$ rails generate figaro:install
+```
+
+执行会创建**config/application.yml**的文件，修改**.gitignore**来忽略该文件。  
+于是你就可以在**config/application.yml**里添加环境变量了。  
+
+```ruby
+GMAIL_USERNAME: Your_Username
+```
+
+然后你可以在应用里这样使用：  
+
+```ruby
+ENV["GMAIL_USERNAME"]
+```
+
+**config/application.yml**里的变量会覆盖掉Unix shell的环境变量。  
+当然在测试时使用ENV变量可能并不合适，你可以通过使用Figaro的方法来获取：  
+
+```ruby
+Figaro.env.gmail_username
+```
+像下面这样为开发、测试、生产环境设置环境变量
+
+
+```ruby
+HELLO: world
+development:
+  HELLO: developers
+production:
+  HELLO: users
+```
+Figaro提供rake task设置环境变量作为Heroku的环境变量：  
+
+```ruby
+rake figaro:heroku
+```
+
+... ...
+
+### 选择三：使用*local_env.yml*文件
+
+创建**config/local_env.yml**：  
+
+```ruby
+# Rename this file to local_env.yml
+# Add account settings and API keys here.
+# This file should be listed in .gitignore to keep your settings secret!
+# Each entry gets set as a local environment variable.
+# This file overrides ENV variables in the Unix shell.
+# For example, setting:
+# GMAIL_USERNAME: 'Your_Gmail_Username'
+# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+GMAIL_USERNAME: 'Your_Gmail_Username'
+```
+
+### 设置**.gitignore**，忽略文件
+
+确保**gitignore**包含：  
+
+```ruby
+/config/local_env.yml
+```
+
+### Rails配置文件
+
+**config/application.rb**用来配置Rails组件，我们想让环境变量在其他设置之前被设置，Rails有个方法```config.before_configuration```来做这件事。 详细资料：<a target="_blank" href="//guides.rubyonrails.org/configuring.html ">Configuring Rails Applications</a>
+
+在**config/application.rb**的最下面找到：
+
+```ruby
+# Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+```
+
+添加以下内容：
+
+```ruby
+config.before_configuration do
+  env_file = File.join(Rails.root, 'config', 'local_env.yml')
+  YAML.load(File.open(env_file)).each do |key, value|
+    ENV[key.to_s] = value
+  end if File.exists?(env_file)
+end
+```
+
+这段代码意思是打开**config/local_env.yml**文件， 读取key/value对，设置环境变量。  
+仅仅当文件存在时才会执行，而且这会覆盖Unix shell已存在的环境变量。
+
+### 使用环境变量
+
+使用```ENV["GMAIL_USERNAME"]```在Rails应用中，这时你的应用不会知道环境变量究竟是```config/local_env.yml```文件中创建还是Unix shell下的。
+
+### 开发与测试环境下的区分
+
+偶尔你会想使用不同的帐户凭据或API密钥用于测试和开发环境。  
+就像这样： 
+
+```ruby
+GMAIL_USERNAME_DEV: 'Your_Gmail_Username_For_Development'
+GMAIL_USERNAME_TEST: 'Your_Gmail_Username_For_Tests'
+```
+
+并且想有选择性的使用变量：
+
+```ruby
+if Rails.env.development?
+  config.action_mailer.smtp_settings = {
+    user_name: ENV["GMAIL_USERNAME_DEV"]
+  }
+end
+
+if Rails.env.test?
+  config.action_mailer.smtp_settings = {
+    user_name: ENV["GMAIL_USERNAME_TEST"]
+  }
+end
+
+if Rails.env.production?
+  config.action_mailer.smtp_settings = {
+    user_name: ENV["GMAIL_USERNAME"]
+  }
+end
+```
+这种方法在**config/local_env.yml**文件中或者Unix shell下都可以。
+
+### 在Heroku下设置环境变量
+
+当你创建一个Heroku应用后，为应用创建环境变量。  
+比如Gmail：
+
+```ruby
+$ heroku config:add GMAIL_USERNAME=myname@gmail.com
+```
+
+如果有多套环境：
+
+
+```ruby
+$ heroku config:add GMAIL_USERNAME=myname@gmail.com --remote staging
+```
+
+运行时正确性检查：
+
+```ruby
+$ heroku info --app myapp
+```
+
+“myapp”是你的Heroku应用名称。  
+切记**.gitignore**中加上**config/application.yml**。
+
+### 其他选择
+
+Tammer Saleh建议以一种相似的方式，使用**environment.rb**，这里是他的<a target="_blank"  href="//tammersaleh.com/posts/managing-heroku-environment-variables-for-local-development">Tammer's  blog</a>
+
+Brandon Keepers提供<a target="_blank"  href="https://github.com/bkeepers/dotenv">dotenv</a>的gem包通过从**.env**文件中加载环境变量。  
+
+<a target="_blank"  href="https://github.com/ddollar/foreman ">foreman</a>这个工具用来在复杂应用中启动和配置多进程，它也是通过**.env**文件来加载环境变量。
+
+有众多的gem包就像<a target="_blank"  href="https://github.com/charlotte-ruby/yettings">yettings</a>，可以让你在YAML中设置应用的配置变量或者其他的常量，然后像```AppConfig.gmail_username```这样使用，此方法最适合用在那些公开于仓库中的常量。而本地环境变量更适合放针对性的配置。
+
+### 喜欢文章么？
+欢迎关注<a target="_blank"  href="https://twitter.com/rails_apps">rails_apps</a>  
+
+## 最后
+很基础、很口水，为什么还翻译呢？因为许多东西觉得很简单，统统只是收藏，Read it later，到最后变成了Read it never。

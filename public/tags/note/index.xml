@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Note on braavos</title>
+    <link>https://braavos.me/tags/note/</link>
+    <description>Recent content in Note on braavos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 17 Nov 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://braavos.me/tags/note/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git Rebase</title>
+      <link>https://braavos.me/posts/2014-11-17-git-rebase/</link>
+      <pubDate>Mon, 17 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-11-17-git-rebase/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;关于git rebase的简述，转自&lt;a href=&#34;//gitbook.liuhui998.com/index.html&#34; target=&#34;_blank&#34;&gt;Git Community Book 中文版&lt;/a&gt;的&lt;a href=&#34;//gitbook.liuhui998.com/4_2.html&#34; target=&#34;_blank&#34;&gt;rebase&lt;/a&gt;， 作者&lt;a href=&#34;//www.liuhui998.com&#34; target=&#34;_blank&#34;&gt;liuhui998&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;rebase&#34;&gt;rebase&lt;/h3&gt;
+
+&lt;p&gt;假设你现在基于远程分支&amp;rdquo;origin&amp;rdquo;，创建一个叫&amp;rdquo;mywork&amp;rdquo;的分支。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git checkout -b mywork origin
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>命名函数表达式探秘</title>
+      <link>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</link>
+      <pubDate>Tue, 12 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;作者：Juriy &amp;ldquo;kangax&amp;rdquo; Zaytsev  译者：为之漫笔 译文原文：&lt;a target=&#34;_blank&#34; href=&#34;//www.cn-cuckoo.com/main/wp-content/uploads/2009/12/named-function-expressions-demystified.html&#34;&gt;命名函数表达式探秘&lt;/a&gt; 。&lt;br /&gt;
+关于Javascript的经典译文，由李松峰老师翻译。曾帮助我更好地理解Javascript基础。值得收藏。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;目录&#34;&gt;目录：&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails的环境变量</title>
+      <link>https://braavos.me/posts/2014-08-05-rails-env/</link>
+      <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-05-rails-env/</guid>
+      <description>&lt;p&gt;翻看我的Pocket list，发现一篇很老的讲Rails基础的文章，作者写得很口水，原文在这里：&lt;a target=&#34;_blank&#34; href=&#34;//railsapps.github.io/rails-environment-variables.html&#34;&gt;Rails Environment Variables&lt;/a&gt;, 直译如下，希望对Rails新手有所帮助：&lt;/p&gt;
+
+&lt;h2 id=&#34;正文&#34;&gt;正文：&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;设置Rails环境变量。在Rails app中使用环境变量。Rails配置、安全与环境变量。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量&lt;/h3&gt;
+
+&lt;p&gt;许多应用程序需要配置如电子邮件、账户凭证或外部服务的API密钥。你可以通过本地配置来让应用程序使用这些环境变量，而操作系统(Linux、Mac OS X、Windows)提供一些机制来设置本地环境变量, Heroku和其他部署平台一样也有。这里我会展示如何设置本地Unix shell环境变量。其次也会介绍两种另类的方式而不通过Unix shell在应用程序中设置环境变量。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用sketch绘制第一个图标</title>
+      <link>https://braavos.me/posts/2014-08-03-draw-a-icon-with-sketch/</link>
+      <pubDate>Sun, 03 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-08-03-draw-a-icon-with-sketch/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Sketch是OS X下一款小而美的矢量绘图工具，在设计圈内非常有名气。周末闲(mu)来(you)无(mei)事(zi)，决定用sketch画图标玩。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;首先下了个盗版sketch-未来一定支持正版-主要是太穷o-o&#34;&gt;首先下了个盗版Sketch(未来一定支持正版，主要是太穷o(╯□╰)o)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/sketch.png&#34; alt=&#34;fill_set&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AngularJs指令(Directive)初探</title>
+      <link>https://braavos.me/posts/2014-07-30-start-from-directive/</link>
+      <pubDate>Wed, 30 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2014-07-30-start-from-directive/</guid>
+      <description>完成一个简单的directive，初探angular
+ 关于angular，大多的概念都很好理解，很快就能上手。当疑惑如何嵌入模板片段时，发现需要用directive(指令)，这部分相对难啃，下面只是个非常简单的例子，大致介绍如何使用指令。
+main.html &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;script src=&amp;#34;angular.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 然后创建输入框，作为email的receiver输入 &amp;lt;input id=&amp;#34;email_to&amp;#34; type=&amp;#34;email&amp;#34; ng-model=&amp;#34;to&amp;#34;/&amp;gt; 这里有个modelto， 用来获取input输入，会被双向绑定到指令内部的scope上，后面再讲如何做。
+创建模块和第一个指令 module:
+var app = angular.module(&amp;#39;app&amp;#39;, []);  directive:
+app.directive(&amp;#39;myDir&amp;#39;, function() { return { restrict: &amp;#39;A&amp;#39;, require: &amp;#39;^mailTo&amp;#39;, scope:{ mailTo: &amp;#39;=&amp;#39;, onSend: &amp;#39;&amp;amp;&amp;#39;, mailObj: &amp;#39;=&amp;#39;, fromName: &amp;#39;@&amp;#39; }, templateUrl: &amp;#39;template.html&amp;#39; } });   restrict 该指令如何被使用：  &amp;#39;A&amp;#39; - &amp;lt;span ng-sparkline&amp;gt;&amp;lt;/span&amp;gt; &amp;#39;E&amp;#39; - &amp;lt;ng-sparkline&amp;gt;&amp;lt;/ng-sparkline&amp;gt; &amp;#39;C&amp;#39; - &amp;lt;span class=&amp;#34;ng-sparkline&amp;#34;&amp;gt;&amp;lt;/span&amp;gt; &amp;#39;M&amp;#39; - &amp;lt;!</description>
+    </item>
+    
+  </channel>
+</rss>
