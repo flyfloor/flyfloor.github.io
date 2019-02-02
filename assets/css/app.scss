@@ -78,12 +78,20 @@
   width: 100%;
   bottom: 0;
   font-size: .9em;
-  p {
-    line-height: 3em;
-    margin: 0;
-    text-align: center;
-    a {
-      padding: 0 1em;
+  line-height: 3em;
+  text-align: center;
+  a {
+    padding: 0 1em;
+    position: relative;
+    &+a {
+      &:before {
+        content: "·";
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: -.2em;
+        line-height: 100%;
+      }
     }
   }
 }
@@ -146,19 +154,20 @@
 }
 
 ul.pagination {
+  margin-left: 0;
   text-align: center;
   li {
     font-family: Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
     display: inline-block;
     padding-left: 0;
     height: 2em;
-    width: 3em;
+    width: 2em;
     line-height: 2em;
     &:before {
       content: none;
     }
     &.active {
-      border-bottom: .2em solid #eee;
+      border-bottom: .1em solid #eee;
     }
   }
 }

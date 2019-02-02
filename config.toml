@@ -6,3 +6,4 @@ highlighter = "pygments"
 PygmentsCodeFences = true
 pygmentsUseClasses = true
 paginate = 20
+disqusShortname = "lacunafario"
