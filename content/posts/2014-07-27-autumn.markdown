@@ -13,4 +13,4 @@ title: autumn
  
 两年前拍的一张照片，那时候在听：  
 
-{% audio /audios/morning.mp3 >}}
+{{<music "/audios/morning.mp3">}}

@@ -1,0 +1,7 @@
+{{ if .Get 1 }}
+  <audio src="{{.Get 0}}" controls autoplay="{{.Get 1}}">
+{{ else }}
+  <audio src="{{.Get 0}}" controls>
+{{ end }}
+  <p>Your browser does not support the <code>audio</code> element.</p>
+</audio>
