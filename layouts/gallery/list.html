@@ -16,7 +16,7 @@
             {{ $previewImagesEnabled := .Site.Params.smallPreviewImages }}
 
             {{ range shuffle $files }}
-                {{ if not .IsDir }}
+                {{ if and (not .IsDir) (ne .Name ".DS_Store") }}
                     <div class="gallery-item">
                         <a href="{{ $src | absURL }}{{ .Name }}">
                             {{ if $previewImagesEnabled}}
