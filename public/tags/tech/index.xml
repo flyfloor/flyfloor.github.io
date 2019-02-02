@@ -405,7 +405,7 @@ app.directive(&amp;#39;myDir&amp;#39;, function() { return { restrict: &amp;#39;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//www.itgonglun.com&#34;  target=&#34;_blank&#34;&gt;
-    &lt;img class=&#34;cover&#34; src=&#34;https://braavos.me/images/posts/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
+    &lt;img class=&#34;cover&#34; src=&#34;https://braavos.me/images/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
     

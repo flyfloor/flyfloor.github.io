@@ -24,7 +24,7 @@ Iterm2，Mac 下最好用的终端 App，今天提醒有新 beta 版本，于是
 + 首先，下载 [imgcat](https://iterm2.com/imgcat)，放到你的 ~/bin 目录下(确保 `bin` 目录已添加到 $PATH)。
 + `imgcat [filepath]` 便可看图了。
 
-![imgcat](/images/posts/imgcat.png)
+![imgcat](/images/imgcat.png)
 
 5. tab 关闭后可以撤销关闭了。
 
@@ -51,5 +51,5 @@ iterm2 beta3 版本官方介绍: [iTerm2 Version 3 Now in Beta](https://iterm2.c
 
 ### 最后晒上一张配色 >:p 
 
-![iterm2 配色](/images/posts/iterm2.png)
+![iterm2 配色](/images/iterm2.png)
 

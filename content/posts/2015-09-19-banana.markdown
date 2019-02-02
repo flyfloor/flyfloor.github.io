@@ -6,7 +6,7 @@ title: "\u5C0F\u9EC4\u4EBA"
 ---
 
 
-![banana](/images/posts/banana.png)
+![banana](/images/banana.png)
 
 小黄人, 来自电影 *卑鄙的我*, 使用 Sketch 临摹，作者：落在深海
  

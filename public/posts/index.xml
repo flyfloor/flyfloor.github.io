@@ -82,7 +82,7 @@ Github 地址
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2017-01-01-totoro/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/totoro.png&#34; alt=&#34;totoro&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/totoro.png&#34; alt=&#34;totoro&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自电影 &lt;em&gt;龙猫&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
@@ -141,7 +141,7 @@ React 带着变革前端开发的使命而来，声称专注 view 层，特点�
       <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2016-06-04-dark-echo/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/dark-echo.jpg&#34; alt=&#34;dark echo&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/dark-echo.jpg&#34; alt=&#34;dark echo&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Dark echo，四周黑暗，一双脚印。根据脚步回声的波纹反射确定周边及路的方向，最终逃出黑暗。一方面要不停通过跺脚探路，避开红色陷阱，同时要提防脚步声过大招引来红色猎食者。&lt;/p&gt;
 
@@ -215,7 +215,7 @@ let 😻 = 😺 × 😍; // 语法错误  它们也并不是文学里的象征�
 
 &lt;p&gt;两周前，用 sketch 临摹了 morty 系列的表情。按要求瞄了白边，提交了微信表情，然而微信迟迟未予审核，现在把它们放出来。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/morty/banner-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/morty/banner-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -224,7 +224,7 @@ let 😻 = 😺 × 😍; // 语法错误  它们也并不是文学里的象征�
       <pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2015-10-18-pride-morty/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/pride-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/pride-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
@@ -237,7 +237,7 @@ let 😻 = 😺 × 😍; // 语法错误  它们也并不是文学里的象征�
       <guid>https://braavos.me/posts/2015-10-17-relatos-salvajes/</guid>
       <description>&lt;p&gt;&lt;em&gt;F&amp;hellip; weird story：&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/s11181066.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/s11181066.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -248,7 +248,7 @@ let 😻 = 😺 × 😍; // 语法错误  它们也并不是文学里的象征�
       <guid>https://braavos.me/posts/2015-10-11-rick/</guid>
       <description>&lt;p&gt;这次是 morty 他外公 rick。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/rick.png&#34; alt=&#34;rick&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/rick.png&#34; alt=&#34;rick&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
@@ -386,7 +386,7 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2015-09-19-morty/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
@@ -397,7 +397,7 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2015-09-19-banana/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/banana.png&#34; alt=&#34;banana&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/banana.png&#34; alt=&#34;banana&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;小黄人, 来自电影 &lt;em&gt;卑鄙的我&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
@@ -529,7 +529,7 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
       <guid>https://braavos.me/posts/2015-08-26-recent-icons/</guid>
       <description>&lt;p&gt;最近工作中需要画一些简单的 icon，于是发现把爱好当工作还真是挺享受的。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/icons.png&#34; alt=&#34;icons&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/icons.png&#34; alt=&#34;icons&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -592,7 +592,7 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
       <pubDate>Sun, 15 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2015-03-15-college-rock-inside/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/college-rock/the-smiths.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/college-rock/the-smiths.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;一些学院摇滚歌曲。&lt;/p&gt;</description>
     </item>
@@ -605,7 +605,7 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
       <guid>https://braavos.me/posts/2015-01-11-cold-town/</guid>
       <description>&lt;p&gt;又开始跑步了，顺便拍了些照片。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/cold-town/0.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/cold-town/0.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -625,7 +625,7 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
       <pubDate>Fri, 28 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2014-11-28-rock-up/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/wild.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/wild.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -652,7 +652,7 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
       <pubDate>Sun, 16 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>https://braavos.me/posts/2014-11-16-old-pictures/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/old-pictures/kobe.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/old-pictures/kobe.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;1999年湖人对灰熊比赛前，科比因为在上一场右手手腕骨折，于是改用左手练习投篮，几年后成为一个左右通吃的得分狂魔。&lt;/p&gt;</description>
     </item>
@@ -790,7 +790,7 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
 
 &lt;h4 id=&#34;首先下了个盗版sketch-未来一定支持正版-主要是太穷o-o&#34;&gt;首先下了个盗版Sketch(未来一定支持正版，主要是太穷o(╯□╰)o)&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/posts/sketch.png&#34; alt=&#34;fill_set&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/sketch.png&#34; alt=&#34;fill_set&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -827,7 +827,7 @@ app.directive(&amp;#39;myDir&amp;#39;, function() { return { restrict: &amp;#39;
       <description>&lt;p&gt;Of Monsters and Men - Little Talks&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//music.douban.com/subject/10572659/&#34; target=&#34;_blank&#34;&gt;
-&lt;img src=&#34;//img3.douban.com/lpic/s9009585.jpg&#34; alt=&#34;Of Monsters and Men&#34; /&gt;
+&lt;img src=&#34;https://braavos.me/images/little-talks.jpg&#34; alt=&#34;Of Monsters and Men&#34; /&gt;
 &lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;背景&#34;&gt;背景&lt;/h3&gt;
@@ -848,7 +848,7 @@ app.directive(&amp;#39;myDir&amp;#39;, function() { return { restrict: &amp;#39;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//www.itgonglun.com&#34;  target=&#34;_blank&#34;&gt;
-    &lt;img class=&#34;cover&#34; src=&#34;https://braavos.me/images/posts/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
+    &lt;img class=&#34;cover&#34; src=&#34;https://braavos.me/images/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
     

@@ -5,7 +5,7 @@ tags: ['music', 'life']
 title: Lost in OST
 ---
 
-![image](/images/posts/wild.jpg)
+![image](/images/wild.jpg)
 
 <!--more-->
 

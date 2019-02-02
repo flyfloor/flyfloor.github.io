@@ -5,7 +5,7 @@ tags: ['avatar', 'design', 'sketch']
 title: "\u50B2\u5A07\u7684 morty"
 ---
 
-![morty](/images/posts/pride-morty.png)  
+![morty](/images/pride-morty.png)  
 
 来自美剧 *Rick and Morty*, 使用 Sketch 临摹，作者：落在深海
 

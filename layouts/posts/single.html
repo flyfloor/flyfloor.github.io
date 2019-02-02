@@ -1,10 +1,8 @@
 {{ define "section_content" }}
 <div class="section" id="content">
-    <div class="field">
     <time>
         {{ .Date.Format (.Site.Params.dateForm | default "Mon Jan 02, 2006") }} &#183; {{ .WordCount }} words
     </time>
-    </div>
     {{ .Content }}
     {{ with .Params.tags }}
     <div class="tag-container">

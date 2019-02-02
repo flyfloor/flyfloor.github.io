@@ -8,7 +8,7 @@ title: 'little talks '
 Of Monsters and Men - Little Talks  
 
 <a class="no-dec" href="//music.douban.com/subject/10572659/" target="_blank">
-![Of Monsters and Men](//img3.douban.com/lpic/s9009585.jpg)
+![Of Monsters and Men](/images/little-talks.jpg)
 </a>  
 
 ### 背景  

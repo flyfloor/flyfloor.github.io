@@ -9,7 +9,7 @@ title: "\u8F6C\u773C\u4E8C\u5341\u5E74"
 
 <!--more-->
 
-<img src="/images/posts/20years.jpg">
+<img src="/images/20years.jpg">
 
 
 怪异的感觉挥之不去，就像天上出现了两个月亮。

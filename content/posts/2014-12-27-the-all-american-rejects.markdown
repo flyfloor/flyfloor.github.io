@@ -9,7 +9,7 @@ title: The All-American Rejects
 
 <!--more-->
 
-![image](/images/posts/alice.jpg)
+![image](/images/alice.jpg)
 
 图片来自 *Almost Alice*, 这张原声碟收录了他们的*The Poison*
 

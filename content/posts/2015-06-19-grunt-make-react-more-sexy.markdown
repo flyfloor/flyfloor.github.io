@@ -9,7 +9,7 @@ title: "\u7528Grunt\u6784\u5EFAReactJs\u5F00\u53D1\u73AF\u5883"
 
 最近计划将性感的React投入真正应用，在开发环境上小折腾了一番，主要纠结在于前端构建工具和模块化编程方式的选择。
 
-![image](/images/posts/grunt/grunt-react.png)
+![image](/images/grunt/grunt-react.png)
 
 <!-- more -->
 

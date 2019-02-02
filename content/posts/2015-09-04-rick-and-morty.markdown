@@ -9,7 +9,7 @@ title: rick and morty
 
 <!--more-->
 
-![rick-and-morty](/images/posts/rick-and-morty.jpg)
+![rick-and-morty](/images/rick-and-morty.jpg)
 
 ### 背景  
 

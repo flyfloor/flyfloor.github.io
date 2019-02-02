@@ -5,7 +5,7 @@ tags: ['movie', 'collection', 'life']
 title: "\u7834\u788E\u4EBA\u751F"
 ---
 
-![demolition](/images/posts/demolition.jpg)
+![demolition](/images/demolition.jpg)
 
 <!-- more -->
 

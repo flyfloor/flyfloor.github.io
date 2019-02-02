@@ -7,7 +7,7 @@ title: "\u6700\u8FD1\u753B\u7684\u4E00\u4E9B\u56FE\u6807"
 
 最近工作中需要画一些简单的 icon，于是发现把爱好当工作还真是挺享受的。  
 
-![icons](/images/posts/icons.png)
+![icons](/images/icons.png)
 
 <!--more-->  
 

@@ -30,7 +30,7 @@ Let's start with the HTML.
 
 To make life a little easier, I’ve added the basic styles for the faces and the pips. Here's what this face looks like:  
 
-![](/images/posts/flex/1.png)  
+![](/images/flex/1.png)  
 
 The first step is to tell the browser to make the face a flexbox container.  
 
@@ -40,11 +40,11 @@ The first step is to tell the browser to make the face a flexbox container.
 }
 ```
 
-![](/images/posts/flex/2.png)  
+![](/images/flex/2.png)  
 
 That doesn't look any different, but there's a lot going on under the hood.  
 
-![](/images/posts/flex/3.png)  
+![](/images/flex/3.png)  
 
 The **first-face** container now has a horizontal main axis. The main axis of a flexbox container can be either horizontal or vertical, but the default is horizontal. If we added another pip to the face, it would show up to the right of the first one. The container also has a vertical cross axis. The cross axis is always perpendicular to the main axis.  
 
@@ -57,7 +57,7 @@ The **justify-content** property defines the alignment along the main axis. Sinc
 }
 ```  
 
-![](/images/posts/flex/4.png)    
+![](/images/flex/4.png)    
 
 Hey, cool! Since the main axis is horizontal, the pip is now centered in the parent element.  
 
@@ -71,7 +71,7 @@ The **align-items** property dictates how the items are laid out along the cross
 }
 ```  
 
-![](/images/posts/flex/5.png)  
+![](/images/flex/5.png)  
 
 And just like that, the pip is centered!  
 
@@ -92,7 +92,7 @@ Again, let's start with the markup and the basic CSS.
 }
 ```  
 
-![](/images/posts/flex/6.png)  
+![](/images/flex/6.png)  
 
 Now we have two pips right next to each other. This time around, we want the pips on opposite sides of the die. There's a value for **justify-content** that will let us do just that: **space-between**.  
 
@@ -105,7 +105,7 @@ The **space-between** property evenly fills the space between flex items. Since 
 }
 ```  
 
-![](/images/posts/flex/7.png)  
+![](/images/flex/7.png)  
 
 Here's where we run into a problem. Unlike before, we can't set align-items because it will affect both pips. Luckily, flexbox includes align-self. This property lets us align individual items in a flex container along the cross axis however we'd like! The value we want for this property is **flex-end**.  
 
@@ -119,7 +119,7 @@ Here's where we run into a problem. Unlike before, we can't set align-items beca
 }
 ```
 
-![](/images/posts/flex/8.png)  
+![](/images/flex/8.png)  
 
 Looks good!  
 
@@ -143,7 +143,7 @@ Unlike before, our markup will now include columns.
 </div>
 ```  
 
-![](/images/posts/flex/9.png)  
+![](/images/flex/9.png)  
 
 Since we want the two columns to be on opposite sides, let's go ahead and use justify-content: space-between like we did before.
 
@@ -154,7 +154,7 @@ Since we want the two columns to be on opposite sides, let's go ahead and use ju
 }
 ```  
 
-![](/images/posts/flex/10.png)  
+![](/images/flex/10.png)  
 
 Next, we need to make the columns flex containers. It might seem like they already are, but remember that we haven't set **display: flex** yet. We can use the flex-direction property to set the direction of the main axis to column.  
 
@@ -169,7 +169,7 @@ Next, we need to make the columns flex containers. It might seem like they alrea
 }
 ```
 
-![](/images/posts/flex/11.png)  
+![](/images/flex/11.png)  
 
 t doesn't look any different, but the columns are now flex containers. Notice how we stuck a flex container directly inside another flex container? That's okay! Flexbox doesn't care if the containers are nested.
 
@@ -187,7 +187,7 @@ The final step is to space the the pips inside the columns apart from each other
 }
 ```
 
-![](/images/posts/flex/12.png)  
+![](/images/flex/12.png)  
 
 *Note: This face could have been built without columns by using wrapping. I'll cover wrapping in more detail in a future lesson.*  
 

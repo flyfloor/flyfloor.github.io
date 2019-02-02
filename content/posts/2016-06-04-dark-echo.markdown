@@ -5,7 +5,7 @@ tags: ['collection', 'game']
 title: "\u56DE\u58F0\u63A2\u8DEF"
 ---
 
-![dark echo](/images/posts/dark-echo.jpg)
+![dark echo](/images/dark-echo.jpg)
 
 Dark echo，四周黑暗，一双脚印。根据脚步回声的波纹反射确定周边及路的方向，最终逃出黑暗。一方面要不停通过跺脚探路，避开红色陷阱，同时要提防脚步声过大招引来红色猎食者。
 

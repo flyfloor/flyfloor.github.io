@@ -5,7 +5,7 @@ tags: ['music', 'collection', 'life']
 title: The Queen is dead
 ---
 
-![image](/images/posts/college-rock/the-smiths.png)
+![image](/images/college-rock/the-smiths.png)
 
 一些学院摇滚歌曲。
 

@@ -7,7 +7,7 @@ title: "\u8352\u86EE\u6545\u4E8B"
 
 *F... weird story：*  
 
-![](/images/posts/s11181066.jpg)
+![](/images/s11181066.jpg)
 
 <!--more-->
 

@@ -21,17 +21,17 @@ title: "Sketch \u63D2\u4EF6\u5927\u96C6\u5408 \u2014\u2014 Using Sketch Like A B
 
 直接在里面安装你感兴趣的插件，然后什么都不用做，再打开你的 Sketch，就会在菜单栏的 Plugins 里找到刚才下载的所有插件。  
 
-![toolbox](/images/posts/sketchcn/toolbox1.jpg)  
+![toolbox](/images/sketchcn/toolbox1.jpg)  
 
 #### 强力推荐的插件之一  Content Generator Sketch Plugin  
 
 做 Mock up 的时候就再也无需操心占位内容，它可以自动随机填充男性、女性或者自然风光的图片。  
 
-![toolbox](/images/posts/sketchcn/userpics.gif)    
+![toolbox](/images/sketchcn/userpics.gif)    
 
-![toolbox](/images/posts/sketchcn/names.gif)    
+![toolbox](/images/sketchcn/names.gif)    
 
-![toolbox](/images/posts/sketchcn/lorem.gif)    
+![toolbox](/images/sketchcn/lorem.gif)    
 
 #### 强力推荐的插件之二  Sketch Measure  
 
@@ -39,11 +39,11 @@ title: "Sketch \u63D2\u4EF6\u5927\u96C6\u5408 \u2014\u2014 Using Sketch Like A B
 
 好用到心都要碎了……  完全不用自己手写标注，搞定后导出成PDF，直接发给技术小伙伴，大大提高双方的沟通效率。  
 
-![toolbox](/images/posts/sketchcn/measure1.jpg)    
+![toolbox](/images/sketchcn/measure1.jpg)    
 
 这个插件会自动把附注编组，方便你自己修改和管理。  
 
-![toolbox](/images/posts/sketchcn/measure2.jpg)    
+![toolbox](/images/sketchcn/measure2.jpg)    
 
 #### 强力推荐的插件之三  Rename It  
 

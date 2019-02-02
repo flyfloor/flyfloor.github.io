@@ -5,7 +5,7 @@ tags: ['sketch', 'design']
 title: "\u9F99\u732B"
 ---
 
-![totoro](/images/posts/totoro.png)
+![totoro](/images/totoro.png)
 
 来自电影 *龙猫*, 使用 Sketch 临摹，作者：落在深海
  
