@@ -1,3 +1,7 @@
 [submodule "themes/sam"]
 	path = themes/sam
 	url = https://github.com/hivickylai/hugo-theme-sam.git
+[submodule "public"]
+	path = public
+	url = https://github.com/jerryshew/into-hugo.git
+	branch = gh-pages
