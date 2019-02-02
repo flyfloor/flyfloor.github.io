@@ -24,7 +24,7 @@
 }
 
 .big-link {
-  padding: 1em;
+  padding: .8em;
   font-size: 1.6em;
   margin-bottom: 2em;
   a {
@@ -122,16 +122,6 @@
     font-weight: 400;
     font-style: italic;
     position: relative;
-    &:after {
-      content: '';
-      border-top: .02em solid #f3f3f3;
-      display: block;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 100%;
-      left: 3em;
-    }
   }
 }
 
