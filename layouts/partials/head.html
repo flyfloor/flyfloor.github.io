@@ -11,7 +11,7 @@
 <meta name="og:image" itemprop="image primaryImageOfPage" content="{{.Site.Params.primaryImage | default "tn.png" | absURL}}">
 
 <link rel="shortcut icon" href="{{.Site.Params.favicon | default "sam.ico" | absURL }}" id="favicon">
-{{ $style := resources.Get "css/reset.scss" | toCSS | minify }} 
+{{ $style := resources.Get "css/reset.scss" | toCSS | minify | fingerprint }} 
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
 {{ $style := resources.Get "css/highlight.scss" | toCSS | minify }} 
