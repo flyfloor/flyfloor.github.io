@@ -1,0 +1,36 @@
+
+{{ define "section_content" }}
+{{ $termName := .Data.Plural }}
+{{ $terms := .Data.Terms.ByCount }}
+{{ $length := len $terms }}
+{{ $type := .Type }}
+  <div class="section tag-list" id="content">
+    {{ .Content }}
+      {{ if and $.Site.Taxonomies.tags (eq $termName "tags") }}
+        <ul class="tag-cloud-section">
+          {{ range $.Site.Taxonomies.tags.ByCount }}
+            <li class="tag-item tag-cloud-item">
+              {{ if .Name }}
+                <a href="/tags/{{ .Name | urlize}}/"> {{ .Name }} <small>({{ .Count }})</small></a>
+              {{ end }}
+            </li>
+          {{end}}
+        </ul>
+      {{ else }}
+        <ul class="tag-section">
+          {{ range .Data.Pages }}
+            <li>
+              <a href="{{ .RelPermalink }}">
+                {{ .Title }}
+              </a>
+              <time>
+                {{ if .Params.showDate }}
+                  {{ .Date.Format (.Site.Params.dateForm | default "Mon Jan 02, 2006")}}
+                {{ end }}
+              </time>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+  </div>
+{{ end }}

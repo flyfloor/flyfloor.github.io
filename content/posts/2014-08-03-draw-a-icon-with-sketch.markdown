@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2014-08-03"
 layout: post
 tags: ['design', 'life', 'note', 'sketch']

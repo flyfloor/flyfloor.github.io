@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2016-12-22"
 layout: post
 tags: ['movie', 'collection', 'life']

@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2015-10-18"
 layout: post
 tags: ['avatar', 'design', 'sketch']

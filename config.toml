@@ -5,3 +5,4 @@ theme = "sam"
 highlighter = "pygments"
 PygmentsCodeFences = true
 pygmentsUseClasses = true
+paginate = 20

@@ -4,5 +4,7 @@ mainMenu:
     text: 写的
   - link: /gallery
     text: 拍的
+  - link: /tags
+    text: 标签
   - link: /about
-    text: 关于我们
+    text: 关于

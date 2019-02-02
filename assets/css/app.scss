@@ -4,8 +4,32 @@
 
 %content_with_narrow_width {
   padding: 0 2rem;
-  max-width: 860px;
+  max-width: 45rem;
   margin: 0 auto;
+}
+
+#splash {
+  background: #39424E;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.big-link {
+  padding: 1em;
+  font-size: 1.6em;
+  margin-bottom: 2em;
+  a {
+    color: #fff;
+  }
 }
 
 .wrap {
@@ -16,13 +40,13 @@
   @extend %content_with_narrow_width;
   font-size: 1.5em;
   font-weight: 500;
-  line-height: 2em;
+  line-height: 1.5em;
 }
 
 .wrap>#content {
   @extend %content_with_narrow_width;
   min-height: 35em;
-  margin-bottom: 3em;
+  margin-bottom: 10em;
 }
 
 .wrap>.grid {
@@ -50,7 +74,8 @@
 
 .bottom-menu {
   background: #f3f3f3;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   bottom: 0;
   font-size: .9em;
   p {
@@ -63,19 +88,95 @@
   }
 }
 
-.post-list {
-  ul {
+.post, .tag, .general {
+  &-section {
     margin-left: 0;
-    li {
-      list-style: none;
-      line-height: 2em;
-      padding-left: .4em;
-      &:before {
-        content: '\2022';
-        color: #c22;
-        padding-right: .6em;
-        font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    line-height: 2em;
+    padding-left: 2em;
+    time {
+      text-align: right;
+      font-style: italic;
+    }
+  }
+
+
+  &-year {
+    font-family: Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+    color: #777;
+    font-weight: 400;
+    font-style: italic;
+    position: relative;
+    &:after {
+      content: '';
+      border-top: .02em solid #f3f3f3;
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 100%;
+      left: 3em;
+    }
+  }
+}
+
+.tag {
+  &-cloud-section {
+    text-align: center;
+    padding-top: 2em;
+  }
+  &-cloud-item {
+    padding: 0 1em;
+    margin-bottom: .5em;
+    display: inline-block;
+    margin-right: 1em;
+    a {
+      small {
+        font-size: .6em;
       }
+    }
+  }
+}
+
+ul.pagination {
+  text-align: center;
+  li {
+    font-family: Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+    display: inline-block;
+    padding-left: 0;
+    height: 2em;
+    width: 3em;
+    line-height: 2em;
+    &:before {
+      content: none;
+    }
+    &.active {
+      border-bottom: .2em solid #eee;
+    }
+  }
+}
+
+.gallery {
+  &-list {
+
+  }
+
+  &-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  &-item {
+    width: 33.3%;
+    img {
+      padding: .2em;
     }
   }
 }

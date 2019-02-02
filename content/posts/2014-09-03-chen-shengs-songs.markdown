@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2014-09-03"
 layout: post
 tags: ['music', 'life']

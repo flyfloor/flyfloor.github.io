@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2016-07-05"
 layout: post
 tags: ['tech', 'React', 'FE']

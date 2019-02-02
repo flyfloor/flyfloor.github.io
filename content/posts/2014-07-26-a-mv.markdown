@@ -1,9 +1,12 @@
 ---
+showDate: true
 date: "2014-07-26"
 layout: post
 tags: ['funny', 'life', 'music']
 title: 'little talks '
 ---
+
+
 
 Of Monsters and Men - Little Talks  
 
@@ -24,5 +27,7 @@ Live From Vatnagarðar (2013-12-10)
 ### little talks  
 
 这首歌，来自*My Head Is an Animal*, 跟封面很相衬，盛夏海滩、欢快喧闹。    
-但是却有个很特别的 **[Mv](//www.tudou.com/programs/view/aVMR4eU3YFU/?resourceId=0_06_02_99)** 。
+但是却有个很特别的mv：
+
+{{<video "/videos/little-talks.mp4">}}
 

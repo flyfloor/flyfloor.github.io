@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2014-11-16"
 layout: post
 tags: ['life', 'memo', 'timestamp']

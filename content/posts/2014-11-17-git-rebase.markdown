@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2014-11-17"
 layout: post
 tags: ['git', 'tech', 'note', 'collection']

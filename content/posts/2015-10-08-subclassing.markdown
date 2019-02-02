@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2015-10-08"
 layout: post
 tags: ['tech', 'JavaScript', 'ES6']

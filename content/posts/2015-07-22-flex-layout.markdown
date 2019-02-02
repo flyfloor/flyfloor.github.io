@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2015-07-22"
 layout: post
 tags: ['collection', 'tech', 'Css', 'flex-layout']

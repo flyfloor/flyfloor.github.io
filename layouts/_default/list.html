@@ -1,19 +1,19 @@
 {{ define "section_content" }}
-<div class="section post-list" id="content">
+  <div class="section general-list" id="content">
     {{ .Content }}
-    <ul>
-        {{ range .Data.Pages }}
-        <li>
-            {{ if .Params.showDate }}
-
-            {{ .Date.Format (.Site.Params.dateForm | default "Mon Jan 02, 2006")}} --
-
-            {{ end }}
-            <a href="{{.Permalink}}">
-                {{.Title}}
-            </a>
-        </li>
-        {{ end }}
-    </ul>
-</div>
+      <ul class="general-section">
+          {{ range .Data.Pages }}
+            <li class="general-item">
+              <a href="{{ .RelPermalink }}">
+                {{ .Title }}
+              </a>
+              <time>
+                {{ if .Params.showDate }}
+                  {{ .Date.Format (.Site.Params.dateForm | default "Mon Jan 02, 2006")}}
+                {{ end }}
+              </time>
+            </li>
+          {{ end }}
+      </ul>
+  </div>
 {{ end }}

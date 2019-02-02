@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2014-07-30"
 layout: post
 tags: ['tech', 'AngularJs', 'note']

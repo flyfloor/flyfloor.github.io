@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2015-08-26"
 layout: post
 tags: ['collection', 'design', 'learning', 'absorb', 'sketch']

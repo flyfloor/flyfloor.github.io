@@ -5,6 +5,7 @@
   font-family: "Helvetica Neue", Helvetica, "Lucida Grande", "Luxi Sans", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Zen Hei Mono", sans-serif;
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
+  box-sizing: border-box;
 }
 
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
@@ -138,6 +139,11 @@ strong {
   font-weight: 600;
 }
 
+small {
+  font-size: .8em;
+  color: #888;
+}
+
 p {
   text-align: justify;
   margin-bottom: 1em;
@@ -151,7 +157,7 @@ hr {
 }
 
 /* none */
-img {
+video, audio, figure, img {
   max-width: 100%;
   height: auto;
 }

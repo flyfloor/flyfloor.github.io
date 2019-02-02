@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2016-02-20"
 layout: post
 tags: ['Tool', 'Terminal', 'Mac']

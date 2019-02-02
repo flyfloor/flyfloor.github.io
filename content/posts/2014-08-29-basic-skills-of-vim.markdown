@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2014-08-29"
 layout: post
 tags: ['tech', 'Vim', 'Basic_skills']

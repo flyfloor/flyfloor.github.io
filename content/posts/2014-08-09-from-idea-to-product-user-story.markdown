@@ -1,4 +1,5 @@
 ---
+showDate: true
 date: "2014-08-09"
 layout: post
 tags: ['collection', 'life', 'product']
