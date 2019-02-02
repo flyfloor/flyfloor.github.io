@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        AngularJs指令(Directive)初探
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">AngularJs指令(Directive)初探</div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Wed Jul 30, 2014 &#183; 207 words
+            </time>
+        </div>
+        
+
+<blockquote>
+<p>完成一个简单的directive，初探angular</p>
+</blockquote>
+
+<p>关于angular，大多的概念都很好理解，很快就能上手。当疑惑如何嵌入模板片段时，发现需要用directive(指令)，这部分相对难啃，下面只是个非常简单的例子，大致介绍如何使用指令。</p>
+
+<h4 id="main-html">main.html</h4>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;angular.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
+<!-- more -->  
+
+<h4 id="然后创建输入框-作为email的receiver输入">然后创建输入框，作为email的receiver输入</h4>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;email_to&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&#34;to&#34;</span><span class="p">/&gt;</span></code></pre></div>
+<p>这里有个model<code>to</code>， 用来获取input输入，会被双向绑定到指令内部的scope上，后面再讲如何做。</p>
+
+<h4 id="创建模块和第一个指令">创建模块和第一个指令</h4>
+
+<p>module:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+</code></pre></div>
+<p>directive:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">&#39;myDir&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">restrict</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+    <span class="nx">require</span><span class="o">:</span> <span class="s1">&#39;^mailTo&#39;</span><span class="p">,</span>
+    <span class="nx">scope</span><span class="o">:</span><span class="p">{</span>
+      <span class="nx">mailTo</span><span class="o">:</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span>  
+      <span class="nx">onSend</span><span class="o">:</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">,</span> 
+      <span class="nx">mailObj</span><span class="o">:</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> 
+      <span class="nx">fromName</span><span class="o">:</span> <span class="s1">&#39;@&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">&#39;template.html&#39;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<ul>
+<li><code>restrict</code> 该指令如何被使用：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">&#39;A&#39; - <span class="p">&lt;</span><span class="nt">span</span> <span class="na">ng-sparkline</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+&#39;E&#39; - <span class="p">&lt;</span><span class="nt">ng-sparkline</span><span class="p">&gt;&lt;/</span><span class="nt">ng-sparkline</span><span class="p">&gt;</span>
+&#39;C&#39; - <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;ng-sparkline&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+&#39;M&#39; - <span class="c">&lt;!-- directive: ng-sparkline --&gt;</span>  </code></pre></div>
+<ul>
+<li><code>templateUrl</code><br /></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">&#39;template.html&#39;</span>   
+</code></pre></div>
+<p>模板片段</p>
+
+<ul>
+<li>这里scope是该指令内部独立的scope，与外层scope隔离。<br /></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">scope</span><span class="o">:</span><span class="p">{</span>
+  <span class="nx">mailTo</span><span class="o">:</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span>  
+  <span class="nx">onSend</span><span class="o">:</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">,</span>  
+  <span class="nx">mailObj</span><span class="o">:</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span>   
+  <span class="nx">fromName</span><span class="o">:</span> <span class="s1">&#39;@&#39;</span>
+<span class="p">},</span>
+</code></pre></div>
+<ul>
+<li>mailTo 定义为<code>=</code>，表示他是与外层scope的model是双向绑定的</li>
+<li>onSend 用到<code>&amp;</code>, 引用到外层作用域的方法，且需要传递变量进去。</li>
+<li>使用<code>@</code>绑定局部变量到dom的属性上 也就是绑定到formName上。</li>
+</ul>
+
+<p>通过这三种方式，就能使相互隔离的内外scope进行交互了。</p>
+
+<h4 id="在view里使用该指令">在view里使用该指令</h4>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;email_to&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&#34;to&#34;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">my-dir</span> <span class="na">mail-to</span><span class="o">=</span><span class="s">&#34;to&#34;</span> <span class="na">mail-obj</span><span class="o">=</span><span class="s">&#34;mail&#34;</span> <span class="na">on-send</span><span class="o">=</span><span class="s">&#34;sendMail(email)&#34;</span> <span class="na">from-name</span><span class="o">=</span><span class="s">&#34;ari@fullstack.io&#34;</span> <span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+<h4 id="接下来是模板片段-templateurl">接下来是模板片段（templateUrl）</h4>
+
+<p>template.html</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;send_btn&#34;</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">&#34;onSend(mailObj)&#34;</span><span class="p">&gt;</span>send<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>from: {\{fromName}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>to: {\{mailTo}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>status: {\{mailObj.status}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+<p>button点击时候，改变email的发送状态。<br />
+这里<code>onSend(mailObj)</code> 就用到指令内部scope的方法及参数，onSend是对外层scope的<code>sendMail(mail)</code>的引用，而mailObj则是外层mail这个model的双向绑定，mailTo同理，目前<code>mailObj</code>、<code>sendMail(mail)</code>以及<code>mailObj.status</code>还不存在，接下来创建控制器，通过控制器来完成指令内部<code>mailObj</code>对应外部mail对象的操作。</p>
+
+<h4 id="控制器">控制器</h4>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;mydirCtr&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">mail</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;not send&#39;</span>
+  <span class="p">};</span>
+
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">sendMail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mail</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">scope</span><span class="p">.</span><span class="nx">mail</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;Sent&#39;</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}]);</span>
+</code></pre></div>
+<h4 id="如果这个mail对象需要在多个控制器之间操作-创建一个factory会更好点">如果这个mail对象需要在多个控制器之间操作，创建一个factory会更好点</h4>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">&#39;Mail&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">content</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;not send&#39;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>于是控制器就可以改为</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;mydirCtr&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="s1">&#39;Mail&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">Mail</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">mail</span> <span class="o">=</span> <span class="nx">Mail</span><span class="p">;</span>
+  
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">sendMail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mail</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Mail</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;Sent&#39;</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}]);</span>
+</code></pre></div>
+<h4 id="在main-html里添加控制器的范围">在main.html里添加控制器的范围</h4>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span> <span class="na">ng-app</span><span class="o">=</span><span class="s">&#34;app&#34;</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">&#34;mydirCtr&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="err">...</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">my-dir</span> <span class="err">...</span>
+<span class="err">...</span></code></pre></div>
+<p>这样mydirCtr控制器的scope就是body的范围，也就是外部scope，template.html即为内部scope，而<code>&lt;div my-dir...&gt;&lt;/div&gt;</code>就像是占位符，通过自定义指令的绑定跟引用，完成内外交互。</p>
+
+<p>因为接触angular很短暂，许多东西还待深入研究。这有篇关于directive的文章，讲的就比较深入 <a href="//www.ng-newsletter.com/posts/directives.html" target="_blank">Build custom directives with AngularJS</a>，hope it can help you。</p>
+
+<p>写在最后： 从做项目或产品来说，</p>
+
+<ol>
+<li>如果是web app， angular有很大的优势，虽略有难度，值得一试；<br /></li>
+<li>如果并非web app，我个人喜欢rails服务器端渲染，因为目前前端渲染的方式无论如何都有痛处。反观rails，更好的orm，强大整洁的路由，服务端模板的灵活，胶水似的helper，服务端render的多选择性，以及DRY，最重要的是让你思路清晰，真正重心放在产品本身上。谁说程序员必须是成天灰头土脸、油光满面调试bug的苦逼呢？诚然rails的确造就了一批懒人，但前提是你需要熟悉rails的思维，理顺以后，才能如鱼得水般畅快自在。</li>
+</ol>
+
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/angularjs">
+                    AngularJs
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/note">
+                    note
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+        <a href="/about">
+            关于
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>

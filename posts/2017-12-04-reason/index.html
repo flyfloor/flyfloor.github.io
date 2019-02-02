@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        Reason? Reason!
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">Reason? Reason!</div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Mon Dec 04, 2017 &#183; 894 words
+            </time>
+        </div>
+        
+
+<p>今天学习一门新语言：Reason，其实去年的时候就有了解过这门语言，当时看文档一头雾水，就放弃了。几周前看了看官网，发现变化很大，新版语法感觉还不错，就简单过了下。</p>
+
+<p>首先，Reason 严格来说称不上一个语言，它是基于 OCaml 新语法的 DSL。OCaml 是一门函数式编程语言，它本身有些很好的特性，例如拥有严格静态类型，灵活强大的对象和模块系统，适合写高性能、结构复杂、数据正确性高要求的应用等。多被用来写编译器、程序分析、金融交易、虚拟机等应用。我们熟知的 facebook 的 flow 也是基于 OCaml 编写的。</p>
+
+<!-- more -->
+
+<p>那么问题是『写前端 JavaScript 不够吗？老夫一把梭，就是干！』JavaScript 编写的代码已经运行在各种平台，侵入更多的领域，然而应用的规模变大以后，稳定性、可维护性变差很多，更多运行时异常，让测试、维护都变得非常难。<br />
+为了解决这些问题，Reason 的作者基于 OCaml 设计了 Reason 这门语言，他拥有以下主要特点：</p>
+
+<blockquote>
+<ol>
+<li>坚若磐石的类型系统<br />
+得益于 OCaml 100% 的类型覆盖率，同时享受一旦编译，数据的类型则精准无误。<br /></li>
+<li>极致的简洁、实用主义<br />
+允许可变、副作用以及对象让从 JS 程序员更自然，同时保持语言本身的纯净、不可变及函数式。<br /></li>
+<li>聚焦高性能和语言的大小<br />
+Reason 的构建系统：bsb，能够保证增量构建在 100 ms 内完成，同时构建出的文件非常小。<br /></li>
+<li>基于现有语言的优秀特点，强大兼容扩展性<br />
+完全的类型检查，同时支持 JS 片段完美的混合执行。<br /></li>
+<li>强大的生态及工具链<br />
+基于不同的编辑器，提供了插件及语法支持，同时支持引用外部 JS 模块，这样就可以使用成千上万的 NPM 包了。</li>
+</ol>
+</blockquote>
+
+<p>听起来非常美好，关于为什么使用 OCaml 语法作为 Reason 背后的支撑，而不是其他语言？
+很多语言能够实现上面提到的特性，然而主要还是看中：</p>
+
+<blockquote>
+<ol>
+<li>OCaml 能够非常高效率转换成底层机器代码的能力<br /></li>
+<li>OCaml 默认拥有不可变、函数式的特性，同时可以通过一些方式支持副作用的、可变以及其他特性，方便应用中的一些特殊场景<br /></li>
+<li>OCaml 经历了许多年的更迭，稳定坚若磐石，且少有一些坑货的语法<br /></li>
+<li>Reason 的作者也正是 ReactJs 的作者，ReactJs 的初版原型是基于 SML 语言编写的，SML 跟 OCaml 属于同门语言。<br /></li>
+<li>快速发展的语言社区<br /></li>
+</ol>
+</blockquote>
+
+<p>这些特性最终让 OCaml 成为 Reason 背后的根基。OCaml 提供复杂的数据类型、强大的模块化在编译器运行前进行类型检查，大大降低出错几率。官方称 OCaml 的字节码及本地代码编译器都非常快，我下载 Demo 体验过，编译速度真的很快。编译生成机器代码，执行效率更高。OCaml 本身可移植性也很好，通过 js_of_ocaml 可以将代码编译成 JavaScript。</p>
+
+<p>说这么多，首先看下官方的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type schoolPerson = Teacher | Director | Student(string);
+let greeting = (stranger) =&gt;
+  switch stranger {
+  | Teacher =&gt; &#34;Hey professor!&#34;
+  | Director =&gt; &#34;Hello director.&#34;
+  | Student(&#34;Richard&#34;) =&gt; &#34;Still here Ricky?&#34;
+  | Student(anyOtherName) =&gt; &#34;Hey, &#34; ++ anyOtherName ++ &#34;.&#34;
+  };</code></pre></div>
+<p>这个例子里的 schoolPerson 是 Reason 的一个重要特性：Variant。 Teacher、Director、Student(string) 并不是任何数据类型，而是类似于 Tag，在 Reason 里被称为构造器。switch 在 Reason 里也是一个重要的功能。枚举之前定义的 schoolPerson 类型的每个构造器，对应输出表达式。</p>
+
+<h3 id="核心概念">核心概念</h3>
+
+<p>Reason 有别于其他语言的部分</p>
+
+<h4 id="type">Type</h4>
+
+<p>很容易理解，定义一个数据类型，然后定义变量时可以根据类型进行赋值。</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type scoreType = int;
+let x: scoreType = 10;</code></pre></div>
+<h5 id="type-的设计理念是">Type 的设计理念是：</h5>
+
+<ul>
+<li><p>所有类型是可以被推理的<br />
+即使不手动指定类型，类型系统也会正确的识别数据类型</p></li>
+
+<li><p>Reason 所有代码都对应一个类型<br />
+Reason 根本不需要 coverage 工具检测类型覆盖，因为所有代码都对应一个数据类型。</p></li>
+
+<li><p>是什么类型最终数据即是什么类型<br />
+只要代码正常编译通过，那么定义时是什么类型，最终即是什么类型。根本不会出现类似定义时是 Integer，最终得到的是 null 这样的情况。纯粹的 Reason 程序是不存在 null 类型 bug 的。这里得益于 OCaml 安全强大的类型系统。</p></li>
+</ul>
+
+<h4 id="variant">Variant</h4>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type myResponseVariant =
+  | Yes
+  | No
+  | PrettyMuch;
+
+let areYouCrushingIt = Yes;</code></pre></div>
+<p><code>myResponseVariant</code> 即是 <code>variant</code>，<code>Yes</code>, <code>No</code>, <code>PrettyMuch</code> 被称作 <code>constructor</code> 或 <code>tag</code>。配合 <code>switch</code> 使用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let message =
+  switch areYouCrushingIt {
+  | No =&gt; &#34;No worries. Keep going!&#34;
+  | Yes =&gt; &#34;Great!&#34;
+  | PrettyMuch =&gt; &#34;Nice!&#34;
+  };
+/* message is &#34;Great!&#34; */</code></pre></div>
+<p>最终 <code>areYouCrushingIt</code> 匹配 <code>myResponseVariant</code> 类型的 <code>Yes</code>，<code>message</code> 的返回值为 &ldquo;Great!&rdquo;</p>
+
+<ul>
+<li><code>Variant</code> 的 <code>constructor</code> 支持传参</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type account =
+  | None
+  | Instagram(string)
+  | Facebook(string, int);
+
+let myAccount = Facebook(&#34;Josh&#34;, 26);
+let greeting =
+  switch myAccount {
+  | None =&gt; &#34;Hi!&#34;
+  | Facebook(name, age) =&gt; &#34;Hi &#34; ++ name ++ &#34;, you&#39;re &#34; ++ string_of_int(age) ++ &#34;-year-old.&#34;
+  | Instagram(name) =&gt; &#34;Hello &#34; ++ name ++ &#34;!&#34;
+  };</code></pre></div>
+<p>上面类型一节提到 <code>Reason</code> 的所有类型都是固定的，然而现实中数据也有可能出现 <code>nullable</code> 类型数据，例如后端返回的数据可能是 <code>int</code>，也可能是 <code>null</code></p>
+
+<ul>
+<li>通过 <code>option</code> 也可以定义为 <code>nullable</code> 的类型</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type option(&#39;a) = None | Some(&#39;a);
+let name = Some(3);
+
+let message = 
+  switch (name) {
+    | None =&gt; &#34;empty int&#34;
+    | Some(a) =&gt; &#34;return int value is &#34; ++ string_of_int(a)
+  };</code></pre></div>
+<ul>
+<li>实际上 <code>Reason</code> 中的 <code>list</code> 类型也是通过这种方式实现</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type list(&#39;a) = Empty | Head(&#39;a, list(&#39;a));</code></pre></div>
+<p>这样当定义值为 [1, 2, 3] 的 <code>list</code>，实际上科一转换为 <code>Head(1, Head(2, Head(3, Empty)))</code>。</p>
+
+<h4 id="pattern-matching">Pattern Matching</h4>
+
+<p><code>Reason</code> 里重要的特性，通过类似解构的方式，对类型进行匹配。语法可以是这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">switch myList {
+| [] =&gt; print_endline(&#34;Empty list&#34;)
+| [a, ...theRest] =&gt; print_endline(&#34;list with the head value &#34; ++ a)
+};
+
+switch myArray {
+| [|1, 2|] =&gt; print_endline(&#34;This is an array with item 1 and 2&#34;)
+| [||] =&gt; print_endline(&#34;This array has no element&#34;)
+| _ =&gt; print_endline(&#34;This is an array&#34;)
+};</code></pre></div>
+<p>大家可能在系统里看到过类似的代码，一大坨 <code>if else</code>，如果再增加类型，维护性越来越差，很有可能因为一个判断疏忽出现问题。</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">if (data.errorCode === 500) {
+  // server error
+} else if (data.errorCode !== undefined) {
+  // normal error
+} else if (data.status === 200) {
+  // success
+} else {
+  // no result
+}</code></pre></div>
+<p>使用 <code>pattern matching</code> 后，根据后端返回 <code>data</code>，定义不同输出消息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type returnData = 
+  | GoodResult(string)
+  | BadResult(int)
+  | NoResult;
+
+let message =
+  switch data {
+  | GoodResult(theMessage) =&gt; ...
+  | BadResult(errorCode) when isServerError(errorCode) =&gt; ...
+  | BadResult(errorCode) =&gt; ... /* otherwise */
+  | NoResult =&gt; ...
+  };</code></pre></div>
+<p>比那段 <code>if else</code> 语义性更强，维护性也大大增强。</p>
+
+<h4 id="module">Module</h4>
+
+<p>模块引用</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">module A = {
+  // define something
+}</code></pre></div>
+<p>模块内的定义，包括 type 都可以通过 <code>A.something</code> 格式访问，module 可以多层嵌套，<code>A.B.something</code>。
+每一个 .re 文件即为一个模块，模块也支持局部作用域。模块还有些更高级的使用方式，可以去看官方文档。<a href="https://reasonml.github.io/guide/language/module">reason module</a></p>
+
+<h3 id="数据类型">数据类型</h3>
+
+<p>Reason 支持类型有 <strong>Char</strong>, <strong>Char</strong>, <strong>Integer</strong>, <strong>Float</strong>, <strong>Boolean</strong>, <strong>Tuple</strong>, <strong>Record</strong>, <strong>List</strong>, <strong>Array</strong>, <strong>Object</strong>,<br />
+前五个类型跟其他语言差不多。</p>
+
+<h4 id="string">String</h4>
+
+<p>字符串由双引号括起来，特殊字符需要用<code>\</code>转义。如果是多行的话，语法是</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let message = {|hello, first line
+second line
+third line
+...
+|}</code></pre></div>
+<p>对于 <code>unicode</code> 字符</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let world = {js|世界|js}; /* Supports Unicode characters */</code></pre></div>
+<p>支持变量占位</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let helloWorld = {j|你好，$world|j}; /* Supports Unicode and interpolation variables */</code></pre></div>
+<h4 id="char">Char</h4>
+
+<p>单字符，不支持 <code>Unicode</code> 或者 <code>Utf-8</code> 编码</p>
+
+<h4 id="boolean">Boolean</h4>
+
+<p>跟 JS 一致，<code>==</code> 物理等于，是深度对比的， (1, 2) == (1, 2)。
+<code>===</code> 必须引用相同才相等</p>
+
+<h4 id="integer-float">Integer, Float</h4>
+
+<p>注意的是 float 计算是 <code>+. -. *. /.</code>, 如 <code>0.2 +. 0.5</code>, Integer 跟 Float 是不能直接操作的，可以通过 int_of_float、float_of_int 之类的进行数据转换。</p>
+
+<h4 id="tuple">Tuple</h4>
+
+<p>元组，类似于 Python 元组的语法</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let ageAndName = (24, &#34;Lil&#39; Reason&#34;, 21.0);</code></pre></div>
+<h4 id="record">Record</h4>
+
+<p>Record 类似于 JS 的 Object，但特点是更轻量，默认不可改变、字段名跟类型固定，并且效率非常高。<br />
+使用时，首先需要定义类型，然后在赋值</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type person = {
+  age: int,
+  name: string
+};
+
+let me = {
+  age: 5,
+  name: &#34;Big Reason&#34;
+};
+
+/* access */
+let name = me.name;</code></pre></div>
+<p>me 是不可变数据，可以通过<code>...</code> 操作符定义新的 record，同时不会改变旧的数据。</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let meNextYear = {...me, age: me.age + 1};</code></pre></div>
+<p>通过 bucklescript 将 Reason 代码转为 JS，可以看到代码生成如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">// Generated by BUCKLESCRIPT VERSION 1.9.2, PLEASE EDIT WITH CARE
+&#39;use strict&#39;;
+
+
+var meNextYear = /* record */[
+  /* age */6,
+  /* name */&#34;Big Reason&#34;
+];
+
+var me = /* record */[
+  /* age */5,
+  /* name */&#34;Big Reason&#34;
+];
+
+var name = &#34;Big Reason&#34;;
+
+exports.me         = me;
+exports.name       = name;
+exports.meNextYear = meNextYear;
+/* No side effect */</code></pre></div>
+<p>可以看到实际上 Record 语法上类似 JS 的 Object，实际转化为 JS 的 Array 类型。如果定义新的 record，编译成 JS 后实际上是通过字面量重新生成新数组，两个数组无引用关系，无副作用。</p>
+
+<h4 id="list-array">List &amp; Array</h4>
+
+<ul>
+<li>List 是不可变的同类数据的集合，通常用在 switch case 里做条件匹配。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let myList = [1, 2, 3];</code></pre></div>
+<p>可以通过 <code>...</code> 构造新的 List</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let myList = [1, 2, 3];
+let anotherList = [0, ...myList];</code></pre></div>
+<p>生成的 anotherList 后三个元素实际上跟 myList 是引用关系，这样构造新 list 速度非常快。</p>
+
+<ul>
+<li>Array 跟 List 区别是数据是可变的</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">let myArray = [|&#34;hello&#34;, &#34;world&#34;, &#34;how are you&#34;|];
+let firstItem = myArray[0]; /* &#34;hello&#34; */
+myArray[0] = &#34;hey&#34;;
+/* now [|&#34;hey&#34;, &#34;world&#34;, &#34;how are you&#34;|] */</code></pre></div>
+<h4 id="object">Object</h4>
+
+<p>语法有点诡异，由于之前定义 Record 语法类似于 Js 对象，Reason 的 Object 则在定义类型时前面加上<code>.</code>，Object 的定义是可以省略定义的。大多数时候使用 Record 即可，有些特殊情况你可能需要 Object 类型。</p>
+
+<p>官方声明如果是 JS 使用者，推荐使用 BuckleScript 提供的对象数据类型</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type tesla = {
+  .
+  color: string
+};</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">type tesla = {
+  ..
+  color: string
+};</code></pre></div>
+<p>开头一个<code>.</code>跟<code>..</code>的区别是一个点代表对象为闭合对象，key 必须按照类型定义实现，两个点则表示开放对象，可以有别的 key。</p>
+
+<h4 id="其他">其他</h4>
+
+<p>常用的其他语法，循环，Function，Exception，Destructuring 等等，都可以在官方文档看到，可以看出 Reason 已经是语法完备的语言了。</p>
+
+<p>另外一点是，Reason 提供了引用外部 JS 模块的能力，虽然语法看起来比较繁琐：</p>
+<div class="highlight"><pre class="chroma"><code class="language-reason" data-lang="reason">[@bs.val] external encodeURI : string =&gt; string = &#34;encodeURI&#34;;</code></pre></div>
+<p>这样就可以使用 JS 模块提供的方法，利用现有成千上万的 npm 包，扩大了语言的生态范围。
+Reason 同时支持 JSX 语法的支持，通过 ReasonReact 实现与 React 的集成。</p>
+
+<h3 id="最后">最后</h3>
+
+<p>利用 OCaml 静态语言的一些很好的特性，Reason 将成为一门出色的 <code>DSL</code>，让 JS 程序员能够抛弃现有语言的一些历史包袱，同时享受可能 <code>ES2030</code> 才能使用上的优秀特性。然而这些优秀特性是否真的能很好地解决现有问题，是否又会引入更多新的问题，还有待在具体项目中验证。</p>
+
+<p>相关链接：</p>
+
+<p><a href="http://ocaml.org/learn/history.html">http://ocaml.org/learn/history.html</a></p>
+
+<p><a href="https://bucklescript.github.io/">https://bucklescript.github.io/</a></p>
+
+<p><a href="https://bucklescript.github.io/docs/en/object.html#object-as-record">https://bucklescript.github.io/docs/en/object.html#object-as-record</a></p>
+
+<p><a href="https://medium.com/@chenglou/cool-things-reason-formatter-does-9e1f79e25a82">https://medium.com/@chenglou/cool-things-reason-formatter-does-9e1f79e25a82</a></p>
+
+<p><a href="https://reasonml.github.io/reason-react/">https://reasonml.github.io/reason-react</a></p>
+
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+        <a href="/about">
+            关于
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>

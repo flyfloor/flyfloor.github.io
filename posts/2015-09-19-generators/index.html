@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        深入 ES6  - 生成器
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">深入 ES6  - 生成器</div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Sat Sep 19, 2015 &#183; 726 words
+            </time>
+        </div>
+        <blockquote>
+<p>原文出自 <a href="https://hacks.mozilla.org/2015/05/es6-in-depth-generators/">ES6 in depths</a>, 作者 <a href="https://blog.mozilla.org/jorendorff/">Jason Orendorff</a>, 翻译：落在深海</p>
+</blockquote>
+
+<p><em>ES6 In Depth</em> 系列将详细解读 ES6 的新特性。</p>
+
+<p>我很激动，因为今天我们要聊一聊 ES6 里最神奇的特性。</p>
+
+<p>怎么个神奇法?  对于初学者来说，这个概念跟以往 Js 里其他概念截然不同，以至于初次接触有些晦涩难懂。在某种意义上，它完改变了语言的行为。 如果这都不算神奇，那么？</p>
+
+<p>还没完: 这项特性将大大简化代码，并奇迹般将你从“回调地狱”拯救。</p>
+
+<p>我是不是夸的太过了？好吧，让我们走近科学，是否神奇，最终决定权在你。</p>
+
+<h3 id="es6-generators">ES6 generators</h3>
+
+<p>什么是 generators?</p>
+
+<p>先看下面代码:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span><span class="o">*</span> <span class="nx">quips</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">yield</span> <span class="s2">&#34;hello &#34;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&#34;!&#34;</span><span class="p">;</span>
+    <span class="k">yield</span> <span class="s2">&#34;i hope you are enjoying the blog posts&#34;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&#34;X&#34;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">yield</span> <span class="s2">&#34;it&#39;s cool how your name starts with X, &#34;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">yield</span> <span class="s2">&#34;see you later!&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这段代码来自<a href="//people.mozilla.org/~jorendorff/demos/meow.html">a talking cat</a>, 可能是目前互联网最重要的一类应用了(点链接，跟猫玩玩。如果感到困惑，回来找答案)。</p>
+
+<p>它看起来像是一个函数。它被称作是 generator 函数，跟函数有很多相似之处。但你可以立马看出它们之间的两个不同:</p>
+
+<ul>
+<li><p>普通函数以 <code>function</code> 开头，而 generator 函数以 <code>function*</code> 开始。</p></li>
+
+<li><p>generator 函数里， <code>yield</code> 语法看起来很像 <code>return</code>, 不同之处在于函数(即使是 generator 函数) 也只能 <code>return</code> 一次，不过 generator 函数可以 <code>yield</code> 许多次。<strong>yield</strong> 表达式将 generator 阻塞，好让其稍候可以继续执行。</p></li>
+</ul>
+
+<p>这就是 generator 函数与普通函数最重要的区别。 普通函数无法阻塞自己的执行，而 generator 函数可以。</p>
+
+<h3 id="generators-究竟做了什么">generators 究竟做了什么</h3>
+
+<p>当你调用<code>quips()</code> 时，发生了什么？</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">&gt;</span> <span class="kd">var</span> <span class="nx">iter</span> <span class="o">=</span> <span class="nx">quips</span><span class="p">(</span><span class="s2">&#34;jorendorff&#34;</span><span class="p">);</span>
+    <span class="p">[</span><span class="nx">object</span> <span class="nx">Generator</span><span class="p">]</span>
+<span class="o">&gt;</span> <span class="nx">iter</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span>
+    <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="s2">&#34;hello jorendorff!&#34;</span><span class="p">,</span> <span class="nx">done</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="nx">iter</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span>
+    <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="s2">&#34;i hope you are enjoying the blog posts&#34;</span><span class="p">,</span> <span class="nx">done</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="nx">iter</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span>
+    <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="s2">&#34;see you later!&#34;</span><span class="p">,</span> <span class="nx">done</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="nx">iter</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span>
+    <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">done</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>  
+</code></pre></div>
+<p>你可能非常习惯于传统函数的调用, 当发生调用时，它们立马开始执行，直到遇见<code>return</code> 或者<code>throw</code>。这对 Js 程序员来说就像天生直觉一样。</p>
+
+<p>generator 调用很类似: quips(&lsquo;jorendorff&rsquo;)。但是调用并不会立刻开始。它会返回一个 Generator 对象(上面例子里叫做 iter)。你可以把这个 Generator 对象当做一个函数调用，只是被冻住了。刚好暂停在 generator 函数的第一行代码。</p>
+
+<p>每次调用 generator 对象的 .next() 方法，函数会将自己解冻并执行，直到遇见下一个 <strong>yield</strong> 表达式。</p>
+
+<p>这就是为什么每次调用 iter.next(), 我们得到不同的字符串结果。这些结果是 quips 内部 yield 表达式返回的。</p>
+
+<p>最后一句 iter.next(), 终于触到了 generator 函数的结尾，所以 .done 的结果为*true*。到达函数的结尾类似于返回 <code>undefined</code>, 这就是为什么 .value 的值为 undefined 的缘故。</p>
+
+<p>是时候回去看看 <a href="//people.mozilla.org/~jorendorff/demos/meow.html">the talking cat demo page</a> 究竟发生了什么。 试着放一个<code>yield</code>在循环里，会发生什么？</p>
+
+<p>在技术上，每次 generator yields, 它会保存堆栈结构 - 局部变量，参数，临时变量，generator 内部执行到的位置，generator 主体被从堆栈中移除。然而 Generator 对象保留了(或者说是拷贝了一份)对该堆栈的引用， 好让后续的 .next() 调用知道如何恢复并执行。</p>
+
+<p>必须要提的是 <strong>generator 不是线程</strong>。 在有线程概念的语言里，多段代码可同时被执行， 通常会通向未知的，赛跑型的结果，性能提升非常显著。generators 截然不同。一旦被执行，他跑在单线程上。顺序执行，结果也是很明确的，从不会发生并行。并不像系统线程，generator 只能被 其内部的 <code>yield</code> 挂起。</p>
+
+<p>我们知道了什么是 generator, 了解它如何执行、暂停和继续执行。现在提出问题: 如何利用这个奇怪的特性？</p>
+
+<h3 id="generator-也是迭代器">generator 也是迭代器</h3>
+
+<p>上周，我们了解了 ES6 的迭代器不仅仅是内嵌类，它极易扩展。通过实现<code>[symbol.iterator]()</code> 和<code>.next()</code> 你可以构造自己的迭代器。</p>
+
+<p>然而实现接口往往需要一大堆工作去做。让我们看看实际应用中实现迭代器需要做哪些事情。实现一个简单的 range 迭代器，用来简单记数，就好像 C 语言里过时的 for( ; ; ) 循环。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This should &#34;ding&#34; three times
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Ding! at floor #&#34;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>下面思路，用到了 ES6 类的概念(不知道没关系，后面我们会讲的)。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">class</span> <span class="nx">RangeIterator</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">stop</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">stop</span> <span class="o">=</span> <span class="nx">stop</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="nx">next</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">stop</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">return</span> <span class="p">{</span><span class="nx">done</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">value</span><span class="p">};</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{</span><span class="nx">done</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Return a new iterator that counts up from &#39;start&#39; to &#39;stop&#39;.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">range</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">stop</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">RangeIterator</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">stop</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>像是 <code>java</code> 或者 <code>Swift</code> 实现迭代器的方式，看上去还行，并不繁琐。上面代码有 bug 么？很难讲。看起来一点不像 for( ; ; ) 循环：迭代器迫使我们拆除循环。</p>
+
+<p>你可能会觉得迭代器不是那么友好。看起来很好用，一旦实现起来还是很复杂的。</p>
+
+<p>这时候引入一个复杂难懂的新控制流来让迭代器更易被实现，可能并不太好。然而我们有了 generators, 能用在这里么？  试试看。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span><span class="o">*</span> <span class="nx">range</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">stop</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">stop</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="nx">i</span><span class="p">;</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>4行的代码取代了23行复杂的<code>range</code>实现(还引入了 RangeIterator 类)。能这么做完全因为 generators 本来就是迭代器。 所有迭代器内部本身就实现了 <code>.next()</code> 和 <code>[Symbol.interator]()</code> , 你只需写下循环的行为即可。</p>
+
+<p>没有 generator 来实现的迭代器就好比一封通篇充斥着消极情绪，冗长无比的邮件。永远不直接讲你最想说的，最终又臭又长。<code>RangeIterator</code>又臭又长，原因在于用非循环的语法来描述循环，婉转晦涩。generators 才是正确答案。</p>
+
+<p>那么 generators 在迭代器上还能带给我们什么？</p>
+
+<ul>
+<li><p><strong>让所有对象变得可迭代。</strong> 遍历 <code>this</code>, yielding 每次的 <code>value</code>。然后重写  generator 的 [Symbol.interator] 方法。</p></li>
+
+<li><p><strong>简化类数组的函数。</strong> 假设函数每次被调用返回的是一个数组：</p></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Divide the one-dimensional array &#39;icons&#39;
+</span><span class="c1">// into arrays of length &#39;rowLength&#39;.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">splitIntoRows</span><span class="p">(</span><span class="nx">icons</span><span class="p">,</span> <span class="nx">rowLength</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">rows</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="nx">rowLength</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">rows</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">icons</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">rowLength</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">rows</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>有了 generator, 这样写：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"> <span class="kd">function</span><span class="o">*</span> <span class="nx">splitIntoRows</span><span class="p">(</span><span class="nx">icons</span><span class="p">,</span> <span class="nx">rowLength</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="nx">rowLength</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">yield</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">rowLength</span><span class="p">);</span>
+      <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>
+<p>不同的是 generator 并不会一次性计算数组每一个元素，而是返回一个迭代器，按需供给每次的返回值。</p>
+
+<ul>
+<li><p><strong>不定长的返回值。</strong> 你无法创建一个无限长度的数组。但可以返回 generator  对象生成无尽的序列，且每个调用的对象可以予取予求的获取返回值。</p></li>
+
+<li><p><strong>重构复杂的循环。</strong>你是否有过巨长巨丑的函数？想把它拆成两部分么？generator 是你重构的新利器。当面对复杂的循环， 可以用它把生成数据的部分肢解成为新的 generator 函数，然后改造循环为 for(var data of myNewGenerator(args))。</p></li>
+
+<li><p><strong>用在可迭代对象上。</strong> ES6 并没提供用来做 filtering, mapping，或者修改可迭代数据集的库。然而 generators 更适用于这几种情况，更少的代码，获得更好的效果。</p></li>
+</ul>
+
+<p>举个例子，假设你需要类似 Array.prototype.filter 这样的操作 DOM 节点列表的方法，so easy:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span><span class="o">*</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">iterable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">iterable</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">test</span><span class="p">(</span><span class="nx">item</span><span class="p">))</span>
+          <span class="k">yield</span> <span class="nx">item</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>generators 很有用对吧？它无疑是实现自定义迭代器最容易的方式了，并且迭代器 ES6 里操作数据和循环一个新的标准。</p>
+
+<p>还没完，这甚至不是 generator 最重要的能耐。</p>
+
+<h3 id="generators-和-异步代码">generators 和 异步代码</h3>
+
+<p>下面是我写 Js 代码经常会遇到的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">                        <span class="p">};</span>
+                    <span class="p">})</span>
+                <span class="p">});</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">});</span>  
+</code></pre></div>
+<p>或许你也写过类似代码。异步 API 依赖于回调，意味着每次需要写额外的异步函数来处理。所以有段代码要做三件事，结果并不是三行代码，而是三层锯齿状的代码。</p>
+
+<p>还有一种情形是这样的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>  
+</code></pre></div>
+<p>异步 API 拥有错误处理约定，而不是简单抛出异常。不同 API 有不同的约定。大多数错误处理会默认被吃掉。其中有些即使是成功执行，也会默认被吃掉。</p>
+
+<p>直到今天，这些问题成了我们使用异步编程必须付出的代价。必须承认异步代码并不像同步代码那样简单舒服。</p>
+
+<p>使用 generator 可以拯救我们。</p>
+
+<p>Q.async() 是一项实验性尝试，它使用 generator 和 promise 来像写同步代码一样组装异步代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Synchronous code to make some noise.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">makeNoise</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">shake</span><span class="p">();</span>
+  <span class="nx">rattle</span><span class="p">();</span>
+  <span class="nx">roll</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Asynchronous code to make some noise.
+</span><span class="c1">// Returns a Promise object that becomes resolved
+</span><span class="c1">// when we&#39;re done making noise.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">makeNoise_async</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">Q</span><span class="p">.</span><span class="kr">async</span><span class="p">(</span><span class="kd">function</span><span class="o">*</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">yield</span> <span class="nx">shake_async</span><span class="p">();</span>
+    <span class="k">yield</span> <span class="nx">rattle_async</span><span class="p">();</span>
+    <span class="k">yield</span> <span class="nx">roll_async</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>最大的区别在于异步的版本必须在每个异步函数调用时加上<code>yield</code>关键字。</p>
+
+<p>在 Q.async 作用域里写 if 语句或 try catch 块跟在写同步代码一样。而对比写异步代码的其他方式，这很像在学另一门语言。</p>
+
+<p>想研究至深， James Long’s 的这篇 <a href="//jlongster.com/A-Study-on-Solving-Callbacks-with-JavaScript-Generators">very detailed post on this topic</a> 可能会对你有所帮助。</p>
+
+<p>generators 创造了一种新的适合人类思维的异步编程模式。这项工作还在继续发展，至少在努力让语法变得更简单舒服。<a href="https://github.com/lukehoban/ecmascript-asyncawait"> A proposal for async functions</a>, 得到 C# 的特性的启发，使用 promise 跟 generator 构建，在 ES7 的计划范畴内(<a href="https://github.com/tc39/ecma262">on the table for ES7</a>)。</p>
+
+<h3 id="什么时候能用上-generator">什么时候能用上 generator?</h3>
+
+<p>服务端，今天就可以在 io.js(nodejs 里需要使用 &ndash;harmony 方式) 使用。</p>
+
+<p>浏览器端，只有 firefox 27+, chrome 39+ 支持，要让其它浏览器也支持，可以使用 babel 或 traceur 将 ES6 转为 ES5 代码。</p>
+
+<p>值得了解的故事: Brendan Eich 第一次实现了 Js 的 generators, 他的设计紧紧追随了受 <a href="//www.cs.arizona.edu/icon/">Icon</a> 语言 影响的 Python generators。并且最早在2006年的火狐浏览器2.0上加上了这个特性。然而标准化的道路却非常坎坷。ES6 的 generators 由编译器黑客 <a href="//wingolog.org/">Andy wingo</a> 在 Chrome 跟 火狐浏览器上实现。由 Bloomberg 赞助。</p>
+
+<h3 id="yield">yield;</h3>
+
+<p>关于 generators 还有很多可以讲。目前为止我们还没有讲到 .throw() 跟 .return() 方法，.next() 的可选参数， 或者 yield* 语法等。我认为这篇文章目前来说已足够长，甚至有点令人厌烦了。我们应该缓一缓。</p>
+
+<p>下周我们换个话题。 到这篇文章，我们已经探索了 ES6 的两个很深入的话题。是时候来点轻松惬意但非常实用的东西了。ES6 有不少此类特性。</p>
+
+<p>接下来：很容易融入日常使用的新特性。加入探索 ES6 template strings 之旅。</p>
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/javascript">
+                    JavaScript
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/es6">
+                    ES6
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+        <a href="/about">
+            关于
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>

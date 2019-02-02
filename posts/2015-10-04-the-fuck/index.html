@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        一个好玩的 terminal 插件
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">一个好玩的 terminal 插件</div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Sun Oct 04, 2015 &#183; 180 words
+            </time>
+        </div>
+        <p>推荐一个好玩的终端插件，名字叫：thefuck。回想下每次把 <code>git status</code> 写成 <code>git stats</code>, <code>git branch</code> 写成 <code>git brunch</code> 的懊恼，虽然每次重新输入并不会花费太多时间，然而输错的瞬间你可能最容易脱口而出的就是 “fuck” 了。那么当输入有误时，假如你能任性的敲入 <code>fuck</code>，终端乖乖替你完成正确的输入，是不是很解气？</p>
+
+<p>这就是 <a href="https://github.com/nvbn/thefuck">the fuck</a> 插件的主要作用。</p>
+
+<h3 id="安装">安装</h3>
+
+<ul>
+<li>在 OS X 下可以使用 Homebrew 来安装：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">brew</span> <span class="nx">install</span> <span class="nx">thefuck</span></code></pre></div>
+<ul>
+<li>这个时候如果直接写错，敲入 <code>fuck</code>，发现并不成功，提示说：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">Seems</span> <span class="nx">like</span> <span class="nx">fuck</span> <span class="nx">alias</span> <span class="nx">isn</span>&#39;<span class="nx">t</span> <span class="nx">configured</span><span class="p">!</span><span class="err">
+</span><span class="err"></span><span class="nx">Please</span> <span class="nx">put</span> <span class="nx">eval</span> $<span class="p">(</span><span class="nx">thefuck</span> <span class="p">--</span><span class="nx">alias</span><span class="p">)</span> <span class="nx">in</span> <span class="nx">your</span> <span class="p">~</span>/.<span class="nx">zshrc</span>.<span class="err">
+</span><span class="err"></span><span class="nx">More</span> <span class="nx">details</span> <span class="p">-</span> <span class="nx">https</span><span class="p">:</span><span class="sr">//</span><span class="nx">github</span>.<span class="nx">com</span><span class="sr">/nvbn/</span><span class="nx">thefuck</span>#<span class="nx">manual</span><span class="p">-</span><span class="nx">installation</span></code></pre></div>
+<p>好吧，按照提示，将 alias 内容拷贝到 zshrc 里，并让其生效。</p>
+
+<ul>
+<li>然后就能使用了</li>
+</ul>
+
+<h3 id="下面是官方的几个例子">下面是官方的几个例子：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim">➜ <span class="nx">apt</span><span class="p">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">vim</span><span class="err">
+</span><span class="err"></span><span class="nx">E</span><span class="p">:</span> <span class="nx">Could</span> <span class="nx">not</span> <span class="nx">open</span> <span class="nx">lock</span> <span class="nx">file</span> <span class="sr">/var/</span><span class="nx">lib</span><span class="sr">/dpkg/</span><span class="nx">lock</span> <span class="p">-</span> <span class="nx">open</span> <span class="p">(</span><span class="m">13</span><span class="p">:</span> <span class="nx">Permission</span> <span class="nx">denied</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">E</span><span class="p">:</span> <span class="nx">Unable</span> <span class="nx">to</span> <span class="nx">lock</span> <span class="nx">the</span> <span class="nx">administration</span> <span class="nx">directory</span> <span class="p">(</span><span class="sr">/var/</span><span class="nx">lib</span><span class="sr">/dpkg/</span><span class="p">),</span> <span class="nx">are</span> <span class="nx">you</span> <span class="nx">root</span>?<span class="err">
+</span><span class="err">
+</span><span class="err"></span>➜ <span class="nx">fuck</span><span class="err">
+</span><span class="err"></span><span class="nx">sudo</span> <span class="nx">apt</span><span class="p">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">vim</span> [<span class="nx">enter</span><span class="sr">/↑/</span>↓/<span class="nx">ctrl</span><span class="p">+</span><span class="nx">c</span>]<span class="err">
+</span><span class="err"></span>[<span class="nx">sudo</span>] <span class="nx">password</span> <span class="nx">for</span> <span class="nx">nvbn</span><span class="p">:</span><span class="err">
+</span><span class="err"></span><span class="nx">Reading</span> <span class="nx">package</span> <span class="nx">lists</span>... <span class="nx">Done</span><span class="err">
+</span><span class="err"></span>...</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim">➜ <span class="nx">git</span> <span class="nx">push</span><span class="err">
+</span><span class="err"></span><span class="nx">fatal</span><span class="p">:</span> <span class="nx">The</span> <span class="nx">current</span> <span class="nx">branch</span> <span class="nx">master</span> <span class="nx">has</span> <span class="nx">no</span> <span class="nx">upstream</span> <span class="nx">branch</span>.<span class="err">
+</span><span class="err"></span><span class="nx">To</span> <span class="nx">push</span> <span class="nx">the</span> <span class="nx">current</span> <span class="nx">branch</span> <span class="nx">and</span> <span class="nx">set</span> <span class="nx">the</span> <span class="nx">remote</span> <span class="nx">as</span> <span class="nx">upstream</span><span class="p">,</span> <span class="nx">use</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span>    <span class="nx">git</span> <span class="nx">push</span> <span class="p">--</span><span class="nx">set</span><span class="p">-</span><span class="nx">upstream</span> <span class="nx">origin</span> <span class="nx">master</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span>➜ <span class="nx">fuck</span><span class="err">
+</span><span class="err"></span><span class="nx">git</span> <span class="nx">push</span> <span class="p">--</span><span class="nx">set</span><span class="p">-</span><span class="nx">upstream</span> <span class="nx">origin</span> <span class="nx">master</span> [<span class="nx">enter</span><span class="sr">/↑/</span>↓/<span class="nx">ctrl</span><span class="p">+</span><span class="nx">c</span>]<span class="err">
+</span><span class="err"></span><span class="nx">Counting</span> <span class="nx">objects</span><span class="p">:</span> <span class="m">9</span><span class="p">,</span> <span class="nx">done</span>.<span class="err">
+</span><span class="err"></span>...</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim">➜ <span class="nx">puthon</span><span class="err">
+</span><span class="err"></span><span class="nx">No</span> <span class="nx">command</span> <span class="s1">&#39;puthon&#39;</span> <span class="nx">found</span><span class="p">,</span> <span class="nx">did</span> <span class="nx">you</span> <span class="nx">mean</span><span class="p">:</span><span class="err">
+</span><span class="err"></span> <span class="nx">Command</span> <span class="s1">&#39;python&#39;</span> <span class="nx">from</span> <span class="nx">package</span> <span class="s1">&#39;python-minimal&#39;</span> <span class="p">(</span><span class="nx">main</span><span class="p">)</span><span class="err">
+</span><span class="err"></span> <span class="nx">Command</span> <span class="s1">&#39;python&#39;</span> <span class="nx">from</span> <span class="nx">package</span> <span class="s1">&#39;python3&#39;</span> <span class="p">(</span><span class="nx">main</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">zsh</span><span class="p">:</span> <span class="nx">command</span> <span class="nx">not</span> <span class="nx">found</span><span class="p">:</span> <span class="nx">puthon</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span>➜ <span class="nx">fuck</span><span class="err">
+</span><span class="err"></span><span class="k">python</span> <span class="p">[</span><span class="n">enter</span><span class="o">/</span><span class="err">↑</span><span class="o">/</span><span class="err">↓</span><span class="o">/</span><span class="n">ctrl</span><span class="o">+</span><span class="n">c</span><span class="p">]</span><span class="err">
+</span><span class="err"></span><span class="nx">Python</span> <span class="m">3</span>.<span class="m">4</span>.<span class="m">2</span> <span class="p">(</span><span class="nx">default</span><span class="p">,</span> <span class="nx">Oct</span>  <span class="m">8</span> <span class="m">2014</span><span class="p">,</span> <span class="m">13</span><span class="p">:</span><span class="m">08</span><span class="p">:</span><span class="m">17</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>...</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim">➜ <span class="nx">git</span> <span class="nx">brnch</span><span class="err">
+</span><span class="err"></span><span class="nx">git</span><span class="p">:</span> <span class="s1">&#39;brnch&#39;</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">a</span> <span class="nx">git</span> <span class="nx">command</span>. <span class="nx">See</span> <span class="s1">&#39;git --help&#39;</span>.<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nx">Did</span> <span class="nx">you</span> <span class="nx">mean</span> <span class="nx">this</span>?<span class="err">
+</span><span class="err"></span>    <span class="nx">branch</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span>➜ <span class="nx">fuck</span><span class="err">
+</span><span class="err"></span><span class="nx">git</span> <span class="nx">branch</span> [<span class="nx">enter</span><span class="sr">/↑/</span>↓/<span class="nx">ctrl</span><span class="p">+</span><span class="nx">c</span>]<span class="err">
+</span><span class="err"></span>* <span class="nx">master</span></code></pre></div>
+<p>&hellip;</p>
+
+<p>安装以及使用的细节在项目的 <a href="https://github.com/nvbn/thefuck">Github 地址</a> 可以看到，支持诸多特性，你甚至可以自己定义规则。</p>
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/terminal">
+                    terminal
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tool">
+                    tool
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/efficiency">
+                    efficiency
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+        <a href="/about">
+            关于
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>

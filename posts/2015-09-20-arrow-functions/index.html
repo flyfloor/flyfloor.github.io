@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        深入 ES6  - 箭头函数
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">深入 ES6  - 箭头函数</div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Sun Sep 20, 2015 &#183; 623 words
+            </time>
+        </div>
+        
+
+<blockquote>
+<p>原文出自 <a href="https://hacks.mozilla.org/2015/06/es6-in-depth-arrow-functions/">ES6 in depths</a>, 作者 <a href="https://blog.mozilla.org/jorendorff/">Jason Orendorff</a>, 翻译：落在深海</p>
+</blockquote>
+
+<p><em>ES6 In Depth</em> 系列将详细解读 ES6 的新特性。</p>
+
+<p>箭头在 Javascript 早期便已存在。第一个 Javascript 指南建议将 Javascript 代码用内联 scripts 标签包裹，写在 HTML 注释里。这样对于不支持 Js 的浏览器，Javascript 代码就不会被认作是 text 了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">language</span><span class="o">=</span><span class="s">&#34;javascript&#34;</span><span class="p">&gt;</span>
+<span class="c">&lt;!--</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">bgColor</span> <span class="o">=</span> <span class="s2">&#34;brown&#34;</span><span class="p">;</span>  <span class="c1">// red
+</span><span class="c1">// --&gt;
+</span><span class="c1"></span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+<!-- more -->
+
+<p>老浏览器将看到的是两个不被支持的 tag 和注释；只有支持的浏览器才能执行 Js 代码。</p>
+
+<p>为了支持这项老的把戏，浏览器的 Javascript 引擎会将 <code>&lt;!--</code> 开头当做单行注释。这项技术一直存在于 Javascript 语言中，直到今天，不仅仅在内联的 <code>&lt;script&gt;</code> 标签里。甚至在 NodeJs 里也是如此。</p>
+
+<p>因此，<a href="//people.mozilla.org/~jorendorff/es6-draft.html#sec-html-like-comments">这样带箭头的注释方式在 ES6 里第一次被标准化</a>。然而今天要讲的，此箭头非彼箭头。</p>
+
+<p>箭头 &ndash;&gt; 同时表示 单行注释。诡异的是，HTML 标签里 &ndash;&gt; 之前的部分是注释，而在 Js 里，箭头后面的单行部分是注释。</p>
+
+<p>更奇怪的是，当且仅当箭头在行首时才算是注释。假如出现在别的地方， &ndash;&gt; 是 Js 的运算符，表示“直到” 运算符！</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">countdown</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">n</span> <span class="o">--&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// &#34;n goes to zero&#34;
+</span><span class="c1"></span>    <span class="nx">alert</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+  <span class="nx">blastoff</span><span class="p">();</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p><a href="//codepen.io/anon/pen/oXZaBY?editors=001">这段代码确实能运行</a>。循环从 n 到 0. 这并不是 ES6 的新特性， 熟悉的特性，带有一点误导性质。你能觉察究竟发生了什么？通常的，<a href="//stackoverflow.com/questions/1642028/what-is-the-name-of-the-operator">stackoverflow 都能找到答案</a>。</p>
+
+<p>确实存在 小于或等于运算符，&lt;=。你可能在代码里找到更多的箭头，然而停下来观察，会发现有个箭头没有用到。</p>
+
+<ul>
+<li>&lt;!&ndash; <code>single-line comment</code><br /></li>
+<li>&ndash;&gt; <code>“goes to” operator</code><br /></li>
+<li>&lt;=  <code>less than or equal to</code><br /></li>
+<li>=&gt;    ???<br /></li>
+</ul>
+
+<p>我们先来看看函数。</p>
+
+<h3 id="到处都存在函数表达式">到处都存在函数表达式</h3>
+
+<p>在你需要函数时，你可以在任何运行的代码中写下该函数体。</p>
+
+<p>例如，你要告诉浏览器，当用户点击某个按钮做某件事，代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#confetti-btn&#34;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>  
+</code></pre></div>
+<p>jQuery 的 .click() 方法有一个参数：一个函数。毫无疑问，你可以这样写：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#confetti-btn&#34;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">playTrumpet</span><span class="p">();</span>
+  <span class="nx">fireConfettiCannon</span><span class="p">();</span>
+<span class="p">});</span>  
+</code></pre></div>
+<p>这段代码太稀松平常了。所以在 Javascript 流行前，如果再别的地方这样写是很奇怪的，毕竟其他语言并不支持该特性。当然1958年， Lisp 拥有了类似的函数表达式，也称为 lambda 函数。然而类似 C++，Python， c# 等语言里 许多年都没有这样的语法。</p>
+
+<p>现在这四种语言都有了 lambda。新语言通常都会内建 lambda 语法。 Javascript 应该感谢 &ndash; 那些构建库时毫无畏惧的大量使用 lambda 的早期 Js 程序员，是他们让这项特性风靡全球。</p>
+
+<p>稍显遗憾的，对比上述语言，Js 的 lambda 是最啰嗦的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="sr">//</span> <span class="nx">A</span> <span class="nx">very</span> <span class="nx">simple</span> <span class="k">function</span> <span class="nx">in</span> <span class="nx">six</span> <span class="nx">languages</span>.<span class="err">
+</span><span class="err"></span><span class="k">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> { <span class="nx">return</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="m">0</span>; } <span class="sr">//</span> <span class="nx">JS</span><span class="err">
+</span><span class="err"></span>[]<span class="p">(</span><span class="nx">int</span> <span class="nx">a</span><span class="p">)</span> { <span class="nx">return</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="m">0</span>; }  <span class="sr">//</span> <span class="nx">C</span><span class="p">++</span><span class="err">
+</span><span class="err"></span><span class="p">(</span><span class="nx">lambda</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">(&gt;</span> <span class="nx">a</span> <span class="m">0</span><span class="p">))</span>  ;; <span class="nx">Lisp</span><span class="err">
+</span><span class="err"></span><span class="nx">lambda</span> <span class="nx">a</span><span class="p">:</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="m">0</span>  # <span class="nx">Python</span><span class="err">
+</span><span class="err"></span><span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="m">0</span>  <span class="sr">//</span> <span class="nx">C</span>#<span class="err">
+</span><span class="err"></span><span class="nx">a</span> <span class="p">-&gt;</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="m">0</span>  <span class="sr">//</span> <span class="nx">Java</span>  </code></pre></div>
+<h3 id="箭袋里的-新箭">箭袋里的“新箭”</h3>
+
+<p>ES6 提供了编写函数的新语法。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ES5
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">allJobs</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">job</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">job</span><span class="p">.</span><span class="nx">isSelected</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="c1">// ES6
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">allJobs</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">job</span> <span class="p">=&gt;</span> <span class="nx">job</span><span class="p">.</span><span class="nx">isSelected</span><span class="p">());</span>  
+</code></pre></div>
+<p>当你需要单个参数的函数时，arrow function 的语法是 <code>Identifier =&gt; Expression</code>。这样就省去写 function, return, 括号，花括号及分号。</p>
+
+<p>(我个人对此特性心存感激。对我来说，不用输入 function 非常重要，因为我经常输入<code>functoin</code>，而且需要不断地去纠正它。)</p>
+
+<p>含有多个参数的函数(不含任何参数，或者可变参数及默认参数，或者 destructuring 参数)你只需要将变量们用括号括起来。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ES5
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="nx">values</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// ES6
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="nx">values</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  
+</code></pre></div>
+<p>我认为它看起来很漂亮。</p>
+
+<p>arrow functions 与其他库的函数工具搭配的也非常好，例如 <a href="//underscorejs.org/">Underscore.js</a> 和 <a href="https://facebook.github.io/immutable-js/">Immutable</a>。事实上， <a href="https://facebook.github.io/immutable-js/docs/#/">Immutable’s documentation</a> 的例子完全是用 ES6 写的， 很多函数都是用 arrow function 写的。</p>
+
+<p>那些非函数式的设置呢？arrow function 可以包含一段表达式代码块，而不仅仅是一句表达式。翻回前面的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ES5
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#confetti-btn&#34;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">playTrumpet</span><span class="p">();</span>
+  <span class="nx">fireConfettiCannon</span><span class="p">();</span>
+<span class="p">});</span>  
+</code></pre></div>
+<p>ES6 里这么写：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ES6
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#confetti-btn&#34;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">playTrumpet</span><span class="p">();</span>
+  <span class="nx">fireConfettiCannon</span><span class="p">();</span>
+<span class="p">});</span>  
+</code></pre></div>
+<p>另外，使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> 变得更戏剧性， <code>}).then(function (result) {</code> 这行代码也可以省掉。</p>
+
+<p>注意到包含代码块的 arrow function 并没有显式的返回值。为此需要使用 return 表达式。</p>
+
+<p>当使用 arrow function 创建 对象字面量，切记要用圆括号将对象括起来，不然会出现 bug：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// create a new empty object for each puppy to play with
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">chewToys</span> <span class="o">=</span> <span class="nx">puppies</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">puppy</span> <span class="p">=&gt;</span> <span class="p">{});</span>   <span class="c1">// BUG!
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">chewToys</span> <span class="o">=</span> <span class="nx">puppies</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">puppy</span> <span class="p">=&gt;</span> <span class="p">({}));</span> <span class="c1">// ok  
+</span><span class="c1"></span></code></pre></div>
+<p>为什么呢？ 原因在于，不幸的是空对象 {} 跟 空的代码块 {} 看起来完全一样。ES6 将箭头紧跟遇到的 { 的代码当做代码块处理。 所以 <code>puppy =&gt; {}</code> 被翻译为未作任何操作的箭头函数，而最终返回 undefined。</p>
+
+<p>更易获得是，包含 {key: value} 的对象看起来像是包含了标签语句的代码块 &ndash; 起码你的 Javascript 引擎是这么认为的。 幸运的是 { 是唯一会产生疑惑的字符，那么用圆括号将对象字面量包裹起来是唯一你需要记住的把戏。</p>
+
+<h3 id="别忘了-this">别忘了<code>This</code></h3>
+
+<p>function 跟 arrow function 有轻微不同。<strong>Arrow functions 并没有 this</strong>。如果在内部获取 this，得到的永远是其外部作用域的 this。</p>
+
+<p>在探索为何如此之前，让我们翻回去看看。</p>
+
+<p>Javascript 里 this 如何工作？它的值从哪里来？ <a href="//stackoverflow.com/questions/3127429/how-does-the-this-keyword-work">三言两语很难解释清楚</a>。如果对你来说很容易，是因为你接触它太长时间。</p>
+
+<p>其中一个原因是 function 函数会自动返回 this 值， 不管你需要或否。你是否写过类似下面的把戏：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">addAll</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">addAll</span><span class="p">(</span><span class="nx">pieces</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">pieces</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">piece</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">piece</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>在内部的函数，其实我们仅仅需要 this.add(piece)。不幸的是， 内部函数并没有继承外部的 this 值。所以内部的 this 值 将会是 window 或者 undefined。而 self 这个临时变量作用就是把外部的 this 值 传递到内部函数里(另一种方式是通过 .bind(this) 将 this 绑定到内部函数上，两种方式都不那么美观)。</p>
+
+<p>ES6里，遵循以下规则，那么有关 this 的小把戏基本可以抛弃了：</p>
+
+<ul>
+<li><p>使用非箭头函数，那么它会调用 object.method()，调用者将会得到一个有意义的 this 值。</p></li>
+
+<li><p>剩下的场景都用箭头函数。</p></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ES6
+</span><span class="c1"></span><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">addAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pieces</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">pieces</span><span class="p">,</span> <span class="nx">piece</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">piece</span><span class="p">));</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>在 ES6 里，注意到 addAll 方法会从调用者接收 this 值。而内部函数是箭头函数，自然地它会从 addAll 函数继承 this 的值。</p>
+
+<p>作为奖励，ES6 为对象字面量提供了另一种简写！上述代码可以改写为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ES6 with method syntax
+</span><span class="c1"></span><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">addAll</span><span class="p">(</span><span class="nx">pieces</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">pieces</span><span class="p">,</span> <span class="nx">piece</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">piece</span><span class="p">));</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>在方法跟箭头中间，我可能再也不需要输入 function 了，非常有趣。</p>
+
+<p>箭头函数跟非箭头函数还有轻微的不同：箭头函数并没有 arguments。 当然在 ES6 里， 你可以用可变参数或默认参数替代。</p>
+
+<h3 id="用-箭头-戳破计算机科学黑暗的心">用“箭头”戳破计算机科学黑暗的心</h3>
+
+<p>关于箭头函数，我们已探讨了许多实用的技术。还有一种黑科技我想跟你聊聊：揭开计算机内心深处的神秘面纱。实用与否，你自行判断。</p>
+
+<p>1936年，Alonzo Church 和 Alan Turing 独立开发了非常强大的计算机数学模型。图灵称它为 a-machines, 然而其他人称他为图灵机。Church 写了取代函数，并将它命名为 <a href="https://en.wikipedia.org/wiki/Lambda_calculus">λ-calculus</a>。(λ 是希腊字母 lambda 的小写。) 这也是为什么 Lisp 用 LAMBDA 来表示函数，也是今天 lambda 的由来。</p>
+
+<p>然而，什么是 λ-calculus？  计算模型又是什么？</p>
+
+<p>几句话很难解释的清楚， 我尝试这样解释：λ-calculus 是最早期的编程语言之一。存储计算机盛行了一二十年，起初它根本不是被设计成编程语言的，而是简单的，定制的纯数学语言，它包含了你需要的所有计算功能。Church 希望能够通过模型强大的运算能力证明一些东西。</p>
+
+<p>他发现系统只需要一种东西： 函数。</p>
+
+<p>多么非凡的想法啊。抛弃对象，数组，if 语句，while 循环，分号，赋值，逻辑运算符，甚至是循环，依然可以造出 Javascript 可以做的计算，仅仅需要函数。</p>
+
+<p>下面是数学家用 Church 的 λ 符号可能写出的程序：</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">fix</span> <span class="p">=</span> <span class="nx">λf</span>.<span class="p">(</span><span class="nx">λx</span>.<span class="nx">f</span><span class="p">(</span><span class="nx">λv</span>.<span class="nx">x</span><span class="p">(</span><span class="nx">x</span><span class="p">)(</span><span class="nx">v</span><span class="p">)))(</span><span class="nx">λx</span>.<span class="nx">f</span><span class="p">(</span><span class="nx">λv</span>.<span class="nx">x</span><span class="p">(</span><span class="nx">x</span><span class="p">)(</span><span class="nx">v</span><span class="p">)))</span>  </code></pre></div>
+<p>等价于 Javascript 里的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">fix</span> <span class="o">=</span> <span class="nx">f</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">x</span> <span class="p">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">x</span><span class="p">)(</span><span class="nx">v</span><span class="p">)))</span>
+               <span class="p">(</span><span class="nx">x</span> <span class="p">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">x</span><span class="p">)(</span><span class="nx">v</span><span class="p">)));</span>  
+</code></pre></div>
+<p>Javascript 实际上包含了 λ 微积分的实现， 也就是说 Javascript 拥有 λ-calculus。</p>
+
+<p>Alonzo Church 和后续研究者对于 λ-calculus 的研究，及将它无声息的融入每一个主流的编程语言的故事，远远超越了本篇文章的范围。如果你对计算机科学基础有浓厚兴趣，或者想看一门语言只用函数来实现类似循环或递归的话，强烈建议你去看看 <a href="https://en.wikipedia.org/wiki/Church_encoding">Church numerals</a> 和 <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Strict_fixed_point_combinator">fixed-point combinators</a>，并且试着在 firefox console 或者 scratchpad 调试看看。拥有 ES6 箭头函数的 Javascript，称得上探索 λ-calculus 的最佳语言。</p>
+
+<h3 id="什么时候能用">什么时候能用？</h3>
+
+<p>2013年，我在 firefox 里实现了 ES6 箭头函数。Jan de Mooij 优化了它。也感谢 Tooru Fujisawa 和 ziyunfei 打的补丁。</p>
+
+<p>箭头函数同样在 Microsoft Edge 预览版里实现。如果立马想用的话，可以使用 Babel, Traceur 和 TypeScript。</p>
+
+<p>下篇文章关于 ES6 的一个比较奇特的特性。届时将看到 typeof x 返回焕然一新的值。我们将会提问：什么时候名字不是字符串？我们会对等价的意义产生疑惑。这会非常的诡异。欢迎下周继续加入我们。</p>
+
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/javascript">
+                    JavaScript
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/es6">
+                    ES6
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+        <a href="/about">
+            关于
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>

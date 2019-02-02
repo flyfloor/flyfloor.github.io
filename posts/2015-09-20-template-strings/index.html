@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        深入 ES6  - 模板字符串
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">深入 ES6  - 模板字符串</div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Sun Sep 20, 2015 &#183; 553 words
+            </time>
+        </div>
+        <blockquote>
+<p>原文出自 <a href="https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2/">ES6 in depths</a>, 作者 <a href="https://blog.mozilla.org/jorendorff/">Jason Orendorff</a>, 翻译：落在深海</p>
+</blockquote>
+
+<p><em>ES6 In Depth</em> 系列将详细解读 ES6 的新特性。</p>
+
+<p>上周我承诺换个节奏。继迭代器跟 generators 后，我说要换点儿简单的，不会烧糊你大脑的东西。读完这篇文章，看看我是否信守承诺。</p>
+
+<p>现在，先从简单的开始。</p>
+
+<h3 id="的基础知识">` 的基础知识</h3>
+
+<p>ES6 引入了新的字符字面量语法，叫做 template strings。它看起来像是传统的字符串，区别在于用 <strong>`</strong> 取代了<strong>&lsquo;</strong> 或者 <strong>&ldquo;</strong>。简单的例子:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">context</span><span class="p">.</span><span class="nx">fillText</span><span class="p">(</span><span class="sb">`Ceci n&#39;est pas une chaîne.`</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>  
+</code></pre></div>
+<p>然而被叫做 <code>template strings</code>，而不是<code>冗长的除了引号不同的字符串</code>。原因在于 template strings 给 Javascript 带来了更简单的字符串插值方式。一种很漂亮，很方便的往字符串里插值的方式。</p>
+
+<p>使用 template strings 有很多种方式，我最喜欢下面这种:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">authorize</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">.</span><span class="nx">hasPrivilege</span><span class="p">(</span><span class="nx">action</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span>
+      <span class="sb">`User </span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is not authorized to do </span><span class="si">${</span><span class="nx">action</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>${user.name} 和 ${action} 被称作 template 占位符。Javascript 会将 user.name 和 action 的值插入字符串。最后生成类似<code>User jorendorff is not authorized to do hockey</code>。</p>
+
+<p>目前为止，功能仅限于比 <strong>+</strong> 运算符长得好看点，以下是这种用法你需要知道的细节:</p>
+
+<ul>
+<li><p>template 占位符可以是任何 Javascript 表达式，函数调用，运算操作等等(如果你愿意，甚至可以在 template string 里嵌套 template string, 我称它为 template 盗梦空间。)</p></li>
+
+<li><p>如果占位符的值不是字符串，它将被转义为字符串。例如，如果 action 是一个对象，.toString() 方法将会被调用。</p></li>
+
+<li><p>如果你需要在 template strings 里使用引号，请用反斜杠进行转义： <strong>`\``</strong> 与 <strong>`</strong> 等价。</p></li>
+
+<li><p>同样的，要使用 <strong>$</strong>, 也需要转义：<strong>`write \${`</strong> 或者 <strong>`\$`</strong>。</p></li>
+</ul>
+
+<p>与不同字符串不同的是，template strings 可以是多行：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#warning&#34;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="sb">`
+</span><span class="sb">   &lt;h1&gt;Watch out!&lt;/h1&gt;
+</span><span class="sb">    &lt;p&gt;Unauthorized hockeying can result in penalties
+</span><span class="sb">    of up to </span><span class="si">${</span><span class="nx">maxPenalty</span><span class="si">}</span><span class="sb"> minutes.&lt;/p&gt;
+</span><span class="sb">`</span><span class="p">);</span>
+</code></pre></div>
+<p>template strings 里的所有空白，包括换行跟缩进，都会一字不落的输出。</p>
+
+<p>警告: 以下内容可能有些许不适。请适当酌情阅读，或许去喝杯咖啡放松下。</p>
+
+<h3 id="括住未来">括住未来</h3>
+
+<p>让我们讨论下 template strings 做不了什么。</p>
+
+<ul>
+<li><p>它不会自动转义特殊字符。为了避免跨域脚本工具，对于不信任的数据仍需要你的关注，就像处理普通字符串一样。</p></li>
+
+<li><p>用它来做国际化时，并不容易。template strings 并没有针对不同语言做数字、时间的处理，更不用说单复数了。</p></li>
+
+<li><p>它并不是<a href="https://mustache.github.io/">Mustache</a> 或者 <a href="https://mozilla.github.io/nunjucks/">Nunjacks</a> 之类模板引擎的替代品。</p></li>
+</ul>
+
+<p>原因在于 template strings 并不包含：例如通过对数组迭代生成 HTML 的 table 结构、甚至是条件判断等语法(你可能觉得用 template 的层层嵌套能够做这件事，但这听起来就像是个笑话)。</p>
+
+<p>ES6 提供了一种隐晦的使用 template strings 的方式，来供 Js 开发者和库设计者打破上述限制。这个特性被称作 tagged templates。</p>
+
+<p>tagged templates 的语法非常简单。只需要在引号前加上额外的*tag*。上面提到html 内容转义，对应的这个<em>tag</em> 就是 <strong>SaferHTML</strong>， 将需要限制的字符一一列出: 自动转义特殊字符。</p>
+
+<p>注意到 <strong>SaferHTML</strong> 并不是 ES6 的标注库。所以我们需要自己实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> 
+    <span class="nx">SaferHTML</span><span class="sb">`&lt;p&gt;</span><span class="si">${</span><span class="nx">bonk</span><span class="p">.</span><span class="nx">sender</span><span class="si">}</span><span class="sb"> has sent you a bonk.&lt;/p&gt;`</span><span class="p">;</span>  
+</code></pre></div>
+<p>这里 SaferHTML 是个标示符，还可以用例如 SaferHTML.excape, 甚至是方法调用。</p>
+
+<p>例如：<code>SaferHTML.escape({unicodeControlCharacters: false})</code>(更准确点说，任何 ES6 <a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-left-hand-side-expressions"> MemberExpression or CallExpression</a> 可以称作是一个<em>tag</em>)。</p>
+
+<p>未用 tagged 的 template strings 只是简单字符串的连接。而带 tagged 的 templates 实际上是函数调用。</p>
+
+<p>上面代码等同于：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span>
+  <span class="nx">SaferHTML</span><span class="p">(</span><span class="nx">templateData</span><span class="p">,</span> <span class="nx">bonk</span><span class="p">.</span><span class="nx">sender</span><span class="p">);</span>
+</code></pre></div>
+<p>templateData 是由 Js 引擎生成的，它存储了 template strings 的字符串部分， 是不可变数组。数组包含两个元素，也就是被插入值左右隔开的两部分。所以 templateData 作用就像是 <code>Object.freeze([&quot;&lt;p&gt;&quot;, &quot; has sent you a bonk.&lt;/p&gt;&quot;]</code>。</p>
+
+<p>(实际上 templateData 还存着另外一个属性。虽然本章不会用到，为了完整性这里还是简单提起：templateData.raw，保存字符串所有部分，但不作任何处理，例如： <code>\n</code> 不会被变为新的一行。新的 String.raw 也用到了这个特性。)</p>
+
+<p>这给了 SaferHTML 函数无限种解释字符串跟占位符的方式。</p>
+
+<p>再读下去之前，你应该尝试领会 SaferHTML 的逻辑，并试着实现它。因为它本身是函数，你可以在 firefox 的控制台做调试(现在都用 chrome 了吧，我不是火狐黑。。。)</p>
+
+<p>一种解答(<a href="https://gist.github.com/jorendorff/1a17f69dbfaafa2304f0">在这里</a>也看得到)。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">SaferHTML</span><span class="p">(</span><span class="nx">templateData</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">templateData</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">arg</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+
+    <span class="c1">// Escape special characters in the substitution.
+</span><span class="c1"></span>    <span class="nx">s</span> <span class="o">+=</span> <span class="nx">arg</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span> <span class="s2">&#34;&amp;amp;&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span> <span class="s2">&#34;&amp;lt;&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span> <span class="s2">&#34;&amp;gt;&#34;</span><span class="p">);</span>
+
+    <span class="c1">// Don&#39;t escape special characters in the template.
+</span><span class="c1"></span>    <span class="nx">s</span> <span class="o">+=</span> <span class="nx">templateData</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>SaferHTML<code>&lt;p&gt;${bonk.sender} has sent you a bonk.&lt;/p&gt;</code></strong> 最终会被拼接成 <strong>&ldquo;<p>ES6&lt;3er has sent you a bonk.</p>&ldquo;</strong>。某些恶意用户即使输入像<strong>Hacker Steve &lt;script&gt;alert(&lsquo;xss&rsquo;);&lt;/script&gt;, sends them a bonk.</strong>这样的内容，也不会对其他用户的安全产生影响。</p>
+
+<p>一个简单的例子很难讲清楚 tagged templates 的强大之处。让我们再回顾前面遇到的问题，看看有什么能够改善的。</p>
+
+<ul>
+<li>template strings 本身不提供自动转义特殊字符的功能。正如所见，通过 tagged templates， 可以很容易的解决这个问题，你可以写出更好的。<br /></li>
+</ul>
+
+<p>从安全角度来看，我写的 SaferHTML 实在太弱了。HTML 的不同部分要针对不同特殊字符来转义；SaferHTML 并没有将它们转义，但通过努力，你可以对 templateData 里的每一段字符串分析，这样它便知道哪部分是元素属性，它们要对<strong>’</strong>跟<strong>&ldquo;</strong> 转义；哪部分是纯 HTML； 哪部分是 URL 请求参数，而它们需要 URL 转义 而不是 HTML 转义，等等。这样才能进行正确的转义。</p>
+
+<p>HTML 解析很慢，让这听起来像牵强附会？幸运的是，tagged template 并不会改变直到 template 被再次赋值。SaferHTML 会缓存解析的结果，在被调用时起到加速作用。(缓存属于 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">WeekMap</a> 类型， 后面会讨论的 ES6 的特性。)</p>
+
+<ul>
+<li>Template strings 并没有内建的国际化特性。然而使用 tags, 我们可以实现它。<a href="//jaysoo.ca/2014/03/20/i18n-with-es6-template-strings/">Jack Hsu 的文章</a> 在国际化方面开了个头。例子:<br /></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">i18n</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, you have </span><span class="si">${</span><span class="nx">amount</span><span class="si">}</span><span class="sb">:c(CAD) in your bank account.`</span>
+<span class="c1">// =&gt; Hallo Bob, Sie haben 1.234,56 $CA auf Ihrem Bankkonto.  
+</span><span class="c1"></span></code></pre></div>
+<p><em>name</em> 跟 <em>amount</em> 是 JavaScript，而 :c(CAD) 是什么？答案是库的作者 Jack 设计来处理国际化的。 研究 i18n 文档会发现， :c(CAD) 意味着 amount 是货币符号，按加拿大币结算。</p>
+
+<p>以上即是 template strings。</p>
+
+<ul>
+<li>template strings 并不是 Mustache 或者 Nunjucks 的替代品，一部分原因是它并没有循环或者条件语句之类的语法。那我们实现它吧！Js 不提供的特性，写个 tag 来提供它吧。<br /></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Purely hypothetical template language based on
+</span><span class="c1">// ES6 tagged templates.
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">libraryHtml</span> <span class="o">=</span> <span class="nx">hashTemplate</span><span class="sb">`
+</span><span class="sb">      &lt;ul&gt;
+</span><span class="sb">        #for book in </span><span class="si">${</span><span class="nx">myBooks</span><span class="si">}</span><span class="sb">
+</span><span class="sb">          &lt;li&gt;&lt;i&gt;#{book.title}&lt;/i&gt; by #{book.author}&lt;/li&gt;
+</span><span class="sb">        #end
+</span><span class="sb">      &lt;/ul&gt;`</span><span class="p">;</span>
+</code></pre></div>
+<p>强大的弹性并未就此结束。注意到 tag 函数的参数并不会自动转成字符串，它们可以是任何类型，返回值也是，甚至 tagged templates 也并不需要是字符串。你可以通过 tags 来构造正则表达式，DOM 树， 图片，包含完整异步的 promise， JS 数据结构，GL 着色器等等&hellip;</p>
+
+<p><strong>Tagged templates 的开放性，允许库开发者设计各种强大的 DSL 语言(领域特定语言)。</strong> 这些语言语法可能看起来不像 Js，但能够无缝的插入 Js 代码，并使其与其他部分智能的协同工作。我一时半会想不出有哪个语言拥有此特性。这一特性给了我们无限可能。</p>
+
+<h3 id="什么时候可以用">什么时候可以用？</h3>
+
+<p>服务端，template strings 在 io.js 已经可以使用。</p>
+
+<p>浏览器端，firefox 34+，chrome 41+ 已经支持，IE 跟 safari 并不支持。暂时的，你可能需要使用 Babel 或者 Traceur 来转换。你也可以在 TypeScript 直接使用。</p>
+
+<h3 id="等等-markdown-怎么办">等等，Markdown 怎么办？</h3>
+
+<p>额， 好问题。</p>
+
+<p>template strings 里，Javascript 跟 Markdown 的 <strong>`</strong> 有着不同的意义。在 Markdown 里， 它是内联 code 的标识。</p>
+
+<p>这样就会出问题，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">To</span> <span class="nx">display</span> <span class="nx">a</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">write</span> <span class="sb">`alert(`</span><span class="nx">hello</span> <span class="nx">world</span><span class="o">!</span><span class="sb">`)`</span>  
+</code></pre></div>
+<p>会这样显示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">To</span> <span class="nx">display</span> <span class="nx">a</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">write</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">hello</span> <span class="nx">world</span><span class="o">!</span><span class="p">).</span>  
+</code></pre></div>
+<p>注意到输出里面并没有<strong>`</strong> 符号， Markdown 把所有的 <strong>`</strong> 翻译成 code，并用 HTML 标签替换掉了。</p>
+
+<p>要使用内联代码块，可以用多个引号来避免这个问题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">To</span> <span class="nx">display</span> <span class="nx">a</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">write</span> <span class="sb">``</span><span class="nx">alert</span><span class="p">(</span><span class="sb">`hello world!`</span><span class="p">)</span><span class="sb">``</span><span class="p">.</span>  
+</code></pre></div>
+<p><a href="https://gist.github.com/jorendorff/d3df45120ef8e4a342e5">This Gist</a>  是用 Markdown 写的，你可以阅读源文件。</p>
+
+<h3 id="下一章">下一章</h3>
+
+<p>下周将探索的两个特性，程序员在别的语言里已爽了许多年：1. 函数的默认参数。 2. 函数的可变参数。</p>
+
+<p>我们将从实现者的角度亲历这一特性。欢迎你加入，通过客串作者 Benjamin Peterson 的方式来深入理解ES6 默认参数、可选参数。</p>
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/javascript">
+                    JavaScript
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/es6">
+                    ES6
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+        <a href="/about">
+            关于
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>

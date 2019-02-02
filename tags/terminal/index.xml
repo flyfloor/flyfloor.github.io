@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Terminal on braavos</title>
+    <link>https://braavos.me/tags/terminal/</link>
+    <description>Recent content in Terminal on braavos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 20 Feb 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://braavos.me/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The new iterm2 is coming</title>
+      <link>https://braavos.me/posts/2016-02-20-iterm2-version-3/</link>
+      <pubDate>Sat, 20 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2016-02-20-iterm2-version-3/</guid>
+      <description>&lt;p&gt;Iterm2，Mac 下最好用的终端 App，今天提醒有新 beta 版本，于是下载体验了把。下面是体验感受：&lt;/p&gt;
+
+&lt;h3 id=&#34;一些变化&#34;&gt;一些变化&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>一个好玩的 terminal 插件</title>
+      <link>https://braavos.me/posts/2015-10-04-the-fuck/</link>
+      <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://braavos.me/posts/2015-10-04-the-fuck/</guid>
+      <description>&lt;p&gt;推荐一个好玩的终端插件，名字叫：thefuck。回想下每次把 &lt;code&gt;git status&lt;/code&gt; 写成 &lt;code&gt;git stats&lt;/code&gt;, &lt;code&gt;git branch&lt;/code&gt; 写成 &lt;code&gt;git brunch&lt;/code&gt; 的懊恼，虽然每次重新输入并不会花费太多时间，然而输错的瞬间你可能最容易脱口而出的就是 “fuck” 了。那么当输入有误时，假如你能任性的敲入 &lt;code&gt;fuck&lt;/code&gt;，终端乖乖替你完成正确的输入，是不是很解气？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

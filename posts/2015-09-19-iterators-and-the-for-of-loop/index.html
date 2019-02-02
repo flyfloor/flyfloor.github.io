@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.css">
+    
+
+    
+    
+    
+    <title>
+        
+        深入 ES6  - 迭代器和 for-of 循环  
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">深入 ES6  - 迭代器和 for-of 循环  </div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Sat Sep 19, 2015 &#183; 487 words
+            </time>
+        </div>
+        <blockquote>
+<p>原文出自 <a href="https://hacks.mozilla.org/2015/04/es6-in-depth-iterators-and-the-for-of-loop/">ES6 in depths</a>, 作者 <a href="https://blog.mozilla.org/jorendorff/">Jason Orendorff</a>, 翻译：落在深海</p>
+</blockquote>
+
+<p><em>ES6 In Depth</em> 系列将详细解读 ES6 的新特性。</p>
+
+<p>怎么循环一个数组的元素呢？20年前，Js 代码是这么写的:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">myArray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>从 ES5 起，你可以这样写：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">myArray</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>看起来短些，但有副作用: 无法使用 <code>break</code> 或者<code>return</code>从包裹的函数中返回。</p>
+
+<p>倘若能使用 <code>for-</code> 循环语法完成对数组元素操作岂不是更好。</p>
+
+<p>那么试试<code>for-in</code> ?</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">index</span> <span class="k">in</span> <span class="nx">myArray</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// don&#39;t actually do this
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>这不是一个好选择:</p>
+
+<ul>
+<li><p>赋值给 <em>index</em> 的实际上得到的是<code>&quot;0&quot;, &quot;1&quot;, &quot;2&quot;</code> 等等， 并不是数字。你一定不想得到这样的字符串运算(&ldquo;2&rdquo; + 1 == &ldquo;21&rdquo;), 一点也不方便。</p></li>
+
+<li><p>循环体不仅对数组对象本身循环， 而且会将赋值操作后的属性也进行循环，例如，数组 myArray有个枚举属性 myArray.name, 那么循环将多循环一次，而那次的索引 index == &ldquo;name&rdquo;。甚至是数组 prototype 继承链上的属性都会被访问到。</p></li>
+
+<li><p>更令人惊讶的是， 在某些情况下，数组内的循环可能不会按顺序执行。</p></li>
+</ul>
+
+<p>简单来说，for-in 主要作用于 plain old objects 的字符串 keys。对于数组，并不奏效。</p>
+
+<p>###强大的 for-of 循环</p>
+
+<p>还记得上周我承诺 ES6 并不会破坏原先你写的 Js 代码吧。数以百万的网站有用到 for-in 循环， 甚至是用在数组的循环上。所以去修 for-in 循环，让其适用于 arrays 是不现实的。对于 ES6，改进的唯一办法就是引入一种新的循环语法。</p>
+
+<p>tada:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">myArray</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>额，似乎并没有很酷炫，对吧？ 后面我们会看看这葫芦里卖的什么药，目前只需知道:</p>
+
+<ul>
+<li>for-of 是迄今为止对数组循环最简洁的方式。<br /></li>
+<li>它避开了 for-in 所有的坑。<br /></li>
+<li>与 forEach 不同的是，可以使用 break, continue 和 return。<br /></li>
+</ul>
+
+<p>for-in 循环用来操作对象的属性。<br />
+for-of 用来对数组循环，但不止于此。</p>
+
+<h3 id="其他支持-for-of-的集合">其他支持 for-of 的集合</h3>
+
+<p>for-of 不仅仅支持 Array，同样适用于类似 Array 的数据，比如 DOM NodeLists。<br />
+同时支持字符串的循环，例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">chr</span> <span class="k">of</span> <span class="s2">&#34;😺😲&#34;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">chr</span><span class="p">);</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>支持 Map 跟 Set 对象。</p>
+
+<p>抱歉，你没听过 Map 和 Set？这可是 ES6 引入的新类型，我们会在后续用一整章来讲。假如你在别的语言里已用过这些东西的话，你不会感到惊讶。</p>
+
+<p>举个例子， Set 适合用来去重。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// make a set from an array of words
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">uniqueWords</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">words</span><span class="p">);</span>  
+</code></pre></div>
+<p>一旦创建一个 Set， 你很容易对它进行循环。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">word</span> <span class="k">of</span> <span class="nx">uniqueWords</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>Map 有些许不同：内部由键值对构成，可按照下面方式遍历：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">phoneBookMap</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">&#34;&#39;s phone number is: &#34;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>  
+</code></pre></div>
+<p>以上方式叫做 Destructuring， 是 ES6 的新特性，后面会重点介绍。</p>
+
+<p>到此你可以看到这样景象：Js 增添越来越多的类型，而你将频繁的用 for-of 循环操作它们。</p>
+
+<p>遗憾的是 for-of 循环不支持 plain old objects， 可以通过 for-in 或 object.keys() 补充。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// dump an object&#39;s own enumerable properties to the console
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">someObject</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">&#34;: &#34;</span> <span class="o">+</span> <span class="nx">someObject</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="帽檐之下">帽檐之下</h3>
+
+<p><em>“Good artists copy, great artists steal.” —Pablo Picasso</em></p>
+
+<p>ES6 的特性多数并不是空穴来风，它们早已在其他语言里得到验证。</p>
+
+<p>for-of 循环， 类似于 C++, Java, C#, Python 里的循环，适用于语言本身及库提供的多种不同数据结构，同时也是语言的扩展点之一。</p>
+
+<p>与 forEach 相同，for-of 完全适用于方法调用。Arrays，Maps，Sets 以及我们提到的其他类型，它们的共同点是都拥有迭代器方法。</p>
+
+<p>什么对象可以支持迭代器？答案是任何你想要的对象。</p>
+
+<p>好比你只需 myObject.toString()， Js 就知道如何将对象转换成字符串。循环亦如此，<code>myObject[Symbol.iterator]()</code> 这样 Js 便知道如何操作对象循环。</p>
+
+<p>举个例子，假设使用 JQuery，你非常喜欢用 .each(), 那么想要 for-of 支持 JQuery 对象，应该这样写：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Since jQuery objects are array-like,
+</span><span class="c1">// give them the same iterator method Arrays have
+</span><span class="c1"></span><span class="nx">jQuery</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]</span> <span class="o">=</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">];</span>  
+</code></pre></div>
+<p>好吧，我知道你在想什么，[Symbol.iterator] 这样写太奇葩了。委员会本来决定只用 .iterator()，然而现有的代码可能有些对象本身有用到 .iterator()，所以那帮人最终决定用 symbol,  而不是挂在 string 下。</p>
+
+<p>Symbols 是 ES6 的新特新之一，后续文章会细讲。你现在只需知道的是，用 Symbol.iterator，可以保证以前的代码不会有任何冲突。这样说吧，获得更好的特性和兼容性，代价仅仅是语法看起来有点怪而已。</p>
+
+<p>我们把包含 [Symbol.iterator] 方法的对象称为可迭代的。接下来会看到的是，可迭代的对象遍布整个语言，不仅是 for-of，Map， Set，destructuring 赋值，还有新的 spread 运算符。</p>
+
+<h3 id="迭代对象">迭代对象</h3>
+
+<p>现在你压根不需要刀耕火种去实现迭代器，下周告诉你具体原因。但为了阅读完整性，让我们瞧瞧究竟(错过这部分，你会后悔的)。</p>
+
+<p>for-of 循环在集合上调用 <code>[Symbol.iterator]()</code>，会得到一个迭代器的对象，它可以是包含 .next() 方法的任意对象； for-of 则会循环调用该方法。下面是最简单的迭代器对象:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">zeroesForeverIterator</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">next</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span><span class="nx">done</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">};</span>  
+</code></pre></div>
+<p>每次调用  .next() 得到同样的返回值，告诉循环体 a) 循环还没结束。 b) next 的 value 为 0。也就是说这是个死循环，当然典型的循环不长这样。</p>
+
+<p>拥有 .done 跟 .value 的 Js 迭代器， 表面看上去与其他语言不同。Java 里是 .hasNext() 跟 .next()。Python 里只有 .next()，当值不存在时，会抛出 StopIteration 异常。但三种方式基本都返回同样的信息。</p>
+
+<p>迭代器对象可实现 optional 的  .return()，.throw(exc) 方法。当循环因为异常或遇到<em>break</em> 及*return*声明而提前退出时 .return() 会被调用。所以我们可以在 .return() 里做一些清理或者释放资源的工作。大多数迭代对象并不需要自己实现该方法。.throw(exc) 更是个特殊情况: for-of 循环永远不会调用它，这个会在下周细讲。</p>
+
+<p>既然知道了细节，我们可以从简单 for-of 循环入手，用这些基础方法来重写它。</p>
+
+<p>首先 for-of 循环：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="nx">VAR</span> <span class="k">of</span> <span class="nx">ITERABLE</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">STATEMENTS</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这个粗糙的版本，用了些基础方法及临时变量:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">$iterator</span> <span class="o">=</span> <span class="nx">ITERABLE</span><span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]();</span>
+<span class="kd">var</span> <span class="nx">$result</span> <span class="o">=</span> <span class="nx">$iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">$result</span><span class="p">.</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">VAR</span> <span class="o">=</span> <span class="nx">$result</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="nx">STATEMENTS</span>
+  <span class="nx">$result</span> <span class="o">=</span> <span class="nx">$iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>上面代码里并没有写 .return() 是如何被调用的。 我可以添加这部分，但我还是倾向于暂时略过这部分。总之， for-of 极容易使用，然而背后却别有洞天。</p>
+
+<h3 id="好了-快告诉我什么时候能用上">好了，快告诉我什么时候能用上？</h3>
+
+<p>火狐目前已完全支持，chrome 下需要打开chrome://flags， 点击 “Experimental JavaScript”， 微软家的 Spartan 浏览器也支持，不出所料 IE 并不支持，如果要 IE 及 Safari 下也工作,  你可以使用 Babel 或者  Google 的 Traceur 等翻译工具将 ES6 代码翻译成 ES5代码。</p>
+
+<p>服务端可以直接使用 - 你可以在 io.js 里直接用 for-of 循环(或者 nodejs,  &ndash;harmony 方式)。</p>
+
+<p>{ done: true }</p>
+
+<p>好啦！今天就到此为止，关于 for-of 的介绍还没有结束。</p>
+
+<p>ES6 还有一种新对象类型，非常好的适应 for-of，只字未提的原因是它是下周的主题。如果在别的语言里还未遇到过，你可能会彻底震惊。然而这是写迭代器最容易的做法，非常适合重构代码，而且将完全改变写异步调用代码的方式，无论是在服务端还是浏览器端。所以请务必持续关注。</p>
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/javascript">
+                    JavaScript
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/es6">
+                    ES6
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+        <a href="/about">
+            关于
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>
