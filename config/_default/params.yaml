@@ -7,5 +7,5 @@ mainMenu:
     text: 拍的
   - link: /tags
     text: 标签
-  - link: /about
-    text: 关于
+  # - link: /about
+  #   text: 关于
