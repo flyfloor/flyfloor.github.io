@@ -1,4 +1,5 @@
 clickablePhotos: true
+smallPreviewImages: true
 mainMenu:
   - link: /posts
     text: 写的
