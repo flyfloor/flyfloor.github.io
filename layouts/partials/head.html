@@ -14,8 +14,8 @@
 {{ $style := resources.Get "css/reset.scss" | toCSS | minify | fingerprint }} 
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
-{{ $style := resources.Get "css/highlight.scss" | toCSS | minify }} 
+{{ $style := resources.Get "css/highlight.scss" | toCSS | minify | fingerprint }} 
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
-{{ $style := resources.Get "css/app.scss" | toCSS | minify }} 
+{{ $style := resources.Get "css/app.scss" | toCSS | minify | fingerprint }} 
 <link rel="stylesheet" href="{{ $style.Permalink }}">
