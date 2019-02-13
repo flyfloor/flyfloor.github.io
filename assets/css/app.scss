@@ -202,3 +202,15 @@ ul.pagination {
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  %content_with_narrow_width {
+    padding: 0 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .tag-cloud-item {
+    margin-right: 0;
+  }
+}
