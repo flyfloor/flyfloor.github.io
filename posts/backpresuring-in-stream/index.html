@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="Call me Sam, a theme for Hugo.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="https://braavos.me/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="https://braavos.me/tn.png">
+
+<link rel="shortcut icon" href="https://braavos.me/sam.ico" id="favicon">
+ 
+<link rel="stylesheet" href="https://braavos.me/css/reset.min.71449fa4f25aa80d22efb3b2bcd187d9547555cf994dc4f300e9eb4f791e27e5.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/highlight.min.af5b9c55a1a24fad2c9d1cdcb6702bf74a59232681d8897e07fb9a650c3ca7a7.css">
+
+ 
+<link rel="stylesheet" href="https://braavos.me/css/app.min.299b5a4d520c731828fa0a695f72f7f691fd8ed363f0c6db7a69e1f02777c8e2.css">
+
+    
+
+    
+    
+    
+    <title>
+        
+        nodejs stream backpressure
+        
+    </title>
+</head>
+
+<body>
+    
+        <div class="wrap">
+            
+                <div class="section title" id="title">nodejs stream backpressure</div>
+            
+            
+    <div class="section post-detail" id="content">
+        <div class="field">
+            <time>
+                Thu Feb 14, 2019 &#183; 236 words
+            </time>
+        </div>
+        <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">                                                   <span class="o">+===================+</span>
+                         <span class="nx">x</span><span class="o">--&gt;</span>  <span class="nx">Piping</span> <span class="nx">functions</span>   <span class="o">+--&gt;</span>   <span class="nx">src</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">dest</span><span class="p">)</span>  <span class="o">|</span>
+                         <span class="nx">x</span>     <span class="nx">are</span> <span class="nx">set</span> <span class="nx">up</span> <span class="nx">during</span>     <span class="o">|===================|</span>
+                         <span class="nx">x</span>     <span class="nx">the</span> <span class="p">.</span><span class="nx">pipe</span> <span class="nx">method</span><span class="p">.</span>     <span class="o">|</span>  <span class="nx">Event</span> <span class="nx">callbacks</span>  <span class="o">|</span>
+  <span class="o">+===============+</span>      <span class="nx">x</span>                           <span class="o">|-------------------|</span>
+  <span class="o">|</span>   <span class="nx">Your</span> <span class="nx">Data</span>   <span class="o">|</span>      <span class="nx">x</span>     <span class="nx">They</span> <span class="nx">exist</span> <span class="nx">outside</span>    <span class="o">|</span> <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span>  <span class="o">|</span>
+  <span class="o">+=======+=======+</span>      <span class="nx">x</span>     <span class="nx">the</span> <span class="nx">data</span> <span class="nx">flow</span><span class="p">,</span> <span class="nx">but</span>    <span class="o">|</span> <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span>   <span class="o">|</span>
+          <span class="o">|</span>              <span class="nx">x</span>     <span class="nx">importantly</span> <span class="nx">attach</span>    <span class="o">|</span> <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drain&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span>  <span class="o">|</span>
+          <span class="o">|</span>              <span class="nx">x</span>     <span class="nx">events</span><span class="p">,</span> <span class="nx">and</span> <span class="nx">their</span>     <span class="o">|</span> <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;unpipe&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+---------</span><span class="nx">v</span><span class="o">---------+</span>    <span class="nx">x</span>     <span class="nx">respective</span> <span class="nx">callbacks</span><span class="p">.</span> <span class="o">|</span> <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="nx">Readable</span> <span class="nx">Stream</span>  <span class="o">+----+</span>                           <span class="o">|</span> <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;finish&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+-^-------^-------^-+</span>    <span class="o">|</span>                           <span class="o">|</span> <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span>    <span class="o">|</span>
+  <span class="o">^</span>       <span class="o">|</span>       <span class="o">^</span>      <span class="o">|</span>                           <span class="o">+-------------------+</span>
+  <span class="o">|</span>       <span class="o">|</span>       <span class="o">|</span>      <span class="o">|</span>
+  <span class="o">|</span>       <span class="o">^</span>       <span class="o">|</span>      <span class="o">|</span>
+  <span class="o">^</span>       <span class="o">^</span>       <span class="o">^</span>      <span class="o">|</span>    <span class="o">+-------------------+</span>         <span class="o">+=================+</span>
+  <span class="o">^</span>       <span class="o">|</span>       <span class="o">^</span>      <span class="o">+----&gt;</span>  <span class="nx">Writable</span> <span class="nx">Stream</span>  <span class="o">+---------&gt;</span>  <span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">chunk</span><span class="p">)</span>  <span class="o">|</span>
+  <span class="o">|</span>       <span class="o">|</span>       <span class="o">|</span>           <span class="o">+-------------------+</span>         <span class="o">+=======+=========+</span>
+  <span class="o">|</span>       <span class="o">|</span>       <span class="o">|</span>                                                 <span class="o">|</span>
+  <span class="o">|</span>       <span class="o">^</span>       <span class="o">|</span>                              <span class="o">+------------------</span><span class="nx">v</span><span class="o">---------+</span>
+  <span class="o">^</span>       <span class="o">|</span>       <span class="o">+-&gt;</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">chunk</span><span class="p">)</span>                <span class="o">|</span>    <span class="nx">Is</span> <span class="k">this</span> <span class="nx">chunk</span> <span class="nx">too</span> <span class="nx">big</span><span class="o">?</span>  <span class="o">|</span>
+  <span class="o">^</span>       <span class="o">|</span>       <span class="o">|</span>     <span class="nx">emit</span> <span class="p">.</span><span class="nx">end</span><span class="p">();</span>             <span class="o">|</span>    <span class="nx">Is</span> <span class="nx">the</span> <span class="nx">queue</span> <span class="nx">busy</span><span class="o">?</span>      <span class="o">|</span>
+  <span class="o">|</span>       <span class="o">|</span>       <span class="o">+-&gt;</span> <span class="k">else</span>                       <span class="o">+-------+----------------+---+</span>
+  <span class="o">|</span>       <span class="o">^</span>       <span class="o">|</span>     <span class="nx">emit</span> <span class="p">.</span><span class="nx">write</span><span class="p">();</span>                   <span class="o">|</span>                <span class="o">|</span>
+  <span class="o">|</span>       <span class="o">^</span>       <span class="o">^</span>                                   <span class="o">+--</span><span class="nx">v</span><span class="o">---+</span>        <span class="o">+---</span><span class="nx">v</span><span class="o">---+</span>
+  <span class="o">|</span>       <span class="o">|</span>       <span class="o">^-----------------------------------&lt;</span>  <span class="nx">No</span>  <span class="o">|</span>        <span class="o">|</span>  <span class="nx">Yes</span>  <span class="o">|</span>
+  <span class="o">^</span>       <span class="o">|</span>                                           <span class="o">+------+</span>        <span class="o">+---</span><span class="nx">v</span><span class="o">---+</span>
+  <span class="o">^</span>       <span class="o">|</span>                                                               <span class="o">|</span>
+  <span class="o">|</span>       <span class="o">^</span>               <span class="nx">emit</span> <span class="p">.</span><span class="nx">pause</span><span class="p">();</span>          <span class="o">+=================+</span>     <span class="o">|</span>
+  <span class="o">|</span>       <span class="o">^---------------^-----------------------+</span>  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>  <span class="o">&lt;-----+---+</span>
+  <span class="o">|</span>                                               <span class="o">+=================+</span>         <span class="o">|</span>
+  <span class="o">|</span>                                                                           <span class="o">|</span>
+  <span class="o">^</span>            <span class="nx">when</span> <span class="nx">queue</span> <span class="nx">is</span> <span class="nx">empty</span>     <span class="o">+============+</span>                         <span class="o">|</span>
+  <span class="o">^------------^-----------------------&lt;</span>  <span class="nx">Buffering</span> <span class="o">|</span>                         <span class="o">|</span>
+               <span class="o">|</span>                       <span class="o">|============|</span>                         <span class="o">|</span>
+               <span class="o">+&gt;</span> <span class="nx">emit</span> <span class="p">.</span><span class="nx">drain</span><span class="p">();</span>       <span class="o">|</span>  <span class="o">^</span><span class="nx">Buffer</span><span class="o">^</span>  <span class="o">|</span>                         <span class="o">|</span>
+               <span class="o">+&gt;</span> <span class="nx">emit</span> <span class="p">.</span><span class="nx">resume</span><span class="p">();</span>      <span class="o">+------------+</span>                         <span class="o">|</span>
+                                       <span class="o">|</span>  <span class="o">^</span><span class="nx">Buffer</span><span class="o">^</span>  <span class="o">|</span>                         <span class="o">|</span>
+                                       <span class="o">+------------+</span>   <span class="nx">add</span> <span class="nx">chunk</span> <span class="nx">to</span> <span class="nx">queue</span>    <span class="o">|</span>
+                                       <span class="o">|</span>            <span class="o">&lt;---^---------------------&lt;</span>
+                                       <span class="o">+============+</span>
+</code></pre></div>
+        
+        <div class="tag-container field">
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/blog">
+                    blog
+                </a>
+            </span>
+            
+            <span class="tag">
+                <a href="https://braavos.me/tags/tech">
+                    tech
+                </a>
+            </span>
+            
+        </div>
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "lacunafario" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+            
+<div class="section bottom-menu">
+    
+
+    <a href="/posts">返回</a>
+
+
+
+    
+        <a href="/posts">
+            写的
+        </a>
+    
+        <a href="/gallery">
+            拍的
+        </a>
+    
+        <a href="/tags">
+            标签
+        </a>
+    
+
+
+</div>
+
+
+            <div class="section footer"></div>
+        </div>
+    
+</body>
+
+</html>
