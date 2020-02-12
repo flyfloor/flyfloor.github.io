@@ -6,10 +6,19 @@
     <description>Recent content in 写的 on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 04 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Feb 2019 15:39:47 +0800</lastBuildDate>
     
 	<atom:link href="https://braavos.me/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>nodejs stream backpressure</title>
+      <link>https://braavos.me/posts/backpresuring-in-stream/</link>
+      <pubDate>Thu, 14 Feb 2019 15:39:47 +0800</pubDate>
+      
+      <guid>https://braavos.me/posts/backpresuring-in-stream/</guid>
+      <description>+===================+ x--&amp;gt; Piping functions +--&amp;gt; src.pipe(dest) | x are set up during |===================| x the .pipe method. | Event callbacks | +===============+ x |-------------------| | Your Data | x They exist outside | .on(&amp;#39;close&amp;#39;, cb) | +=======+=======+ x the data flow, but | .on(&amp;#39;data&amp;#39;, cb) | | x importantly attach | .on(&amp;#39;drain&amp;#39;, cb) | | x events, and their | .on(&amp;#39;unpipe&amp;#39;, cb) | +---------v---------+ x respective callbacks. | .on(&amp;#39;error&amp;#39;, cb) | | Readable Stream +----+ | .</description>
+    </item>
     
     <item>
       <title>Reason? Reason!</title>

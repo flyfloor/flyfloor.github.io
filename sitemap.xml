@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://braavos.me/posts/backpresuring-in-stream/</loc>
+    <lastmod>2019-02-14T15:39:47+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://braavos.me/posts/2017-12-04-reason/</loc>
     <lastmod>2017-12-04T00:00:00+00:00</lastmod>
   </url>
@@ -347,6 +352,12 @@
   </url>
   
   <url>
+    <loc>https://braavos.me/tags/blog/</loc>
+    <lastmod>2019-02-14T15:39:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://braavos.me/categories/</loc>
     <priority>0</priority>
   </url>
@@ -545,7 +556,7 @@
   
   <url>
     <loc>https://braavos.me/tags/tech/</loc>
-    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-14T15:39:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -575,7 +586,7 @@
   
   <url>
     <loc>https://braavos.me/</loc>
-    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-14T15:39:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -585,7 +596,7 @@
   
   <url>
     <loc>https://braavos.me/posts/</loc>
-    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-14T15:39:47+08:00</lastmod>
   </url>
   
   <url>
