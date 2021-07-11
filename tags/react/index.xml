@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>React on braavos</title>
-    <link>https://braavos.me/tags/react/</link>
+    <link>https://flyfloor.github.io/tags/react/</link>
     <description>Recent content in React on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 05 Jul 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://braavos.me/tags/react/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://flyfloor.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How about a nice cup of React</title>
-      <link>https://braavos.me/posts/2016-07-05-how-about-a-nice-cup-of-react/</link>
+      <link>https://flyfloor.github.io/posts/2016-07-05-how-about-a-nice-cup-of-react/</link>
       <pubDate>Tue, 05 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-07-05-how-about-a-nice-cup-of-react/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-07-05-how-about-a-nice-cup-of-react/</guid>
       <description>接触 React 一年左右，期间在单页面、单页应用都有使用， 它极大地改变了我个人的前端开发方式。为方便快速出产品，闲暇之余也尝试写了点基础组件: react-component, react-image-cropper，react-touch-gallery, react-file-upload。也一直计划着写点心得总结什么的，迫于忙、浮躁，难静下心写东西，屡次作罢。这两天刚离职，决定把这篇总结补上。
 在 React 之前，玩过一点点 Angular 跟 Backbone，Backbone 是比较轻量级 MVC，Angular 较重，它的指令、注入式写法, 较死板的规则，不够简洁的 API，诸多概念等等，最终只是被我当玩具折腾了下。由于接触到项目多数时间花在 view 的交互、事件、变化更新上，所以大多数情况还是选择熟悉的 jQuery，原因无非是：熟练，可控，最轻依赖，快速灵活。过程基本上是: 命名 DOM，给 DOM 加特效，取数据更新 DOM， 绑定事件到 DOM 等等。时间一久，问题就很明显了：即使多次尝试做不同层次的抽象分层，还是很乱，太频繁与 DOM 打交道，遇到问题不好排查，维护也很痛苦。如果能尽量少碰 DOM，以数据、逻辑导向来写 view 呢？
 Github 上有 xx 步从 jQuery 到 Backbone, 就是通过一步步迭代，解释 Backbone 如何抽象分层，将数据、逻辑、事件、view 操作做分离，使得层级清晰，逻辑分明。可如果只为解决 view 层问题的话，是没必要引入过多概念和规则的，且 view 本身的问题，例如高复用性等也没有被解决。
@@ -27,10 +27,10 @@ React 带着变革前端开发的使命而来，声称专注 view 层，特点�
     
     <item>
       <title>用Grunt构建ReactJs开发环境</title>
-      <link>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</link>
+      <link>https://flyfloor.github.io/posts/2015-06-19-grunt-make-react-more-sexy/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-06-19-grunt-make-react-more-sexy/</guid>
       <description>本文主要是讲如何使用grunt来构建react开发环境
  最近计划将性感的React投入真正应用，在开发环境上小折腾了一番，主要纠结在于前端构建工具和模块化编程方式的选择。
 关于模块化编程，在此之前用过requireJs的方式来写模块，纠结的是移动端react压缩后也有100k以上大小，投入过多的库，可能导致移动端体验变差，于是决定放弃requireJs，采用CommonJs的方式来写，正好Sublime 的react插件自动补全也是这种方式。

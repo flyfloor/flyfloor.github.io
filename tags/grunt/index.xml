@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Grunt on braavos</title>
-    <link>https://braavos.me/tags/grunt/</link>
+    <link>https://flyfloor.github.io/tags/grunt/</link>
     <description>Recent content in Grunt on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 19 Jun 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://braavos.me/tags/grunt/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://flyfloor.github.io/tags/grunt/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>用Grunt构建ReactJs开发环境</title>
-      <link>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</link>
+      <link>https://flyfloor.github.io/posts/2015-06-19-grunt-make-react-more-sexy/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-06-19-grunt-make-react-more-sexy/</guid>
       <description>本文主要是讲如何使用grunt来构建react开发环境
  最近计划将性感的React投入真正应用，在开发环境上小折腾了一番，主要纠结在于前端构建工具和模块化编程方式的选择。
 关于模块化编程，在此之前用过requireJs的方式来写模块，纠结的是移动端react压缩后也有100k以上大小，投入过多的库，可能导致移动端体验变差，于是决定放弃requireJs，采用CommonJs的方式来写，正好Sublime 的react插件自动补全也是这种方式。

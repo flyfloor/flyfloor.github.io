@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Flex Layout on braavos</title>
-    <link>https://braavos.me/tags/flex-layout/</link>
+    <link>https://flyfloor.github.io/tags/flex-layout/</link>
     <description>Recent content in Flex Layout on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 22 Jul 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://braavos.me/tags/flex-layout/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://flyfloor.github.io/tags/flex-layout/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Dicey With Flexbox</title>
-      <link>https://braavos.me/posts/2015-07-22-flex-layout/</link>
+      <link>https://flyfloor.github.io/posts/2015-07-22-flex-layout/</link>
       <pubDate>Wed, 22 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-07-22-flex-layout/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-07-22-flex-layout/</guid>
       <description>此文来自Getting Dicey With Flexbox, 原文作者: Landon Schropp
  What if you could build complex CSS layouts in minutes? Flexbox is a new CSS layout spec that makes it easy to construct dynamic layouts. With flexbox, vertical centering, same-height columns, reordering, and direction agnosticism are a piece of cake.
 There&amp;rsquo;s a popular myth floating around that flexbox isn&amp;rsquo;t ready for prime time. Wrong! **93% of people are now running a browser that supports flexbox.</description>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mac on braavos</title>
-    <link>https://braavos.me/tags/mac/</link>
+    <link>https://flyfloor.github.io/tags/mac/</link>
     <description>Recent content in Mac on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 20 Feb 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://braavos.me/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://flyfloor.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>The new iterm2 is coming</title>
-      <link>https://braavos.me/posts/2016-02-20-iterm2-version-3/</link>
+      <link>https://flyfloor.github.io/posts/2016-02-20-iterm2-version-3/</link>
       <pubDate>Sat, 20 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-02-20-iterm2-version-3/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-02-20-iterm2-version-3/</guid>
       <description>&lt;p&gt;Iterm2，Mac 下最好用的终端 App，今天提醒有新 beta 版本，于是下载体验了把。下面是体验感受：&lt;/p&gt;
 
 &lt;h3 id=&#34;一些变化&#34;&gt;一些变化&lt;/h3&gt;</description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>提升效率利器之 PopClip 改良</title>
-      <link>https://braavos.me/posts/2016-01-12-popclip/</link>
+      <link>https://flyfloor.github.io/posts/2016-01-12-popclip/</link>
       <pubDate>Tue, 12 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-01-12-popclip/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-01-12-popclip/</guid>
       <description>&lt;p&gt;用 Mac 的人大多数应该都用过 PopClip 这个 app，基本功能是对鼠标选中内容进行操作，包括复制粘贴、搜索、字典打开，同时也拥有上百种通用扩展，让鼠标选中变得强大无比。&lt;/p&gt;</description>
     </item>
     

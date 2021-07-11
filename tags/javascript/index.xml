@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on braavos</title>
-    <link>https://braavos.me/tags/javascript/</link>
+    <link>https://flyfloor.github.io/tags/javascript/</link>
     <description>Recent content in Javascript on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 31 Jan 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://braavos.me/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://flyfloor.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>深入 ES6 - Symbols</title>
-      <link>https://braavos.me/posts/2016-01-31-symbols/</link>
+      <link>https://flyfloor.github.io/posts/2016-01-31-symbols/</link>
       <pubDate>Sun, 31 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-01-31-symbols/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-01-31-symbols/</guid>
       <description>原文出自 ES6 in depths, 作者 Jason Orendorff, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 ES6 的 Symbol 是什么？
@@ -32,10 +32,10 @@ let 😻 = 😺 × 😍; // 语法错误  它们也并不是文学里的象征�
     
     <item>
       <title>深入 ES6  - 子类</title>
-      <link>https://braavos.me/posts/2015-10-08-subclassing/</link>
+      <link>https://flyfloor.github.io/posts/2015-10-08-subclassing/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-10-08-subclassing/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-10-08-subclassing/</guid>
       <description>原文出自 ES6 in depths, 作者 Eric Faust, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 两周前，我们描述了 ES6 用来操作繁琐的对象构造的新的类系统，也介绍了如何使用它写出如下的代码：
@@ -44,10 +44,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 其他参数及默认参数</title>
-      <link>https://braavos.me/posts/2015-09-20-rest-parameters-and-defaults/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-rest-parameters-and-defaults/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-rest-parameters-and-defaults/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-rest-parameters-and-defaults/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-rest-parameters-and-defaults/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -67,10 +67,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 模块</title>
-      <link>https://braavos.me/posts/2015-09-20-modules/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-modules/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-modules/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-modules/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/08/es6-in-depth-modules/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -84,10 +84,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 模板字符串</title>
-      <link>https://braavos.me/posts/2015-09-20-template-strings/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-template-strings/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-template-strings/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-template-strings/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -103,10 +103,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 箭头函数</title>
-      <link>https://braavos.me/posts/2015-09-20-arrow-functions/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-arrow-functions/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-arrow-functions/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-arrow-functions/</guid>
       <description>原文出自 ES6 in depths, 作者 Jason Orendorff, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 箭头在 Javascript 早期便已存在。第一个 Javascript 指南建议将 Javascript 代码用内联 scripts 标签包裹，写在 HTML 注释里。这样对于不支持 Js 的浏览器，Javascript 代码就不会被认作是 text 了：
@@ -118,10 +118,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 类</title>
-      <link>https://braavos.me/posts/2015-09-20-classes/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-classes/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-classes/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-classes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/07/es6-in-depth-classes/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://hacks.mozilla.org/author/efaustmozilla-com/&#34;&gt;Eric Faust&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -135,10 +135,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 解构</title>
-      <link>https://braavos.me/posts/2015-09-20-destructuring/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-destructuring/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-destructuring/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-destructuring/</guid>
       <description>原文出自 ES6 in depths, 作者 Nick Fitzgerald, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 编者的话：本文的早期版本，作者为 firefox 开发者工具的工程师 Nick Fitzgerald，出现在 Nick 的博客 Destructuring Assignment in ES6。
@@ -150,10 +150,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>深入 ES6  - 生成器</title>
-      <link>https://braavos.me/posts/2015-09-19-generators/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-generators/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-generators/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-19-generators/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-generators/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -167,10 +167,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>深入 ES6  - 简介</title>
-      <link>https://braavos.me/posts/2015-09-19-es6-in-depth/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-es6-in-depth/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-es6-in-depth/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-19-es6-in-depth/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/04/es6-in-depth-an-introduction/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -182,10 +182,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>深入 ES6  - 迭代器和 for-of 循环  </title>
-      <link>https://braavos.me/posts/2015-09-19-iterators-and-the-for-of-loop/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-iterators-and-the-for-of-loop/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-iterators-and-the-for-of-loop/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-19-iterators-and-the-for-of-loop/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/04/es6-in-depth-iterators-and-the-for-of-loop/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -206,10 +206,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>命名函数表达式探秘</title>
-      <link>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</link>
+      <link>https://flyfloor.github.io/posts/2014-08-12-named-function-expressions-demystified/</link>
       <pubDate>Tue, 12 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-08-12-named-function-expressions-demystified/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;作者：Juriy &amp;ldquo;kangax&amp;rdquo; Zaytsev  译者：为之漫笔 译文原文：&lt;a target=&#34;_blank&#34; href=&#34;//www.cn-cuckoo.com/main/wp-content/uploads/2009/12/named-function-expressions-demystified.html&#34;&gt;命名函数表达式探秘&lt;/a&gt; 。&lt;br /&gt;
 关于Javascript的经典译文，由李松峰老师翻译。曾帮助我更好地理解Javascript基础。值得收藏。&lt;/p&gt;

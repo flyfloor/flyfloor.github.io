@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>写的 on braavos</title>
-    <link>https://braavos.me/posts/</link>
+    <link>https://flyfloor.github.io/posts/</link>
     <description>Recent content in 写的 on braavos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 14 Feb 2019 15:39:47 +0800</lastBuildDate>
     
-	<atom:link href="https://braavos.me/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://flyfloor.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>nodejs stream backpressure</title>
-      <link>https://braavos.me/posts/backpresuring-in-stream/</link>
+      <link>https://flyfloor.github.io/posts/backpresuring-in-stream/</link>
       <pubDate>Thu, 14 Feb 2019 15:39:47 +0800</pubDate>
       
-      <guid>https://braavos.me/posts/backpresuring-in-stream/</guid>
+      <guid>https://flyfloor.github.io/posts/backpresuring-in-stream/</guid>
       <description>+===================+ x--&amp;gt; Piping functions +--&amp;gt; src.pipe(dest) | x are set up during |===================| x the .pipe method. | Event callbacks | +===============+ x |-------------------| | Your Data | x They exist outside | .on(&amp;#39;close&amp;#39;, cb) | +=======+=======+ x the data flow, but | .on(&amp;#39;data&amp;#39;, cb) | | x importantly attach | .on(&amp;#39;drain&amp;#39;, cb) | | x events, and their | .on(&amp;#39;unpipe&amp;#39;, cb) | +---------v---------+ x respective callbacks. | .on(&amp;#39;error&amp;#39;, cb) | | Readable Stream +----+ | .</description>
     </item>
     
     <item>
       <title>Reason? Reason!</title>
-      <link>https://braavos.me/posts/2017-12-04-reason/</link>
+      <link>https://flyfloor.github.io/posts/2017-12-04-reason/</link>
       <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2017-12-04-reason/</guid>
+      <guid>https://flyfloor.github.io/posts/2017-12-04-reason/</guid>
       <description>今天学习一门新语言：Reason，其实去年的时候就有了解过这门语言，当时看文档一头雾水，就放弃了。几周前看了看官网，发现变化很大，新版语法感觉还不错，就简单过了下。
 首先，Reason 严格来说称不上一个语言，它是基于 OCaml 新语法的 DSL。OCaml 是一门函数式编程语言，它本身有些很好的特性，例如拥有严格静态类型，灵活强大的对象和模块系统，适合写高性能、结构复杂、数据正确性高要求的应用等。多被用来写编译器、程序分析、金融交易、虚拟机等应用。我们熟知的 facebook 的 flow 也是基于 OCaml 编写的。
 那么问题是『写前端 JavaScript 不够吗？老夫一把梭，就是干！』JavaScript 编写的代码已经运行在各种平台，侵入更多的领域，然而应用的规模变大以后，稳定性、可维护性变差很多，更多运行时异常，让测试、维护都变得非常难。
@@ -46,10 +46,10 @@ Reason 的构建系统：bsb，能够保证增量构建在 100 ms 内完成，�
     
     <item>
       <title>记一次奇怪的做梦经历</title>
-      <link>https://braavos.me/posts/2017-06-17-dream/</link>
+      <link>https://flyfloor.github.io/posts/2017-06-17-dream/</link>
       <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2017-06-17-dream/</guid>
+      <guid>https://flyfloor.github.io/posts/2017-06-17-dream/</guid>
       <description>昨晚做了个噩梦。
 梦的故事情节是，大家一群人出国玩，走马观花，看了很多景点。某餐期间，同行有人忽然开始咬别人，其他人四散逃开，但并不走远，都躲在角落观察他。咬人的忽然变成一只河马，而被咬的身上似乎只有很深的一道牙印，并未像丧尸一样被感染，只是惊慌逃跑。为了防止河马再次进攻，大家合力把河马赶跑了，然后惊魂未定的继续吃饭。 行程并未受到太大影响，大家还是吃喝玩，又一次午餐，同样的事情发生了，又有人变身秃鹫袭击人，这个人是之前被河马咬过的，同样所有人赶走了秃鹫。人们纷纷开始恐慌，有人提议打死被咬者，有人说太残忍，最终迫于压力，被咬者默默离开队伍。
 两天过去，相安无事，但大家都提高了警惕，互相提防，父母给孩子剪指甲，带牙套，以防万一。旅行已经完全被打乱，旅行团本身也是自发组织在一起的，大家都只想着结束旅程，离开这里不再有任何瓜葛。
@@ -61,10 +61,10 @@ Reason 的构建系统：bsb，能够保证增量构建在 100 ms 内完成，�
     
     <item>
       <title>冲突感即真实</title>
-      <link>https://braavos.me/posts/2017-04-01-gr/</link>
+      <link>https://flyfloor.github.io/posts/2017-04-01-gr/</link>
       <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2017-04-01-gr/</guid>
+      <guid>https://flyfloor.github.io/posts/2017-04-01-gr/</guid>
       <description>13年种草，终于入手了理光GR，虽然因为停产买了二手的，好在99成新，快门次数300次，除小光圈下凸显的cmos那颗小灰尘外，一切还好。
 相比其他，一直喜欢拍冲突感，混沌麻木的秩序下隐藏的突兀，带来更真实生活气息，就像是罂粟一样，黑暗却诱人。 两天成功把快门数翻了一番:
 instagram 持续更新: lacunafario
@@ -74,10 +74,10 @@ instagram 持续更新: lacunafario
     
     <item>
       <title>推荐一个公众号排版工具</title>
-      <link>https://braavos.me/posts/2017-01-07-markdown-css/</link>
+      <link>https://flyfloor.github.io/posts/2017-01-07-markdown-css/</link>
       <pubDate>Sat, 07 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2017-01-07-markdown-css/</guid>
+      <guid>https://flyfloor.github.io/posts/2017-01-07-markdown-css/</guid>
       <description>这是由 wecatch 程序员 三月沙 写的，自定义微信公众号排版工具。
 可能吧的阿禅的之前写了一篇文章介绍了他是如何排版公众号文章的：思路就是用 markdown 写作，然后使用专门的工具导出为 html 文件，最后把自定义的样式应用到导出的文件，复制粘贴最终的内容到微信公众号。
 工具地址
@@ -87,21 +87,21 @@ Github 地址
     
     <item>
       <title>龙猫</title>
-      <link>https://braavos.me/posts/2017-01-01-totoro/</link>
+      <link>https://flyfloor.github.io/posts/2017-01-01-totoro/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2017-01-01-totoro/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/totoro.png&#34; alt=&#34;totoro&#34; /&gt;&lt;/p&gt;
+      <guid>https://flyfloor.github.io/posts/2017-01-01-totoro/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/totoro.png&#34; alt=&#34;totoro&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自电影 &lt;em&gt;龙猫&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>破碎人生</title>
-      <link>https://braavos.me/posts/2016-12-22-demolition/</link>
+      <link>https://flyfloor.github.io/posts/2016-12-22-demolition/</link>
       <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-12-22-demolition/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-12-22-demolition/</guid>
       <description>今年最喜欢的电影史杰克哈伦吉尔演的『破碎人生』，jake 是我非常喜欢的演员之一，虽然至今没得奥斯卡，几乎涉猎各种题材电影，且多数角色演绎的很精湛。 电影主角戴维斯是一个成功人士，是岳父的公司的一把手，娶了贤惠漂亮的妻子，过着让普通人羡慕的生活，每天高效率、按部就班的工作生活。影片开头来了个急刹车，妻子遭遇车祸去世，他麻木生活瞬间被截断，长期无意识、虚伪、敷衍、自私等，在医院看着妻子离去，他竟悲伤不起来，甚至有种旁观者的冷漠，挤不出一滴眼泪。
 他开始回顾，妻子生前多次说他对身边人事漠不关心，于是开始关注细节，乘客的旅行箱里装的什么东西，家里漏水的冰箱，被暴风连根拔起的老树，厕所吱呀的门，出问题的电脑等等, 想起岳父说过的话：『如果你想修好一件东西，就先把它仔细拆开来，弄清楚最重要的是什么，什么能让你变得更坚强&amp;hellip; 修复人的内心，就像维修汽车，先拆分和检查一切部件，然后再次组装起来』，&amp;rdquo;everything become metaphor&amp;rdquo;，他开始拆解厕所门、冰箱，电脑，拆解人生&amp;hellip;
 通过写信反馈 bug，认识了售货机的客服凯伦，是好奇心、对事物共同的兴趣点让他愿意倾诉自己的故事，而后认识了凯伦叛逆的儿子，俩人身上分别于同龄人的那些品性，让戴维斯感受到真实的自由，拆解后的婚姻、生活是粗粝残破的，而他找到了最重要的部分：真实、自由，再拼凑起来，他开心的奔跑在沙滩上，像风一样自由。这里电影就可以结束了，最终导演给了主角婚姻一个鸡汤收尾，戴维斯向岳父坦白，他跟妻子之间存在过爱，只是不懂的关心她，希望设立奖学金来祭奠亡妻，最终也回忆起曾经甜蜜的日子。
@@ -111,19 +111,19 @@ Github 地址
     
     <item>
       <title>无状态</title>
-      <link>https://braavos.me/posts/2016-12-12-stateless/</link>
+      <link>https://flyfloor.github.io/posts/2016-12-12-stateless/</link>
       <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-12-12-stateless/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-12-12-stateless/</guid>
       <description>今天只想感谢半年前送本子给我的友人。</description>
     </item>
     
     <item>
       <title>几个歌单</title>
-      <link>https://braavos.me/posts/2016-08-21-playlist-16-08-21/</link>
+      <link>https://flyfloor.github.io/posts/2016-08-21-playlist-16-08-21/</link>
       <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-08-21-playlist-16-08-21/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-08-21-playlist-16-08-21/</guid>
       <description>在北京的夏天跑步还是需要点补给的
  十公里跑步(post rock)：  布鲁斯摇滚(blues)：  海盗电台原声(rock, OST)： 电影不知看了多少次，自由放荡，浓妆艳抹，特立独行，一切荒诞疯癫在伟大的摇滚梦面前显得自然。ps: may great hoffman rest in peace. 海盗电台原声
 300首流行、300首无伴奏合唱(a cappella)： 300首流行、300首无伴奏合唱
@@ -132,10 +132,10 @@ Github 地址
     
     <item>
       <title>How about a nice cup of React</title>
-      <link>https://braavos.me/posts/2016-07-05-how-about-a-nice-cup-of-react/</link>
+      <link>https://flyfloor.github.io/posts/2016-07-05-how-about-a-nice-cup-of-react/</link>
       <pubDate>Tue, 05 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-07-05-how-about-a-nice-cup-of-react/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-07-05-how-about-a-nice-cup-of-react/</guid>
       <description>接触 React 一年左右，期间在单页面、单页应用都有使用， 它极大地改变了我个人的前端开发方式。为方便快速出产品，闲暇之余也尝试写了点基础组件: react-component, react-image-cropper，react-touch-gallery, react-file-upload。也一直计划着写点心得总结什么的，迫于忙、浮躁，难静下心写东西，屡次作罢。这两天刚离职，决定把这篇总结补上。
 在 React 之前，玩过一点点 Angular 跟 Backbone，Backbone 是比较轻量级 MVC，Angular 较重，它的指令、注入式写法, 较死板的规则，不够简洁的 API，诸多概念等等，最终只是被我当玩具折腾了下。由于接触到项目多数时间花在 view 的交互、事件、变化更新上，所以大多数情况还是选择熟悉的 jQuery，原因无非是：熟练，可控，最轻依赖，快速灵活。过程基本上是: 命名 DOM，给 DOM 加特效，取数据更新 DOM， 绑定事件到 DOM 等等。时间一久，问题就很明显了：即使多次尝试做不同层次的抽象分层，还是很乱，太频繁与 DOM 打交道，遇到问题不好排查，维护也很痛苦。如果能尽量少碰 DOM，以数据、逻辑导向来写 view 呢？
 Github 上有 xx 步从 jQuery 到 Backbone, 就是通过一步步迭代，解释 Backbone 如何抽象分层，将数据、逻辑、事件、view 操作做分离，使得层级清晰，逻辑分明。可如果只为解决 view 层问题的话，是没必要引入过多概念和规则的，且 view 本身的问题，例如高复用性等也没有被解决。
@@ -146,11 +146,11 @@ React 带着变革前端开发的使命而来，声称专注 view 层，特点�
     
     <item>
       <title>回声探路</title>
-      <link>https://braavos.me/posts/2016-06-04-dark-echo/</link>
+      <link>https://flyfloor.github.io/posts/2016-06-04-dark-echo/</link>
       <pubDate>Sat, 04 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-06-04-dark-echo/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/dark-echo.jpg&#34; alt=&#34;dark echo&#34; /&gt;&lt;/p&gt;
+      <guid>https://flyfloor.github.io/posts/2016-06-04-dark-echo/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/dark-echo.jpg&#34; alt=&#34;dark echo&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Dark echo，四周黑暗，一双脚印。根据脚步回声的波纹反射确定周边及路的方向，最终逃出黑暗。一方面要不停通过跺脚探路，避开红色陷阱，同时要提防脚步声过大招引来红色猎食者。&lt;/p&gt;
 
@@ -159,10 +159,10 @@ React 带着变革前端开发的使命而来，声称专注 view 层，特点�
     
     <item>
       <title>The new iterm2 is coming</title>
-      <link>https://braavos.me/posts/2016-02-20-iterm2-version-3/</link>
+      <link>https://flyfloor.github.io/posts/2016-02-20-iterm2-version-3/</link>
       <pubDate>Sat, 20 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-02-20-iterm2-version-3/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-02-20-iterm2-version-3/</guid>
       <description>&lt;p&gt;Iterm2，Mac 下最好用的终端 App，今天提醒有新 beta 版本，于是下载体验了把。下面是体验感受：&lt;/p&gt;
 
 &lt;h3 id=&#34;一些变化&#34;&gt;一些变化&lt;/h3&gt;</description>
@@ -170,19 +170,19 @@ React 带着变革前端开发的使命而来，声称专注 view 层，特点�
     
     <item>
       <title>固定尺寸的响应式图片占位符</title>
-      <link>https://braavos.me/posts/2016-01-31-responsive-image-placeholder/</link>
+      <link>https://flyfloor.github.io/posts/2016-01-31-responsive-image-placeholder/</link>
       <pubDate>Sun, 31 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-01-31-responsive-image-placeholder/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-01-31-responsive-image-placeholder/</guid>
       <description>&lt;p&gt;对于图片列表，通常会使用懒加载的方式，好处就不多说了。通常实现是图片的 src 放一张占位符, data- 属性是原图地址，监听 滚动及触摸事件，如果在 viewport 内，加载原图。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>深入 ES6 - Symbols</title>
-      <link>https://braavos.me/posts/2016-01-31-symbols/</link>
+      <link>https://flyfloor.github.io/posts/2016-01-31-symbols/</link>
       <pubDate>Sun, 31 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-01-31-symbols/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-01-31-symbols/</guid>
       <description>原文出自 ES6 in depths, 作者 Jason Orendorff, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 ES6 的 Symbol 是什么？
@@ -198,76 +198,76 @@ let 😻 = 😺 × 😍; // 语法错误  它们也并不是文学里的象征�
     
     <item>
       <title>提升效率利器之 PopClip 改良</title>
-      <link>https://braavos.me/posts/2016-01-12-popclip/</link>
+      <link>https://flyfloor.github.io/posts/2016-01-12-popclip/</link>
       <pubDate>Tue, 12 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-01-12-popclip/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-01-12-popclip/</guid>
       <description>&lt;p&gt;用 Mac 的人大多数应该都用过 PopClip 这个 app，基本功能是对鼠标选中内容进行操作，包括复制粘贴、搜索、字典打开，同时也拥有上百种通用扩展，让鼠标选中变得强大无比。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>烛光</title>
-      <link>https://braavos.me/posts/2016-01-03-a/</link>
+      <link>https://flyfloor.github.io/posts/2016-01-03-a/</link>
       <pubDate>Sun, 03 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2016-01-03-a/</guid>
+      <guid>https://flyfloor.github.io/posts/2016-01-03-a/</guid>
       <description>&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=&#34;280&#34; height=&#34;86&#34; src=&#34;//music.163.com/outchain/player?type=2&amp;id=33166518&amp;auto=0&amp;height=66&#34; &gt;&lt;/iframe&gt;</description>
     </item>
     
     <item>
       <title>morty 表情系列</title>
-      <link>https://braavos.me/posts/2015-10-31-morty-series/</link>
+      <link>https://flyfloor.github.io/posts/2015-10-31-morty-series/</link>
       <pubDate>Sat, 31 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-10-31-morty-series/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-10-31-morty-series/</guid>
       <description>&lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;
 
 &lt;p&gt;两周前，用 sketch 临摹了 morty 系列的表情。按要求瞄了白边，提交了微信表情，然而微信迟迟未予审核，现在把它们放出来。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/morty/banner-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/morty/banner-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>傲娇的 morty</title>
-      <link>https://braavos.me/posts/2015-10-18-pride-morty/</link>
+      <link>https://flyfloor.github.io/posts/2015-10-18-pride-morty/</link>
       <pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-10-18-pride-morty/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/pride-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
+      <guid>https://flyfloor.github.io/posts/2015-10-18-pride-morty/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/pride-morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>荒蛮故事</title>
-      <link>https://braavos.me/posts/2015-10-17-relatos-salvajes/</link>
+      <link>https://flyfloor.github.io/posts/2015-10-17-relatos-salvajes/</link>
       <pubDate>Sat, 17 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-10-17-relatos-salvajes/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-10-17-relatos-salvajes/</guid>
       <description>&lt;p&gt;&lt;em&gt;F&amp;hellip; weird story：&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/s11181066.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/s11181066.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>rick</title>
-      <link>https://braavos.me/posts/2015-10-11-rick/</link>
+      <link>https://flyfloor.github.io/posts/2015-10-11-rick/</link>
       <pubDate>Sun, 11 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-10-11-rick/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-10-11-rick/</guid>
       <description>&lt;p&gt;这次是 morty 他外公 rick。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/rick.png&#34; alt=&#34;rick&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/rick.png&#34; alt=&#34;rick&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>深入 ES6  - 子类</title>
-      <link>https://braavos.me/posts/2015-10-08-subclassing/</link>
+      <link>https://flyfloor.github.io/posts/2015-10-08-subclassing/</link>
       <pubDate>Thu, 08 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-10-08-subclassing/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-10-08-subclassing/</guid>
       <description>原文出自 ES6 in depths, 作者 Eric Faust, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 两周前，我们描述了 ES6 用来操作繁琐的对象构造的新的类系统，也介绍了如何使用它写出如下的代码：
@@ -276,19 +276,19 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>一个好玩的 terminal 插件</title>
-      <link>https://braavos.me/posts/2015-10-04-the-fuck/</link>
+      <link>https://flyfloor.github.io/posts/2015-10-04-the-fuck/</link>
       <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-10-04-the-fuck/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-10-04-the-fuck/</guid>
       <description>&lt;p&gt;推荐一个好玩的终端插件，名字叫：thefuck。回想下每次把 &lt;code&gt;git status&lt;/code&gt; 写成 &lt;code&gt;git stats&lt;/code&gt;, &lt;code&gt;git branch&lt;/code&gt; 写成 &lt;code&gt;git brunch&lt;/code&gt; 的懊恼，虽然每次重新输入并不会花费太多时间，然而输错的瞬间你可能最容易脱口而出的就是 “fuck” 了。那么当输入有误时，假如你能任性的敲入 &lt;code&gt;fuck&lt;/code&gt;，终端乖乖替你完成正确的输入，是不是很解气？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>深入 ES6  - 其他参数及默认参数</title>
-      <link>https://braavos.me/posts/2015-09-20-rest-parameters-and-defaults/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-rest-parameters-and-defaults/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-rest-parameters-and-defaults/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-rest-parameters-and-defaults/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-rest-parameters-and-defaults/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -308,10 +308,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 模块</title>
-      <link>https://braavos.me/posts/2015-09-20-modules/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-modules/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-modules/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-modules/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/08/es6-in-depth-modules/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -325,10 +325,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 模板字符串</title>
-      <link>https://braavos.me/posts/2015-09-20-template-strings/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-template-strings/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-template-strings/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-template-strings/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -344,10 +344,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 箭头函数</title>
-      <link>https://braavos.me/posts/2015-09-20-arrow-functions/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-arrow-functions/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-arrow-functions/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-arrow-functions/</guid>
       <description>原文出自 ES6 in depths, 作者 Jason Orendorff, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 箭头在 Javascript 早期便已存在。第一个 Javascript 指南建议将 Javascript 代码用内联 scripts 标签包裹，写在 HTML 注释里。这样对于不支持 Js 的浏览器，Javascript 代码就不会被认作是 text 了：
@@ -359,10 +359,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 类</title>
-      <link>https://braavos.me/posts/2015-09-20-classes/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-classes/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-classes/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-classes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/07/es6-in-depth-classes/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://hacks.mozilla.org/author/efaustmozilla-com/&#34;&gt;Eric Faust&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -376,10 +376,10 @@ class Circle { constructor(radius) { this.radius = radius; Circle.circlesMade++;
     
     <item>
       <title>深入 ES6  - 解构</title>
-      <link>https://braavos.me/posts/2015-09-20-destructuring/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-20-destructuring/</link>
       <pubDate>Sun, 20 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-20-destructuring/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-20-destructuring/</guid>
       <description>原文出自 ES6 in depths, 作者 Nick Fitzgerald, 翻译：落在深海
  ES6 In Depth 系列将详细解读 ES6 的新特性。
 编者的话：本文的早期版本，作者为 firefox 开发者工具的工程师 Nick Fitzgerald，出现在 Nick 的博客 Destructuring Assignment in ES6。
@@ -391,32 +391,32 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>morty</title>
-      <link>https://braavos.me/posts/2015-09-19-morty/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-morty/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-morty/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
+      <guid>https://flyfloor.github.io/posts/2015-09-19-morty/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/morty.png&#34; alt=&#34;morty&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;来自美剧 &lt;em&gt;Rick and Morty&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>小黄人</title>
-      <link>https://braavos.me/posts/2015-09-19-banana/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-banana/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-banana/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/banana.png&#34; alt=&#34;banana&#34; /&gt;&lt;/p&gt;
+      <guid>https://flyfloor.github.io/posts/2015-09-19-banana/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/banana.png&#34; alt=&#34;banana&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;小黄人, 来自电影 &lt;em&gt;卑鄙的我&lt;/em&gt;, 使用 Sketch 临摹，作者：落在深海&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>深入 ES6  - 生成器</title>
-      <link>https://braavos.me/posts/2015-09-19-generators/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-generators/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-generators/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-19-generators/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/05/es6-in-depth-generators/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -430,10 +430,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>深入 ES6  - 简介</title>
-      <link>https://braavos.me/posts/2015-09-19-es6-in-depth/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-es6-in-depth/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-es6-in-depth/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-19-es6-in-depth/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/04/es6-in-depth-an-introduction/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -445,10 +445,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>深入 ES6  - 迭代器和 for-of 循环  </title>
-      <link>https://braavos.me/posts/2015-09-19-iterators-and-the-for-of-loop/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-19-iterators-and-the-for-of-loop/</link>
       <pubDate>Sat, 19 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-19-iterators-and-the-for-of-loop/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-19-iterators-and-the-for-of-loop/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文出自 &lt;a href=&#34;https://hacks.mozilla.org/2015/04/es6-in-depth-iterators-and-the-for-of-loop/&#34;&gt;ES6 in depths&lt;/a&gt;, 作者 &lt;a href=&#34;https://blog.mozilla.org/jorendorff/&#34;&gt;Jason Orendorff&lt;/a&gt;, 翻译：落在深海&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -469,28 +469,28 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>炎炎夏日的清凉女声</title>
-      <link>https://braavos.me/posts/2015-09-13-cheng-bi/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-13-cheng-bi/</link>
       <pubDate>Sun, 13 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-13-cheng-bi/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-13-cheng-bi/</guid>
       <description>&lt;p&gt;“炎炎夏日的清凉女声” 这样的描述，拿来形容她简单舒服，正如她给人的感觉，程璧。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>藤田惠美</title>
-      <link>https://braavos.me/posts/2015-09-13-fujita-emi/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-13-fujita-emi/</link>
       <pubDate>Sun, 13 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-13-fujita-emi/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-13-fujita-emi/</guid>
       <description>&lt;p&gt;非常喜欢的女声之一，虽然很多歌是翻唱的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>道高一尺，墙高一丈：互联网封锁是如何升级的</title>
-      <link>https://braavos.me/posts/2015-09-08-fuck-gfw/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-08-fuck-gfw/</link>
       <pubDate>Tue, 08 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-08-fuck-gfw/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-08-fuck-gfw/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原文来自&lt;a href=&#34;https://theinitium.com/article/20150904-mainland-greatfirewall/&#34;&gt;端傳媒&lt;/a&gt;, 作者：特约撰稿人 VV，经端傳媒編輯部许可，转载以便收藏&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -502,10 +502,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>rick and morty</title>
-      <link>https://braavos.me/posts/2015-09-04-rick-and-morty/</link>
+      <link>https://flyfloor.github.io/posts/2015-09-04-rick-and-morty/</link>
       <pubDate>Fri, 04 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-09-04-rick-and-morty/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-09-04-rick-and-morty/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;rick and morty&lt;/em&gt;, 美剧动画片，讲疯子科学家，带着外孙子经历各种疯狂刺激的宇宙冒险的故事。脑洞大，重口味，但不恶俗。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -513,10 +513,10 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>Sketch 插件大集合 —— Using Sketch Like A BOSS</title>
-      <link>https://braavos.me/posts/2015-08-28-using-sketch-like-a-boss/</link>
+      <link>https://flyfloor.github.io/posts/2015-08-28-using-sketch-like-a-boss/</link>
       <pubDate>Fri, 28 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-08-28-using-sketch-like-a-boss/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-08-28-using-sketch-like-a-boss/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;本文来自 &lt;a href=&#34;//www.sketchcn.com/sketch-tips-tricks-1.html&#34; target=&#34;_blank&#34;&gt; sketch 中文网&lt;/a&gt;， 作者:  &lt;a href=&#34;//www.aegeank.com&#34; target=&#34;_blank&#34;&gt;匡雪婷&lt;/a&gt;。经作者许可，转载以便收藏。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -532,21 +532,21 @@ var [first, second, third] = someArray;  SpiderMonkey(firefox 的 Javascript 引
     
     <item>
       <title>最近画的一些图标</title>
-      <link>https://braavos.me/posts/2015-08-26-recent-icons/</link>
+      <link>https://flyfloor.github.io/posts/2015-08-26-recent-icons/</link>
       <pubDate>Wed, 26 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-08-26-recent-icons/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-08-26-recent-icons/</guid>
       <description>&lt;p&gt;最近工作中需要画一些简单的 icon，于是发现把爱好当工作还真是挺享受的。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/icons.png&#34; alt=&#34;icons&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/icons.png&#34; alt=&#34;icons&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Getting Dicey With Flexbox</title>
-      <link>https://braavos.me/posts/2015-07-22-flex-layout/</link>
+      <link>https://flyfloor.github.io/posts/2015-07-22-flex-layout/</link>
       <pubDate>Wed, 22 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-07-22-flex-layout/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-07-22-flex-layout/</guid>
       <description>此文来自Getting Dicey With Flexbox, 原文作者: Landon Schropp
  What if you could build complex CSS layouts in minutes? Flexbox is a new CSS layout spec that makes it easy to construct dynamic layouts. With flexbox, vertical centering, same-height columns, reordering, and direction agnosticism are a piece of cake.
 There&amp;rsquo;s a popular myth floating around that flexbox isn&amp;rsquo;t ready for prime time. Wrong! **93% of people are now running a browser that supports flexbox.</description>
@@ -554,29 +554,29 @@ There&amp;rsquo;s a popular myth floating around that flexbox isn&amp;rsquo;t re
     
     <item>
       <title>情迷墨西哥</title>
-      <link>https://braavos.me/posts/2015-07-08-mexico/</link>
+      <link>https://flyfloor.github.io/posts/2015-07-08-mexico/</link>
       <pubDate>Wed, 08 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-07-08-mexico/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-07-08-mexico/</guid>
       <description> </description>
     </item>
     
     <item>
       <title>迷幻剂</title>
-      <link>https://braavos.me/posts/2015-07-08-hallucinogens/</link>
+      <link>https://flyfloor.github.io/posts/2015-07-08-hallucinogens/</link>
       <pubDate>Wed, 08 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-07-08-hallucinogens/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-07-08-hallucinogens/</guid>
       <description>You are the sheepherder.
  </description>
     </item>
     
     <item>
       <title>用Grunt构建ReactJs开发环境</title>
-      <link>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</link>
+      <link>https://flyfloor.github.io/posts/2015-06-19-grunt-make-react-more-sexy/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-06-19-grunt-make-react-more-sexy/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-06-19-grunt-make-react-more-sexy/</guid>
       <description>本文主要是讲如何使用grunt来构建react开发环境
  最近计划将性感的React投入真正应用，在开发环境上小折腾了一番，主要纠结在于前端构建工具和模块化编程方式的选择。
 关于模块化编程，在此之前用过requireJs的方式来写模块，纠结的是移动端react压缩后也有100k以上大小，投入过多的库，可能导致移动端体验变差，于是决定放弃requireJs，采用CommonJs的方式来写，正好Sublime 的react插件自动补全也是这种方式。
@@ -597,32 +597,32 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
     
     <item>
       <title>The Queen is dead</title>
-      <link>https://braavos.me/posts/2015-03-15-college-rock-inside/</link>
+      <link>https://flyfloor.github.io/posts/2015-03-15-college-rock-inside/</link>
       <pubDate>Sun, 15 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-03-15-college-rock-inside/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/college-rock/the-smiths.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+      <guid>https://flyfloor.github.io/posts/2015-03-15-college-rock-inside/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/college-rock/the-smiths.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;一些学院摇滚歌曲。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>锐化的冬天</title>
-      <link>https://braavos.me/posts/2015-01-11-cold-town/</link>
+      <link>https://flyfloor.github.io/posts/2015-01-11-cold-town/</link>
       <pubDate>Sun, 11 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2015-01-11-cold-town/</guid>
+      <guid>https://flyfloor.github.io/posts/2015-01-11-cold-town/</guid>
       <description>&lt;p&gt;又开始跑步了，顺便拍了些照片。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/cold-town/0.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/cold-town/0.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>The All-American Rejects</title>
-      <link>https://braavos.me/posts/2014-12-27-the-all-american-rejects/</link>
+      <link>https://flyfloor.github.io/posts/2014-12-27-the-all-american-rejects/</link>
       <pubDate>Sat, 27 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-12-27-the-all-american-rejects/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-12-27-the-all-american-rejects/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;The all american rejects，99年成立，主唱：Tyson Ritter&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -630,19 +630,19 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
     
     <item>
       <title>Lost in OST</title>
-      <link>https://braavos.me/posts/2014-11-28-rock-up/</link>
+      <link>https://flyfloor.github.io/posts/2014-11-28-rock-up/</link>
       <pubDate>Fri, 28 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-11-28-rock-up/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/wild.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
+      <guid>https://flyfloor.github.io/posts/2014-11-28-rock-up/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/wild.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Git Rebase</title>
-      <link>https://braavos.me/posts/2014-11-17-git-rebase/</link>
+      <link>https://flyfloor.github.io/posts/2014-11-17-git-rebase/</link>
       <pubDate>Mon, 17 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-11-17-git-rebase/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-11-17-git-rebase/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;关于git rebase的简述，转自&lt;a href=&#34;//gitbook.liuhui998.com/index.html&#34; target=&#34;_blank&#34;&gt;Git Community Book 中文版&lt;/a&gt;的&lt;a href=&#34;//gitbook.liuhui998.com/4_2.html&#34; target=&#34;_blank&#34;&gt;rebase&lt;/a&gt;， 作者&lt;a href=&#34;//www.liuhui998.com&#34; target=&#34;_blank&#34;&gt;liuhui998&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -657,30 +657,30 @@ grunt browserify 用来将CommonJs风格的Javascript代码打包。使用这个
     
     <item>
       <title>几张NBA老照片</title>
-      <link>https://braavos.me/posts/2014-11-16-old-pictures/</link>
+      <link>https://flyfloor.github.io/posts/2014-11-16-old-pictures/</link>
       <pubDate>Sun, 16 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-11-16-old-pictures/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/old-pictures/kobe.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+      <guid>https://flyfloor.github.io/posts/2014-11-16-old-pictures/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/old-pictures/kobe.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;1999年湖人对灰熊比赛前，科比因为在上一场右手手腕骨折，于是改用左手练习投篮，几年后成为一个左右通吃的得分狂魔。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>转眼二十年</title>
-      <link>https://braavos.me/posts/2014-10-27-20-years/</link>
+      <link>https://flyfloor.github.io/posts/2014-10-27-20-years/</link>
       <pubDate>Mon, 27 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-10-27-20-years/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-10-27-20-years/</guid>
       <description>&lt;p&gt;一篇微信文章，来自&lt;strong&gt;和菜头&lt;/strong&gt;的&lt;strong&gt;&lt;em&gt;槽边往事&lt;/em&gt;&lt;/strong&gt;，原文链接： &lt;a href=&#34;//mp.weixin.qq.com/s?__biz=MjM5MjAzODU2MA==&amp;mid=202149040&amp;idx=1&amp;sn=b6eece2d7a9f16156bcdf867be33dd37#rd&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;转眼二十年&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>一个节点上下文的流水账</title>
-      <link>https://braavos.me/posts/2014-10-19-flush/</link>
+      <link>https://flyfloor.github.io/posts/2014-10-19-flush/</link>
       <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-10-19-flush/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-10-19-flush/</guid>
       <description> Instagram最近也不能上了，对我的生活也没多大影响，我是一个轻度社交恐惧症患者。长期以来，我想生活的像黑洞一样，没人知道我究竟在做什么，也没人关心我做什么，这样我就能安心、无负担的做事。
 不过最近我换城市了，换掉了工作，也开始适应新的生活。在这还是把一些时刻流水账记录下来，有些见证了我的一些变化，也渐渐的变成我的一部分。
 北京 北京地铁5号线换乘2号线通道
@@ -701,10 +701,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>陈升的歌</title>
-      <link>https://braavos.me/posts/2014-09-03-chen-shengs-songs/</link>
+      <link>https://flyfloor.github.io/posts/2014-09-03-chen-shengs-songs/</link>
       <pubDate>Wed, 03 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-09-03-chen-shengs-songs/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-09-03-chen-shengs-songs/</guid>
       <description>&lt;p&gt;对生活有态度的人，不用太在意这个世界的纷扰。&lt;/p&gt;
 
 &lt;p&gt;一些老歌，主要来自陈升，最后一首&lt;strong&gt;南方二重唱&lt;/strong&gt;的《有一首歌》。&lt;/p&gt;</description>
@@ -712,10 +712,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>简明 Vim 练级攻略</title>
-      <link>https://braavos.me/posts/2014-08-29-basic-skills-of-vim/</link>
+      <link>https://flyfloor.github.io/posts/2014-08-29-basic-skills-of-vim/</link>
       <pubDate>Fri, 29 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-08-29-basic-skills-of-vim/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-08-29-basic-skills-of-vim/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;转自：&lt;a target=&#34;_blank&#34; href=&#34;//coolshell.cn/&#34;&gt;酷 壳 – CoolShell.cn&lt;/a&gt;  原文地址：&lt;a href=&#34;//coolshell.cn/articles/5426.html&#34; target=&#34;_blank&#34;&gt;简明Vim练级攻略&lt;/a&gt; 原文作者：&lt;a target=&#34;_blank&#34; href=&#34;//coolshell.cn/articles/author/haoel&#34;&gt;陈浩&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -729,10 +729,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>小岛</title>
-      <link>https://braavos.me/posts/2014-08-27-island/</link>
+      <link>https://flyfloor.github.io/posts/2014-08-27-island/</link>
       <pubDate>Wed, 27 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-08-27-island/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-08-27-island/</guid>
       <description>&lt;p&gt;《小岛》是我在豆瓣阅读买的第一本书，翻开第一篇，淡淡的海风，远离霓虹笙箫的小岛，与我急躁的生活并不搭调，于是迟迟未读。最近借着闲暇，读起了这本书。&lt;/p&gt;
 
 &lt;p&gt;书里的故事都发生在鼓浪屿，也并非发生过。行文轻俏、跳跃，读后只是淡淡的，若隐若现。于是，夜里的鼓浪屿，仿佛总有轻雾笼罩，褪去了白天的喧闹，成了幻想家的乐园。也许你也有似曾经历，独自徜徉在清幽小径，思绪早已褪去疲惫，就连自己都赞叹灵气十足、诗兴大发，那时候你不急于分享，因为小岛是你的专属。&lt;/p&gt;
@@ -742,10 +742,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>命名函数表达式探秘</title>
-      <link>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</link>
+      <link>https://flyfloor.github.io/posts/2014-08-12-named-function-expressions-demystified/</link>
       <pubDate>Tue, 12 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-08-12-named-function-expressions-demystified/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-08-12-named-function-expressions-demystified/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;作者：Juriy &amp;ldquo;kangax&amp;rdquo; Zaytsev  译者：为之漫笔 译文原文：&lt;a target=&#34;_blank&#34; href=&#34;//www.cn-cuckoo.com/main/wp-content/uploads/2009/12/named-function-expressions-demystified.html&#34;&gt;命名函数表达式探秘&lt;/a&gt; 。&lt;br /&gt;
 关于Javascript的经典译文，由李松峰老师翻译。曾帮助我更好地理解Javascript基础。值得收藏。&lt;/p&gt;
@@ -756,10 +756,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>人人都该学习的技术：从 Idea 到成品，撰写 User Story 的能力</title>
-      <link>https://braavos.me/posts/2014-08-09-from-idea-to-product-user-story/</link>
+      <link>https://flyfloor.github.io/posts/2014-08-09-from-idea-to-product-user-story/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-08-09-from-idea-to-product-user-story/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-08-09-from-idea-to-product-user-story/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;作者：xdite 原文地址：&lt;a href=&#34;//blog.xdite.net/posts/2014/05/29/from-idea-to-product-user-story&#34; target=&#34;_blank&#34;&gt;人人都该学习的技术：从Idea 到成品，撰写User Story 的能力&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -771,10 +771,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>Rails的环境变量</title>
-      <link>https://braavos.me/posts/2014-08-05-rails-env/</link>
+      <link>https://flyfloor.github.io/posts/2014-08-05-rails-env/</link>
       <pubDate>Tue, 05 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-08-05-rails-env/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-08-05-rails-env/</guid>
       <description>&lt;p&gt;翻看我的Pocket list，发现一篇很老的讲Rails基础的文章，作者写得很口水，原文在这里：&lt;a target=&#34;_blank&#34; href=&#34;//railsapps.github.io/rails-environment-variables.html&#34;&gt;Rails Environment Variables&lt;/a&gt;, 直译如下，希望对Rails新手有所帮助：&lt;/p&gt;
 
 &lt;h2 id=&#34;正文&#34;&gt;正文：&lt;/h2&gt;
@@ -790,25 +790,25 @@ Your browser does not support the audio element.
     
     <item>
       <title>用sketch绘制第一个图标</title>
-      <link>https://braavos.me/posts/2014-08-03-draw-a-icon-with-sketch/</link>
+      <link>https://flyfloor.github.io/posts/2014-08-03-draw-a-icon-with-sketch/</link>
       <pubDate>Sun, 03 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-08-03-draw-a-icon-with-sketch/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-08-03-draw-a-icon-with-sketch/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Sketch是OS X下一款小而美的矢量绘图工具，在设计圈内非常有名气。周末闲(mu)来(you)无(mei)事(zi)，决定用sketch画图标玩。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h4 id=&#34;首先下了个盗版sketch-未来一定支持正版-主要是太穷o-o&#34;&gt;首先下了个盗版Sketch(未来一定支持正版，主要是太穷o(╯□╰)o)&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://braavos.me/images/sketch.png&#34; alt=&#34;fill_set&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://flyfloor.github.io/images/sketch.png&#34; alt=&#34;fill_set&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>AngularJs指令(Directive)初探</title>
-      <link>https://braavos.me/posts/2014-07-30-start-from-directive/</link>
+      <link>https://flyfloor.github.io/posts/2014-07-30-start-from-directive/</link>
       <pubDate>Wed, 30 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-07-30-start-from-directive/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-07-30-start-from-directive/</guid>
       <description>完成一个简单的directive，初探angular
  关于angular，大多的概念都很好理解，很快就能上手。当疑惑如何嵌入模板片段时，发现需要用directive(指令)，这部分相对难啃，下面只是个非常简单的例子，大致介绍如何使用指令。
 main.html &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;script src=&amp;#34;angular.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 然后创建输入框，作为email的receiver输入 &amp;lt;input id=&amp;#34;email_to&amp;#34; type=&amp;#34;email&amp;#34; ng-model=&amp;#34;to&amp;#34;/&amp;gt; 这里有个modelto， 用来获取input输入，会被双向绑定到指令内部的scope上，后面再讲如何做。
@@ -819,10 +819,10 @@ app.directive(&amp;#39;myDir&amp;#39;, function() { return { restrict: &amp;#39;
     
     <item>
       <title>autumn</title>
-      <link>https://braavos.me/posts/2014-07-27-autumn/</link>
+      <link>https://flyfloor.github.io/posts/2014-07-27-autumn/</link>
       <pubDate>Sun, 27 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-07-27-autumn/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-07-27-autumn/</guid>
       <description> 北京 · 金秋
  两年前拍的一张照片，那时候在听：
 Your browser does not support the audio element.
@@ -831,14 +831,14 @@ Your browser does not support the audio element.
     
     <item>
       <title>little talks </title>
-      <link>https://braavos.me/posts/2014-07-26-a-mv/</link>
+      <link>https://flyfloor.github.io/posts/2014-07-26-a-mv/</link>
       <pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-07-26-a-mv/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-07-26-a-mv/</guid>
       <description>&lt;p&gt;Of Monsters and Men - Little Talks&lt;/p&gt;
 
 &lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//music.douban.com/subject/10572659/&#34; target=&#34;_blank&#34;&gt;
-&lt;img src=&#34;https://braavos.me/images/little-talks.jpg&#34; alt=&#34;Of Monsters and Men&#34; /&gt;
+&lt;img src=&#34;https://flyfloor.github.io/images/little-talks.jpg&#34; alt=&#34;Of Monsters and Men&#34; /&gt;
 &lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;背景&#34;&gt;背景&lt;/h3&gt;
@@ -848,10 +848,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>一个有意思的播客</title>
-      <link>https://braavos.me/posts/2014-07-22-recomended-a-podcast/</link>
+      <link>https://flyfloor.github.io/posts/2014-07-22-recomended-a-podcast/</link>
       <pubDate>Tue, 22 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-07-22-recomended-a-podcast/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-07-22-recomended-a-podcast/</guid>
       <description>&lt;h3 id=&#34;关于it公论&#34;&gt;关于IT公论：&lt;/h3&gt;
 
 &lt;blockquote&gt;
@@ -859,16 +859,16 @@ Your browser does not support the audio element.
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;a class=&#34;no-dec&#34; href=&#34;//www.itgonglun.com&#34;  target=&#34;_blank&#34;&gt;
-    &lt;img class=&#34;cover&#34; src=&#34;https://braavos.me/images/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
+    &lt;img class=&#34;cover&#34; src=&#34;https://flyfloor.github.io/images/itgonglun.png&#34; style=&#34;width:150px&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Recent Songs</title>
-      <link>https://braavos.me/posts/2014-07-07-recent-songs/</link>
+      <link>https://flyfloor.github.io/posts/2014-07-07-recent-songs/</link>
       <pubDate>Mon, 07 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-07-07-recent-songs/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-07-07-recent-songs/</guid>
       <description>&lt;h4 id=&#34;a-target-blank-class-no-dec-href-www-xiami-com-song-1027252-title-downtown-train-downtown-train-a&#34;&gt;&lt;a target=&#34;_blank&#34; class=&#34;no-dec&#34;  href=&#34;//www.xiami.com/song/1027252&#34; title=&#34;downtown train&#34;&gt;downtown train&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;&lt;a target=&#34;_blank&#34; class=&#34;no-dec&#34;  href=&#34;//www.xiami.com/song/1027252&#34; title=&#34;downtown train&#34;&gt;&lt;img  class=&#34;cover&#34; src=&#34;//img.xiami.net/images/album/img85/10185/525231395378300.jpg&#34;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -878,10 +878,10 @@ Your browser does not support the audio element.
     
     <item>
       <title>oceans deep</title>
-      <link>https://braavos.me/posts/2014-07-03-oceans-deep/</link>
+      <link>https://flyfloor.github.io/posts/2014-07-03-oceans-deep/</link>
       <pubDate>Thu, 03 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-07-03-oceans-deep/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-07-03-oceans-deep/</guid>
       <description>&lt;h3 id=&#34;oceans-deep-sons-of-day&#34;&gt;Oceans Deep - Sons of day&lt;/h3&gt;
 
 &lt;p&gt;Even though the world I&amp;rsquo;m in&lt;br /&gt;
@@ -895,10 +895,10 @@ Then I look to see myself within it all&lt;/p&gt;</description>
     
     <item>
       <title>若世界是我想象的样子 </title>
-      <link>https://braavos.me/posts/2014-02-11-imagine/</link>
+      <link>https://flyfloor.github.io/posts/2014-02-11-imagine/</link>
       <pubDate>Tue, 11 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://braavos.me/posts/2014-02-11-imagine/</guid>
+      <guid>https://flyfloor.github.io/posts/2014-02-11-imagine/</guid>
       <description>文/落
 若世界是我想象的样子，真爱是存在的。
 它光滑得像肌肤，鲜红得珊瑚。
